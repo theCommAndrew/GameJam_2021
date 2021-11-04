@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class characterMovement : MonoBehaviour
 {
-    public float moveSpeed = .025f;
+    public float moveSpeed = 5f;
+
+    public Rigidbody2D rb;
+
+    Vector2 movement;
 
 
     // Start is called before the first frame update
@@ -16,21 +20,39 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = transform.position;
 
-        if(Input.GetKey("w")){
-            pos.y += moveSpeed;
-        }
-        if(Input.GetKey("a")){
-            pos.x -= moveSpeed;
-        }
-        if(Input.GetKey("s")){
-            pos.y -= moveSpeed;
-        }
-        if(Input.GetKey("d")){
-            pos.x += moveSpeed;
-        }
+       movement.x = Input.GetAxisRaw("Horizontal");
+       movement.y = Input.GetAxisRaw("Vertical");
 
-        transform.position = pos;
+        // Vector3 pos = transform.position;
+
+        // if(Input.GetKey("w")){
+        //     pos.y += moveSpeed;
+        // }
+        // if(Input.GetKey("a")){
+        //     pos.x -= moveSpeed;
+        // }
+        // if(Input.GetKey("s")){
+        //     pos.y -= moveSpeed;
+        // }
+        // if(Input.GetKey("d")){
+        //     pos.x += moveSpeed;
+        // }
+
+        // transform.position = pos;
     }
+
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+        if(collision.gameObject.tag == "ground")
+        {
+            print("player was hit");
+        }
+        }
 }
