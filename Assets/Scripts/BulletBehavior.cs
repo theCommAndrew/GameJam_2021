@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour
 {
+    public int damage = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +16,19 @@ public class BulletBehavior : MonoBehaviour
     {
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if (collision.gameObject.tag == "ground")
+        if (col.gameObject.tag == "wall")
         {
-            print("Bullet hit");
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, .25f);
+        }
+
+        if (col.gameObject.tag == "character")
+        {
+            Character character = col.gameObject.GetComponent<Character>();
+            print("Bullet hit character");
+            character.takeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

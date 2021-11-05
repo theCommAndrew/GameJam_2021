@@ -36,12 +36,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\characterMovement.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\ProjectileBehaviour.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\bulletBehavior.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\Shooting.cs" />
+     <Compile Include="Assets\Scripts\EnemyA.cs" />
+     <Compile Include="Assets\Scripts\EnemyB.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.21f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
