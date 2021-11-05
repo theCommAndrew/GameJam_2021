@@ -44,7 +44,6 @@ public class Player : Character
     }
 
     public override void Die(){
-        Destroy(gameObject, .5f);
         Time.timeScale = 0;
         alive = false;
     }

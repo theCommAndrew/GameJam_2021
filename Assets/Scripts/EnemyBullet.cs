@@ -20,7 +20,7 @@ public class EnemyBullet : Bullet
         if (col.gameObject.tag == "Player")
         {
             Character character = col.gameObject.GetComponent<Character>();
-            print("Bullet hit player");
+            //print("Bullet hit player");
             character.takeDamage(damage);
             Destroy(gameObject);
         }

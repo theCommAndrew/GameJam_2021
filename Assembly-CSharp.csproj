@@ -38,7 +38,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
-     <Compile Include="Assets\Scripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\EnemyA.cs" />
      <Compile Include="Assets\Scripts\EnemyB.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />

@@ -34,8 +34,6 @@ public class EnemyB : Character
         Vector2 lookDirection = new Vector2(player.transform.position.x, player.transform.position.y) - rb.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
-
-
     }
 
     public override void Die(){

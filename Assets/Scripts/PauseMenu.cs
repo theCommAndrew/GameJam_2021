@@ -45,7 +45,6 @@ public class PauseMenu : MonoBehaviour
 
     public void GameOver()
     {
-        print("Game Over!");
         gameOverScreen.SetActive(true);
     }
 }
