@@ -15,7 +15,8 @@ public class Player : Character
 
     void Start(){
         alive = true;
-        health = 10;
+        maxHealth = 10;
+        health = maxHealth;
         moveSpeed = 5f;
     }
 

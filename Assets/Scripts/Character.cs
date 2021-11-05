@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     public float moveSpeed{get; set;}
+    public int maxHealth{get; set;}
     public int health{get; set;}
     public Rigidbody2D rb;
     public GameObject player;
@@ -17,6 +19,11 @@ public abstract class Character : MonoBehaviour
         {
             Die();
         }    
+    }
+
+    public void heal(int healing)
+    {
+        health = Math.Min(maxHealth, health + healing);
     }
 
     public virtual void Die()

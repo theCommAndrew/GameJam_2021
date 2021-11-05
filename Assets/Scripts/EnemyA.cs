@@ -7,7 +7,8 @@ public class EnemyA : Character
     public int damage; // damage done when running into player
     void Start()
     {
-        health = 20;   
+        maxHealth = 20;
+        health = maxHealth;   
         moveSpeed = 1f;
         damage = 5;
     }

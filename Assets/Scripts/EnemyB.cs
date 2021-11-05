@@ -11,7 +11,8 @@ public class EnemyB : Character
 
     void Start()
     {
-        health = 25;   
+        maxHealth = 25;   
+        health = maxHealth;
         shotInterval = 2;
     }
 
