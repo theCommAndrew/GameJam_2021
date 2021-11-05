@@ -11,8 +11,11 @@ public class Player : Character
 
     public float bulletForce = 20f;
 
+    public bool alive;
+
     void Start(){
-        health = 50;
+        alive = true;
+        health = 10;
         moveSpeed = 5f;
     }
 
@@ -42,5 +45,7 @@ public class Player : Character
 
     public override void Die(){
         Destroy(gameObject, .5f);
+        Time.timeScale = 0;
+        alive = false;
     }
 }

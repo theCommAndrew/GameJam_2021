@@ -8,10 +8,13 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject gameOverScreen;
+    Player player; 
     void Start()
     {
         pauseMenuUI.SetActive(false);
-
+        gameOverScreen.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     void Update()
     {
@@ -20,9 +23,13 @@ public class PauseMenu : MonoBehaviour
            (gameIsPaused ? (Action)Resume : Pause)();
         }
 
+        if(Time.timeScale == 0 && !player.alive)
+        {
+            GameOver();
+        }
+
         void Resume()
         {
-            print("resuming");
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             gameIsPaused = false;
@@ -30,11 +37,15 @@ public class PauseMenu : MonoBehaviour
 
         void Pause()
         {
-            print("pausing");
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             gameIsPaused = true;
         }
+    }
 
+    public void GameOver()
+    {
+        print("Game Over!");
+        gameOverScreen.SetActive(true);
     }
 }
