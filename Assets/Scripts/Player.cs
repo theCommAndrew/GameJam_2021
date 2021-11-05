@@ -2,37 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class Player : Character
 {
-    public float moveSpeed = 5f;
-
-    public Rigidbody2D rb;
     public Camera cam;
-
+    public GameObject bulletPrefab; 
     Vector2 movement;
     Vector2 mousePosition;
 
+    public float bulletForce = 20f;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
+    void Start(){
+        health = 50;
+        moveSpeed = 5f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation) as GameObject;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(this.transform.up * bulletForce, ForceMode2D.Impulse);
+        }
     }
 
     void FixedUpdate()
     {
-
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
         Vector2 lookDirection = mousePosition - rb.position;
@@ -40,6 +40,6 @@ public class CharacterMovement : MonoBehaviour
         rb.rotation = angle;
     }
 
+
+
 }
-
-
