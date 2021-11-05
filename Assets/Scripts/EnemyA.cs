@@ -20,7 +20,7 @@ public class EnemyA : Character
      }
 
     public override void Die(){
-        Debug.Log("Blah, I am dead");
+        moveSpeed = 0;
         Destroy(gameObject, .5f);
     }
 }

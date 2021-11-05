@@ -39,7 +39,6 @@ public class EnemyB : Character
     }
 
     public override void Die(){
-        Debug.Log("Blah, I am dead");
         Destroy(gameObject, .5f);
     }
 }

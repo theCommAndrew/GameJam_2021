@@ -40,6 +40,7 @@ public class Player : Character
         rb.rotation = angle;
     }
 
-
-
+    public override void Die(){
+        Destroy(gameObject, .5f);
+    }
 }

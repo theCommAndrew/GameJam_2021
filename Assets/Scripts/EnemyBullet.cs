@@ -14,7 +14,6 @@ public class EnemyBullet : Bullet
     {
         if (col.gameObject.tag == "wall")
         {
-            print("bullet hit wall");
             Destroy(gameObject);
         }
 
