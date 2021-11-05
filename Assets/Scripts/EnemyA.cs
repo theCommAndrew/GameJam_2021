@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyA : Character
 {
-    public GameObject player;
-
     void Start()
     {
         health = 20;   

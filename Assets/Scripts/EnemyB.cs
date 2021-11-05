@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyB : Character
 {
-    public GameObject player;
-    public Transform firePoint;
     public float bulletForce = 20f;
     public float shotInterval;
     private float shotTimer = 0;
@@ -13,19 +11,19 @@ public class EnemyB : Character
     void Start()
     {
         health = 25;   
-        shotInterval = 3;
+        shotInterval = 2;
     }
 
     void Update()
     {    
-        // shoot
+        // shoot on interval
         shotTimer += Time.deltaTime;
         if(shotTimer >= shotInterval)
         {
             shotTimer = 0;               
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
             Rigidbody2D bulletBody = bullet.GetComponent<Rigidbody2D>();
-            bulletBody.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+            bulletBody.AddForce(this.transform.up * bulletForce, ForceMode2D.Impulse);
         }
     }
 

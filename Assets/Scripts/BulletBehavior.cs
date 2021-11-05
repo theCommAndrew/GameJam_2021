@@ -5,22 +5,18 @@ using UnityEngine;
 public class BulletBehavior : MonoBehaviour
 {
     public int damage = 5;
-    // Start is called before the first frame update
     void Start()
-    {
+    {    }
 
-    }
-
-    // Update is called once per frame
     void Update()
-    {
+    {    }
 
-    }
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "wall")
         {
-            Destroy(gameObject, .25f);
+            print("bullet hit wall");
+            Destroy(gameObject);
         }
 
         if (col.gameObject.tag == "character")

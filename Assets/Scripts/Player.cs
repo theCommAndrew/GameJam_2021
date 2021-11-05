@@ -7,7 +7,6 @@ public class Player : Character
     public Camera cam;
     Vector2 movement;
     Vector2 mousePosition;
-    public Transform firePoint;
 
     public float bulletForce = 20f;
 
@@ -25,15 +24,14 @@ public class Player : Character
 
         if(Input.GetButtonDown("Fire1"))
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+            rb.AddForce(this.transform.up * bulletForce, ForceMode2D.Impulse);
         }
     }
 
     void FixedUpdate()
     {
-
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
         Vector2 lookDirection = mousePosition - rb.position;

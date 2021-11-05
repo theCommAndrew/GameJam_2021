@@ -9,6 +9,7 @@ public abstract class Character : MonoBehaviour
     public int health{get; set;}
     public Rigidbody2D rb;
     public GameObject bulletPrefab; 
+    public GameObject player;
 
     public void takeDamage(int damage)
     {
@@ -22,6 +23,11 @@ public abstract class Character : MonoBehaviour
     public virtual void Die()
     {
         //
+    }
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("player");
     }
 
     void Update(){}
