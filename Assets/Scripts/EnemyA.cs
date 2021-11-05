@@ -11,11 +11,9 @@ public class EnemyA : Character
     }
 
     void Update()
-    {
+    {    }
 
-    }
-
-    void FixedUpdate () {
+    void FixedUpdate() {
          Vector2 toTarget = player.transform.position - transform.position;
          
          transform.Translate(toTarget * moveSpeed * Time.deltaTime);

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehavior : MonoBehaviour
+public class FriendlyBullet : Bullet
 {
-    public int damage = 5;
     void Start()
     {    }
 
@@ -19,10 +18,10 @@ public class BulletBehavior : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (col.gameObject.tag == "character")
+        if (col.gameObject.tag == "enemy")
         {
             Character character = col.gameObject.GetComponent<Character>();
-            print("Bullet hit character");
+            print("Bullet hit enemy");
             character.takeDamage(damage);
             Destroy(gameObject);
         }

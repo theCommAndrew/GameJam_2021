@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Character
 {
     public Camera cam;
+    public GameObject bulletPrefab; 
     Vector2 movement;
     Vector2 mousePosition;
 
@@ -24,7 +25,7 @@ public class Player : Character
 
         if(Input.GetButtonDown("Fire1"))
         {
-            GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation) as GameObject;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(this.transform.up * bulletForce, ForceMode2D.Impulse);
         }

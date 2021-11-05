@@ -8,7 +8,6 @@ public abstract class Character : MonoBehaviour
     public float moveSpeed{get; set;}
     public int health{get; set;}
     public Rigidbody2D rb;
-    public GameObject bulletPrefab; 
     public GameObject player;
 
     public void takeDamage(int damage)
