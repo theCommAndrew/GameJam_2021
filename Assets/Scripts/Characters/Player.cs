@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : Character
 {
     public Camera cam;
-    public GameObject bulletPrefab; 
+    public GameObject bulletPrefab;
     public UIScripts uiScripts;
     Vector2 movement;
     Vector2 mousePosition;
@@ -15,7 +15,8 @@ public class Player : Character
 
     public bool alive;
 
-    void Start(){
+    void Start()
+    {
         alive = true;
         maxHealth = 3;
         health = maxHealth;
@@ -33,7 +34,7 @@ public class Player : Character
 
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation) as GameObject;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -54,10 +55,10 @@ public class Player : Character
     {
         health -= damage;
         uiScripts.updateHealthBar();
-        if(health <= 0)
+        if (health <= 0)
         {
             die();
-        }   
+        }
     }
 
     public override void heal(int restoreAmount)
@@ -66,7 +67,8 @@ public class Player : Character
         uiScripts.updateHealthBar();
     }
 
-    public override void die(){
+    public override void die()
+    {
         Time.timeScale = 0;
         alive = false;
     }

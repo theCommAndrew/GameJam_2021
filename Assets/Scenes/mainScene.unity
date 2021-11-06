@@ -155,11 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42aa8bf201d63da4084e92d00bbc8cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalFunctions: {fileID: 0}
   rb: {fileID: 291721996}
   player: {fileID: 482304243}
-  contactDamage: 0
-  bulletForce: 20
-  lootChance: 0
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
   shotInterval: 0
@@ -328,11 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7fbb0682718584f85081a21d63bac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalFunctions: {fileID: 0}
   rb: {fileID: 381315968}
   player: {fileID: 482304243}
-  contactDamage: 0
-  bulletForce: 0
-  lootChance: 0
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
 --- !u!61 &381315970
@@ -458,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9836df23c150e40b8a629088c4b24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalFunctions: {fileID: 0}
   rb: {fileID: 482304248}
   player: {fileID: 0}
   cam: {fileID: 2012921082}
@@ -859,11 +856,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7fbb0682718584f85081a21d63bac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalFunctions: {fileID: 0}
   rb: {fileID: 1911118343}
   player: {fileID: 482304243}
-  contactDamage: 0
-  bulletForce: 0
-  lootChance: 0
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
 --- !u!50 &1911118343
@@ -1268,6 +1263,14 @@ PrefabInstance:
     - target: {fileID: 4219929651832666494, guid: d882c1f348de99a46af8f2af5b5f9e69, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -289.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556286975340840592, guid: d882c1f348de99a46af8f2af5b5f9e69, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556286975340840592, guid: d882c1f348de99a46af8f2af5b5f9e69, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4773035041115590419, guid: d882c1f348de99a46af8f2af5b5f9e69, type: 3}
       propertyPath: m_Color.b
