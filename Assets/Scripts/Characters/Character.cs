@@ -6,11 +6,16 @@ using UnityEngine;
 // Parent class for all character game objects
 public abstract class Character : MonoBehaviour
 {
+    public GeneralFunctions generalFunctions;
     public float moveSpeed{get; set;}
     public int maxHealth{get; set;}
     public int health{get; set;}
     public Rigidbody2D rb;
     public GameObject player;
+    
+    protected Character(){
+        //generalFunctions = FindObjectOfType<GeneralFunctions>();
+    }
 
     public virtual void takeDamage(int damage)
     {
@@ -30,6 +35,7 @@ public abstract class Character : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("player");
+        generalFunctions = FindObjectOfType<GeneralFunctions>();
     }
 
     void Update(){}
