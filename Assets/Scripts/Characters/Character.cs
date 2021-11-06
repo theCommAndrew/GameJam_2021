@@ -17,16 +17,14 @@ public abstract class Character : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
-            Die();
+            die();
         }    
     }
 
-    public void heal(int healing)
-    {
-        health = Math.Min(maxHealth, health + healing);
-    }
+    public virtual void heal(int restoreAmount)
+    { /**/ }
 
-    public virtual void Die()
+    public virtual void die()
     { /**/ }
 
     void Start()

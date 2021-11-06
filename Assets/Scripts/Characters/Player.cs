@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,11 +56,17 @@ public class Player : Character
         uiScripts.updateHealthBar();
         if(health <= 0)
         {
-            Die();
+            die();
         }   
     }
 
-    public override void Die(){
+    public override void heal(int restoreAmount)
+    {
+        health = Math.Min(maxHealth, health + restoreAmount);
+        uiScripts.updateHealthBar();
+    }
+
+    public override void die(){
         Time.timeScale = 0;
         alive = false;
     }

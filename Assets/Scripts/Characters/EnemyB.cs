@@ -37,7 +37,7 @@ public class EnemyB : Character
         rb.rotation = angle;
     }
 
-    public override void Die(){
+    public override void die(){
         Destroy(gameObject, .5f);
     }
 }

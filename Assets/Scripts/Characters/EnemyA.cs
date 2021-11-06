@@ -22,7 +22,7 @@ public class EnemyA : Character
         transform.Translate(toTarget * moveSpeed * Time.deltaTime);
      }
 
-    public override void Die(){
+    public override void die(){
         moveSpeed = 0;
         Destroy(gameObject, .5f);
     }
