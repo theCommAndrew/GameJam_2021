@@ -35,9 +35,9 @@ public class Enemy : Character
         print("dying");
         moveSpeed = 0;
         Destroy(gameObject, .5f);
-        print("generalFunctions = " + generalFunctions);
-
-        dropLoot();
+        print($"drop chance = {lootChance}");
+        if(generalFunctions.getPercentResult(lootChance))
+            dropLoot();
 
     }
 

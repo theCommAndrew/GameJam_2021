@@ -15,7 +15,7 @@ public abstract class Character : MonoBehaviour
     public GameObject player;
     
     protected Character(){
-        //generalFunctions = FindObjectOfType<GeneralFunctions>();  
+        generalFunctions = new GeneralFunctions();  
         alive = true;
     }
 
@@ -38,7 +38,7 @@ public abstract class Character : MonoBehaviour
     void Start()
     {  
         player = GameObject.FindWithTag("player");
-        generalFunctions = FindObjectOfType<GeneralFunctions>();
+        //generalFunctions = FindObjectOfType<GeneralFunctions>();
     }
 
     void Update(){}

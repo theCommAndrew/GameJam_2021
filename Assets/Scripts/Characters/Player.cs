@@ -35,7 +35,7 @@ public class Player : Character
 
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        myTime = myTime + Time.deltaTime;
+        myTime += Time.deltaTime;
 
         if (Input.GetButton("Fire1") && myTime > nextFire)
         {

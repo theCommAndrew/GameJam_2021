@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class GeneralFunctions : MonoBehaviour
+public class GeneralFunctions// : MonoBehaviour
 {
-    public static readonly Random randomGen = new Random();
+    private Random randomGen = new Random();
 
-    public static bool getPercentResult(int successChance){
-
+    public bool getPercentResult(int successChance){
+        randomGen = new Random();
         return randomGen.Next(100) < successChance;
     }
 }

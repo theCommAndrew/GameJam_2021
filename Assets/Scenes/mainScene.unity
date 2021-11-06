@@ -271,7 +271,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &381315967
 GameObject:
@@ -420,7 +420,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482304243
 GameObject:
@@ -460,9 +460,8 @@ MonoBehaviour:
   cam: {fileID: 2012921082}
   bulletPrefab: {fileID: 4695644131091356760, guid: 0185abe91e3907047ac0fd1adbbc3b5a, type: 3}
   uiScripts: {fileID: 0}
-  fireDelta: 0.1
+  fireDelta: 0.2
   bulletForce: 20
-  alive: 0
 --- !u!212 &482304245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -946,7 +945,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1911118346
 BoxCollider2D:
