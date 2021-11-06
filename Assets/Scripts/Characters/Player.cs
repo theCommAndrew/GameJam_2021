@@ -8,12 +8,16 @@ public class Player : Character
     public Camera cam;
     public GameObject bulletPrefab;
     public UIScripts uiScripts;
+    public float fireDelta = 0.5f;
     Vector2 movement;
     Vector2 mousePosition;
 
     public float bulletForce = 20f;
 
     public bool alive;
+
+    private float nextFire = 0.1f;
+    private float myTime = 0.0f;
 
     void Start()
     {
@@ -34,11 +38,17 @@ public class Player : Character
 
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetButtonDown("Fire1"))
+        myTime = myTime + Time.deltaTime;
+
+        if (Input.GetButton("Fire1") && myTime > nextFire)
         {
+            nextFire = myTime + fireDelta;
             GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation) as GameObject;
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(this.transform.up * bulletForce, ForceMode2D.Impulse);
+
+            nextFire = nextFire - myTime;
+            myTime = 0.0f;
         }
     }
 
