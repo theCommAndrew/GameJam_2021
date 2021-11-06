@@ -14,14 +14,11 @@ public class Player : Character
 
     public float bulletForce = 20f;
 
-    public bool alive;
-
     private float nextFire = 0.1f;
     private float myTime = 0.0f;
 
     void Start()
     {
-        alive = true;
         maxHealth = 3;
         health = maxHealth;
         moveSpeed = 5f;

@@ -21,8 +21,12 @@ public class FriendlyBullet : Bullet
         {
             Character character = col.gameObject.GetComponent<Character>();
             //print("Bullet hit enemy");
-            character.takeDamage(damage);
-            Destroy(gameObject);
+            print("bullet hit. character.alive = "+character.alive);
+            if(character.alive)
+            {
+                character.takeDamage(damage);
+                Destroy(gameObject);
+            }
         }
     }
 }
