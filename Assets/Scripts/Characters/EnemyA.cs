@@ -10,7 +10,7 @@ public class EnemyA : Character
         maxHealth = 20;
         health = maxHealth;   
         moveSpeed = 1f;
-        damage = 5;
+        damage = 1;
     }
 
     void Update()

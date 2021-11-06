@@ -12,7 +12,7 @@ public abstract class Character : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject player;
 
-    public void takeDamage(int damage)
+    public virtual void takeDamage(int damage)
     {
         health -= damage;
         if(health <= 0)
@@ -27,9 +27,7 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual void Die()
-    {
-        //
-    }
+    { /**/ }
 
     void Start()
     {

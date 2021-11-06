@@ -6,6 +6,7 @@ public class Player : Character
 {
     public Camera cam;
     public GameObject bulletPrefab; 
+    public UIScripts uiScripts;
     Vector2 movement;
     Vector2 mousePosition;
 
@@ -15,9 +16,13 @@ public class Player : Character
 
     void Start(){
         alive = true;
-        maxHealth = 10;
+        maxHealth = 3;
         health = maxHealth;
         moveSpeed = 5f;
+
+        uiScripts = FindObjectOfType<UIScripts>();
+        uiScripts.Start();
+        uiScripts.updateHealthBar();
     }
 
     void Update()
@@ -42,6 +47,16 @@ public class Player : Character
         Vector2 lookDirection = mousePosition - rb.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
+    }
+
+    public override void takeDamage(int damage)
+    {
+        health -= damage;
+        uiScripts.updateHealthBar();
+        if(health <= 0)
+        {
+            Die();
+        }   
     }
 
     public override void Die(){

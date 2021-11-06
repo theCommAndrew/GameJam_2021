@@ -5,7 +5,9 @@ using UnityEngine;
 public class EnemyBullet : Bullet
 {
     void Start()
-    {    }
+    {  
+        damage = 1;
+    }
 
     void Update()
     {    }

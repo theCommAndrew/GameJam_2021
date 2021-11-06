@@ -2,19 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class UIScripts : MonoBehaviour
 {
-    public static bool gameIsPaused = false;
+    private static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOverScreen;
     Player player; 
-    void Start()
+
+    //health bar stuff
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
+    private void Awake() { }
+    public void Start()
     {
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();      
     }
     void Update()
     {
@@ -40,6 +48,16 @@ public class PauseMenu : MonoBehaviour
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             gameIsPaused = true;
+        }
+    }
+
+
+    public void updateHealthBar(){
+
+        for(int i = 0; i < hearts.Length; i++){
+            hearts[i].sprite = i < player.health ? fullHeart : emptyHeart;
+
+            hearts[i].enabled = i < player.maxHealth;       
         }
     }
 
