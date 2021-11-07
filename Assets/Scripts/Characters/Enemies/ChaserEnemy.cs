@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class ChaserEnemy : Enemy
 {
+    private void Awake() {
+        
+    }
     
     void Start()
     {
@@ -17,9 +21,11 @@ public class ChaserEnemy : Enemy
 
     void FixedUpdate() {
         // follow player position
+        /*
         Vector2 toTarget = player.transform.position - transform.position;
          
         transform.Translate(toTarget * moveSpeed * Time.deltaTime);
+        */
      }
 
 }
