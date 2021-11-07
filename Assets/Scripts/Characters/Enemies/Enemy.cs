@@ -32,10 +32,8 @@ public class Enemy : Character
     }
 
     public override void die(){
-        print("dying");
         moveSpeed = 0;
         Destroy(gameObject, .5f);
-        print($"drop chance = {lootChance}");
         if(generalFunctions.getPercentResult(lootChance))
             dropLoot();
 

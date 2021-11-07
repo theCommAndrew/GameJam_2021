@@ -155,7 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42aa8bf201d63da4084e92d00bbc8cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalFunctions: {fileID: 0}
   rb: {fileID: 291721996}
   player: {fileID: 482304243}
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
@@ -326,7 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7fbb0682718584f85081a21d63bac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalFunctions: {fileID: 0}
   rb: {fileID: 381315968}
   player: {fileID: 482304243}
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
@@ -454,13 +452,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9836df23c150e40b8a629088c4b24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalFunctions: {fileID: 0}
   rb: {fileID: 482304248}
   player: {fileID: 0}
   cam: {fileID: 2012921082}
   bulletPrefab: {fileID: 4695644131091356760, guid: 0185abe91e3907047ac0fd1adbbc3b5a, type: 3}
   uiScripts: {fileID: 0}
-  fireDelta: 0.2
+  fireDelta: 0.25
   bulletForce: 20
 --- !u!212 &482304245
 SpriteRenderer:
@@ -856,7 +853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7fbb0682718584f85081a21d63bac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalFunctions: {fileID: 0}
   rb: {fileID: 1911118343}
   player: {fileID: 482304243}
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
