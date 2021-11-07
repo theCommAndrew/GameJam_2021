@@ -16,7 +16,6 @@ public class Player : Character
     Vector2 mousePosition;
 
     public float bulletForce = 20f;
-
     private float nextFire = 0.1f;
     private float myTime = 0.0f;
 

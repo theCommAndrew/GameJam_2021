@@ -12,7 +12,7 @@ public abstract class Character : MonoBehaviour
     public int maxHealth{get; set;}
     public int health{get; set;}
     public Rigidbody2D rb;
-    public GameObject player;
+    public GameObject player{get; set;}
     
     protected Character(){
         generalFunctions = new GeneralFunctions();  
@@ -35,11 +35,11 @@ public abstract class Character : MonoBehaviour
     public virtual void die()
     { /**/ }
 
-    void Start()
-    {  
-        player = GameObject.FindWithTag("player");
-        //generalFunctions = FindObjectOfType<GeneralFunctions>();
+    private void Awake() {
+        player = GameObject.FindWithTag("Player");
     }
+    void Start()
+    {   }
 
     void Update(){}
 
