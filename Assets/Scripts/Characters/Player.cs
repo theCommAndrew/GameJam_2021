@@ -9,6 +9,9 @@ public class Player : Character
     public GameObject bulletPrefab;
     public UIScripts uiScripts;
     public float fireDelta = 0.5f;
+    public bool canDash = true;
+    public float dashDistance = 5f;
+    public LayerMask rayCastLayer = default;
     Vector2 movement;
     Vector2 mousePosition;
 
@@ -21,7 +24,7 @@ public class Player : Character
     {
         maxHealth = 3;
         health = maxHealth;
-        moveSpeed = 5f;
+        moveSpeed = 7f;
 
         uiScripts = FindObjectOfType<UIScripts>();
         uiScripts.Start();
@@ -32,6 +35,13 @@ public class Player : Character
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        {
+            Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
+            Dash(moveDir);
+        }
 
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -78,5 +88,25 @@ public class Player : Character
     {
         Time.timeScale = 0;
         alive = false;
+    }
+
+    private void Dash(Vector3 moveDir)
+    {
+        canDash = false;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, rayCastLayer);
+
+
+        if (hit.collider == null)
+        {
+            transform.position += moveDir * dashDistance;
+        }
+        else
+        {
+            transform.position = hit.point;
+        }
+
+        canDash = true;
+
     }
 }

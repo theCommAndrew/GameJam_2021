@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 482304247}
   - component: {fileID: 482304248}
   - component: {fileID: 482304244}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -458,6 +458,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4695644131091356760, guid: 0185abe91e3907047ac0fd1adbbc3b5a, type: 3}
   uiScripts: {fileID: 0}
   fireDelta: 0.25
+  canDash: 1
+  dashDistance: 5
+  rayCastLayer:
+    serializedVersion: 2
+    m_Bits: 1
   bulletForce: 20
 --- !u!212 &482304245
 SpriteRenderer:
