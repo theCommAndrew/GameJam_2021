@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EntryAlert : MonoBehaviour
 {
-
     public event EventHandler OnPlayerEnter;
 
     private void OnTriggerEnter2D(Collider2D collision) {

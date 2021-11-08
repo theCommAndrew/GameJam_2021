@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1872564380037174542}
-  player: {fileID: 8426682302185896719, guid: db9cdc6a7fbb26a4da29fc51e5f3e4f8, type: 3}
+  enemyPrefab: {fileID: 1872564380037174536}
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
   shotInterval: 0

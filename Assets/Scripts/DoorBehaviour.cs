@@ -11,11 +11,17 @@ public class DoorBehaviour : MonoBehaviour
     private void Start() {
         doorIsOpen(true);
         battleSystem.OnBattleStart += BattleSystem_OnBattleStart;
+        battleSystem.OnBattleEnd += BattleSystem_OnBattleEnd;
     }
 
     private void BattleSystem_OnBattleStart(object sender, System.EventArgs e){
         doorIsOpen(false);
         battleSystem.OnBattleStart -= BattleSystem_OnBattleStart;
+    }
+
+    private void BattleSystem_OnBattleEnd(object sender, System.EventArgs e){
+        doorIsOpen(true);
+        battleSystem.OnBattleStart -= BattleSystem_OnBattleEnd;
     }
 
     public void doorIsOpen(bool open){

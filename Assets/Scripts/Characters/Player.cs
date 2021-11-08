@@ -15,6 +15,11 @@ public class Player : Character
     Vector2 movement;
     Vector2 mousePosition;
 
+    public event EventHandler<OnDamagedEventArgs> OnDamaged;
+    public class OnDamagedEventArgs {
+        public int damageTaken;
+    }
+
     public float bulletForce = 20f;
     private float nextFire = 0.1f;
     private float myTime = 0.0f;
@@ -70,6 +75,9 @@ public class Player : Character
     public override void takeDamage(int damage)
     {
         health -= damage;
+        OnDamaged?.Invoke(this, new OnDamagedEventArgs {
+            damageTaken = damage,
+        });
         uiScripts.updateHealthBar();
         if (health <= 0)
         {
