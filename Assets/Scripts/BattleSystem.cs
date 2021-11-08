@@ -56,7 +56,9 @@ public class BattleSystem : MonoBehaviour
             enemy.spawn();
         }
 
-        state = State.Active;
-        OnBattleStart?.Invoke(this, EventArgs.Empty);
+        if(enemyCount > 0){
+            state = State.Active;
+            OnBattleStart?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

@@ -59,7 +59,7 @@ public class Enemy : Character
     // contact damage to player
     private void OnCollisionEnter2D(Collision2D col) {
         GameObject other = col.gameObject;
-        if (other.tag == "Player")
+        if(other.tag == "Player")
         {
             Character character = other.GetComponent<Character>();
             character.takeDamage(contactDamage);
