@@ -7,13 +7,18 @@ public class Player : Character
 {
     public Camera cam;
     public GameObject bulletPrefab;
-    public UIScripts uiScripts;
+    private UIScripts uiScripts;
     public float fireDelta = 0.5f;
     public bool canDash = true;
     public float dashDistance = 5f;
     public LayerMask rayCastLayer = default;
     Vector2 movement;
     Vector2 mousePosition;
+
+    public event EventHandler<OnDamagedEventArgs> OnDamaged;
+    public class OnDamagedEventArgs {
+        public int damageTaken;
+    }
 
     public float bulletForce = 20f;
     private float nextFire = 0.1f;
@@ -70,6 +75,9 @@ public class Player : Character
     public override void takeDamage(int damage)
     {
         health -= damage;
+        OnDamaged?.Invoke(this, new OnDamagedEventArgs {
+            damageTaken = damage,
+        });
         uiScripts.updateHealthBar();
         if (health <= 0)
         {

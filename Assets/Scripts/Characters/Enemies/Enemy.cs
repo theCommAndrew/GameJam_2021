@@ -5,23 +5,25 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-
     public int contactDamage{get; set;} // damage done when running into player
     public float bulletForce{get; set;}
     public int lootChance{get; set;} // chance to drop something on death. int from 0-100
-    public GameObject enemyBulletPrefab; // enemy projectile
-    public GameObject heartPickupPrefab; // healing item
+    [SerializeField] private GameObject player{get; set;}
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject enemyBulletPrefab; // enemy projectile
+    [SerializeField] private GameObject heartPickupPrefab; // healing item
 
-    protected Enemy(){
+    public event EventHandler OnEnemySpawned;
+    public event EventHandler OnEnemyKilled;
+
+    void Awake()
+    {  
+        gameObject.SetActive(false);
         bulletForce = 20f;
         lootChance = 50;
         contactDamage = 1;  
+        player = GameObject.FindWithTag("Player");
     }
-    void Start()
-    {    }
-
-    void Update()
-    {    }
   
     void FixedUpdate()
     {
@@ -31,8 +33,15 @@ public class Enemy : Character
         rb.rotation = angle;
     }
 
+    public void spawn(){
+        //Instantiate(enemyPrefab, this.transform.position, this.transform.rotation);
+        gameObject.SetActive(true);
+        OnEnemySpawned?.Invoke(this, EventArgs.Empty);
+    }
+
     public override void die(){
         moveSpeed = 0;
+        OnEnemyKilled?.Invoke(this, EventArgs.Empty);
         Destroy(gameObject, .5f);
         if(generalFunctions.getPercentResult(lootChance))
             dropLoot();

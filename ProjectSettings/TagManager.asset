@@ -8,6 +8,7 @@ TagManager:
   - character
   - bullet
   - enemy
+  - backend
   layers:
   - Default
   - TransparentFX

@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8823526350376403890}
+  enemyPrefab: {fileID: 8823526350376403888}
   enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
 --- !u!50 &8823526350376403890
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  drawGizmos: 1
+  drawGizmos: 0
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
