@@ -7,7 +7,7 @@ public class Player : Character
 {
     public Camera cam;
     public GameObject bulletPrefab;
-    public UIScripts uiScripts;
+    private UIScripts uiScripts;
     public float fireDelta = 0.5f;
     public bool canDash = true;
     public float dashDistance = 5f;

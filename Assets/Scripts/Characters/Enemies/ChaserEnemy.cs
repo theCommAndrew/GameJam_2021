@@ -5,16 +5,14 @@ using Pathfinding;
 
 public class ChaserEnemy : Enemy
 {
-    private void Awake() {
-        
-    }
-    
-    void Start()
-    {
+    private void Awake(){
         maxHealth = 20;
         health = maxHealth;   
         moveSpeed = 1f;
     }
+    
+    void Start()
+    {    }
 
     void Update()
     {    }

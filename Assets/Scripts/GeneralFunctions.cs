@@ -13,4 +13,5 @@ public class GeneralFunctions// : MonoBehaviour
         randomGen = new Random();
         return randomGen.Next(100) < successChance;
     }
+
 }

@@ -51,6 +51,9 @@
      <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Camera.cs" />
      <Compile Include="Assets\Scripts\Crosshair.cs" />
      <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_Text.cs" />
+     <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
+     <Compile Include="Assets\Scripts\BattleSystem.cs" />
+     <Compile Include="Assets\EntryAlert.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

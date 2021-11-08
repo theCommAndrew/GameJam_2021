@@ -12,19 +12,19 @@ public class FriendlyBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "wall")
-        {
-            Destroy(gameObject);
-        }
-
-        if (col.gameObject.tag == "enemy")
+        string tag = col.gameObject.tag;
+        if (tag == "enemy")
         {
             Character character = col.gameObject.GetComponent<Character>();
             if(character.alive)
             {
                 character.takeDamage(damage);
-                Destroy(gameObject);
             }
+        }
+
+        if (tag != "Player" && tag != "backend")
+        {
+            Destroy(gameObject);
         }
     }
 }

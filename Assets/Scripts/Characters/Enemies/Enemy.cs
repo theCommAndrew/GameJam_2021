@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-
     public int contactDamage{get; set;} // damage done when running into player
     public float bulletForce{get; set;}
     public int lootChance{get; set;} // chance to drop something on death. int from 0-100
@@ -15,7 +14,7 @@ public class Enemy : Character
     protected Enemy(){
         bulletForce = 20f;
         lootChance = 50;
-        contactDamage = 1;  
+        contactDamage = 1;     
     }
     void Start()
     {    }
