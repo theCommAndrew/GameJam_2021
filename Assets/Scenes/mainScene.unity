@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACQn+vV4HoRcAIAACcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjg0lwby0Q0kMSJrSTiy9CWmMNsuSR5ADJ8N+7km3sUl8sv/16+3blLyKUrYA5bdZG8GfNgXwfEX8m30a98QlOdK/VVnxC5/MuuCu8Ew0+b9QJjXjsw6wuwRnBfqi99M4RgrUSuTbliu9hoa2zCOdUWkCT0c5HK4S+RuSEr3HqQ854mjz40yee0mh0wSMD5cAMXOPWM7qbRfhMJ63//C5Novv7ZDWO5iGyVkzSsgLu2+gTJF2paRrcFDbYevjUTEspbMuOuHMVut9WBRjw7XNBsdnAKL6bIlCA2BfOUx9Gv+a5BddqYeh5KQyq1qQlP3UjZUntoSH2QWUdGEwa7k3S5//s4ziYc6PLp65uHPkarhDs8EbPjFo30HoILwfUgz5HKg90J+G9APWi10bXiqPRmdqH1hYmy/7z2tqiAHbo8YbqDVhXveCd3t1gfQ+X0P1pIUW5C7NMGmArdRA87AMYHM0vJBy2xbYpEPUs/lj4TffDtWoNj8JYh6a2S+Xp7XRtvCtZBc18N7VbaKMgwC3pChSV7rzBNO52hDe2QdkbyyP1F6gt3tq6e3ETEuDeP4puTBt9vA7LFvr4DLZ4rZ0UCnrS3vCCOi20Us2GDTXpwra1ySkbhO1rwf9dLZI88Fm6m89hx3fTBxaP4ylMWDqbpXkygZQlJOyeUNgnlZuGaCsPTk31yRXuWfdfGa0NrcK2c0OPa/FZ6oHkQuV6ywyAem0yXImDwSJ4LfmKCxRoC84JFeZNvjIiNTsAz66JstDp6uQMzfosGanEh3Yeycgi/Egy4uHrLm8MfAg4+uJdsgu5/AVQSwMEFAAACAgAAJCf64wayoBtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKJeYqpZZKFRWpSSpKxebKhrqFxqlGypampZZqJUaplsolSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJCf69XgehFwAgAAJwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJCf64wayoBtAAAAeAAAAAkAJAAAAAAAAAAAAAAAvQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB1AwAAAAA=
+    dataString: UEsDBBQAAAgIAACQn+uKB7yrcAIAACcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjg0lwby0Q0kMSJrSTiy9CWmMNsuSR5ADJ8N+7km3sUl8sv/16+3blLyKUrYA5bdZG8GfNgXwfEX8m30a98QlOdK/VVnxC5/MuuCu8Ew0+b9QJjXjsw6wuwRnBfqi99M4RgrUSuTbliu9hoa2zCOdUWkCT0c5HK4S+RuSEr3HqQ854mjz40yee0mh0wSMD5cAMXOPWM7qbRfhMJ63//C5Novv7ZDWO5iGyVkzSsgLu2+gTJF2paRrcFDbYevjUTEspbMuOuHMVut9WBRjw7XNBsdnAKL6bIVCA2BfOUx9Gv+a5BddqYeh5KQyq1qQlP3UjZUntoSH2QWUdGEwa7k3S5//s4ziYc6PLp65uHPkarhDs8EbPjFo30HoILwfUgz5HKg90J+G9APWi10bXiqPRmdqH1hYmy/7z2tqiAHbo8YbqDVhXveCd3t1gfQ+X0P1pIUW5C7NMGmArdRA87AMYHM0vJBy2xbYpEPUs/lj4TffDtWoNj8JYh6a2S+Xp7XRtvCtZBc18N7VbaKMgwC3pChSV7rzBNO52hDe2QdkbyyP1F6gt3tq6e3ETEuDeP4puTBt9vA7LFvr4DLZ4rZ0UCnrS3vCCOi20Us2GDTXpwra1ySkbhO1rwf9dLZI88Fm6m89hx3fTBxaP4ylMWDqbpXkygZQlJOyeUNgnlZuGaCsPTk31yRXuWfdfGa0NrcK2c0OPa/FZ6oHkQuV6ywyAem0yXImDwSJ4LfmKCxRoC84JFeZNvjIiNTsAz66JstDp6uQMzfosGanEh3Yeycgi/Egy4uHrLm8MfAg4+uJdsgu5/AVQSwMEFAAACAgAAJCf64wayoBtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKJeYqpZZKFRWpSSpKxebKhrqFxqlGypampZZqJUaplsolSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJCf64oHvKtwAgAAJwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJCf64wayoBtAAAAeAAAAAkAJAAAAAAAAAAAAAAAvQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB1AwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1449,6 +1449,7 @@ GameObject:
   - component: {fileID: 2012921083}
   - component: {fileID: 2012921082}
   - component: {fileID: 2012921081}
+  - component: {fileID: 2012921084}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1521,6 +1522,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2012921084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012921080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce664297b1e53a04dade39952e99ad43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSpeed: 5
 --- !u!1001 &2055971744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1702,6 +1716,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1532340041}
     - target: {fileID: 1051466418578220856, guid: d882c1f348de99a46af8f2af5b5f9e69, type: 3}
+      propertyPath: cameraFollow
+      value: 
+      objectReference: {fileID: 2012921084}
+    - target: {fileID: 1051466418578220856, guid: d882c1f348de99a46af8f2af5b5f9e69, type: 3}
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 885011620}
@@ -1826,5 +1844,13 @@ PrefabInstance:
       propertyPath: battleSystem
       value: 
       objectReference: {fileID: 1353839810}
+    - target: {fileID: 8084153275199201065, guid: 34f8cb2641e723f43ae001daaefa48a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084153275199201065, guid: 34f8cb2641e723f43ae001daaefa48a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34f8cb2641e723f43ae001daaefa48a2, type: 3}
