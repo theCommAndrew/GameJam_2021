@@ -11,12 +11,19 @@ public class Player : Character
     public float fireDelta = 0.5f;
     public bool canDash = true;
     public float dashDistance = 5f;
+    private bool canTakeDamage = true;
     public LayerMask rayCastLayer = default;
     Vector2 movement;
     Vector2 mousePosition;
+    private float dashCooldown;
+    const float DASH_COOLDOWN_MAX = 1F;
+    [SerializeField] private float invincibilityDurationSeconds = .3f;
+    [SerializeField] private float invicibilityDeltaTime = 0.15f;
+
 
     public event EventHandler<OnDamagedEventArgs> OnDamaged;
-    public class OnDamagedEventArgs {
+    public class OnDamagedEventArgs
+    {
         public int damageTaken;
     }
 
@@ -41,11 +48,14 @@ public class Player : Character
         movement.y = Input.GetAxisRaw("Vertical");
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
         {
+            dashCooldown = DASH_COOLDOWN_MAX;
+            StartCoroutine(BecomeTemporarilyInvincible());
             Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
             Dash(moveDir);
         }
+        dashCooldown -= Time.deltaTime;
 
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -74,8 +84,11 @@ public class Player : Character
 
     public override void takeDamage(int damage)
     {
+        if (canTakeDamage == false) return;
+
         health -= damage;
-        OnDamaged?.Invoke(this, new OnDamagedEventArgs {
+        OnDamaged?.Invoke(this, new OnDamagedEventArgs
+        {
             damageTaken = damage,
         });
         uiScripts.updateHealthBar();
@@ -83,6 +96,8 @@ public class Player : Character
         {
             die();
         }
+
+        StartCoroutine(BecomeTemporarilyInvincible());
     }
 
     public override void heal(int restoreAmount)
@@ -114,6 +129,25 @@ public class Player : Character
         }
 
         canDash = true;
+    }
+    private IEnumerator BecomeTemporarilyInvincible()
+    {
+        canTakeDamage = false;
+        print("invicible");
 
+        for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
+        {
+            yield return new WaitForSeconds(invicibilityDeltaTime);
+        }
+        canTakeDamage = true;
+        print("not invicible");
+    }
+
+    private void triggerInvincibility()
+    {
+        if (canTakeDamage)
+        {
+            StartCoroutine(BecomeTemporarilyInvincible());
+        }
     }
 }
