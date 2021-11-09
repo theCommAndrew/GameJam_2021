@@ -9,7 +9,8 @@ public class UIScripts : MonoBehaviour
     private static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOverScreen;
-    Player player; 
+    public CameraFollow cameraFollow;
+    private Player player; 
 
     //health bar stuff
     public Image[] hearts;
@@ -22,7 +23,8 @@ public class UIScripts : MonoBehaviour
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();      
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
+        cameraFollow.Setup(() => player.transform.position);
     }
     void Update()
     {
