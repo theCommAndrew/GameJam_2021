@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DoorBehaviour : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
-    public Sprite openSprite;
-    public Sprite closedSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite openSprite;
+    [SerializeField] private Sprite closedSprite;
     [SerializeField] private BattleSystem battleSystem;
     private void Start() {
         doorIsOpen(true);
@@ -27,11 +27,11 @@ public class DoorBehaviour : MonoBehaviour
     public void doorIsOpen(bool open){
         if(open){
             spriteRenderer.sprite = openSprite;
-            gameObject.SetActive(false);
+            this.GetComponent<BoxCollider2D>().enabled = false;
         }
         else{
             spriteRenderer.sprite = closedSprite;
-            gameObject.SetActive(true);
+            this.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 }

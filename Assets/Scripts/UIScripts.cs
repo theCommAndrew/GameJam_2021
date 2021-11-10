@@ -25,6 +25,8 @@ public class UIScripts : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
         cameraFollow.Setup(() => player.transform.position);
+        
+        player.updateHealth += updateHealthBar;
     }
     void Update()
     {
@@ -54,12 +56,12 @@ public class UIScripts : MonoBehaviour
     }
 
 
-    public void updateHealthBar(){
-
+    private void updateHealthBar(object sender, Player.UpdateHealthEvent e){
+        
         for(int i = 0; i < hearts.Length; i++){
-            hearts[i].sprite = i < player.health ? fullHeart : emptyHeart;
+            hearts[i].sprite = i < e.playerHealth ? fullHeart : emptyHeart;
 
-            hearts[i].enabled = i < player.maxHealth;       
+            hearts[i].enabled = i < e.maxHealth;       
         }
     }
 
