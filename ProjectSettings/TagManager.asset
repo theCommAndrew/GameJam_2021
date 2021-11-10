@@ -6,10 +6,10 @@ TagManager:
   tags:
   - wall
   - character
-  - bullet
   - enemy
   - backend
   - spike
+  - bullet
   layers:
   - Default
   - TransparentFX

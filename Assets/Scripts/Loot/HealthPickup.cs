@@ -18,8 +18,10 @@ public class HealthPickup : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Character character = col.gameObject.GetComponent<Character>();
-            character.heal(restoreAmount);
-            Destroy(gameObject);
+            if(character.health != character.maxHealth){
+                character.heal(restoreAmount);
+                Destroy(gameObject);
+            }            
         }
     }
 

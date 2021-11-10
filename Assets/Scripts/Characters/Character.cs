@@ -35,9 +35,11 @@ public abstract class Character : MonoBehaviour
     public virtual void die()
     { /**/ }
 
-    void Start()
-    {   }
-
-    void Update(){}
+    public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale){
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().speed = speed;
+        bullet.GetComponent<Bullet>().scale = scale;
+    }
 
 }
