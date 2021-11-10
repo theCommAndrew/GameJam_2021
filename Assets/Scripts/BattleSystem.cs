@@ -43,15 +43,12 @@ public class BattleSystem : MonoBehaviour
     private void Enemy_OnDeath(object sender, System.EventArgs e){
         enemyCount -= 1;
         if(enemyCount == 0){
-            Debug.Log("Battle Over");
             state = State.Completed;
             OnBattleEnd?.Invoke(this, EventArgs.Empty);
         }
     }
 
     private void startBattle(){
-        Debug.Log("Starting Battle");
-
         foreach( Enemy enemy in enemiesArray){
             enemy.spawn();
         }

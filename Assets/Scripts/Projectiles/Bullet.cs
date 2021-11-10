@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damage;
-    public float speed;
-    public Rigidbody2D bulletBody;
+    public int damage = 1;
+    public float speed = 20f;
+    public Vector3 scale = new Vector3(.5f,.5f,0);
 
     void Start()
     {  
-        bulletBody = GetComponent<Rigidbody2D>();
-        bulletBody.velocity = transform.forward * speed;
+        Rigidbody2D bulletBody = GetComponent<Rigidbody2D>();
+
+        this.transform.localScale = scale;
+
+        bulletBody.velocity = transform.up * speed;
     }
-    void Update()
-    {    }
    
 }

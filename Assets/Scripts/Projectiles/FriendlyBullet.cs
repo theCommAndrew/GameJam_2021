@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class FriendlyBullet : Bullet
 {
-    void Start()
-    {    }
-
-    void Update()
-    {    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         string tag = col.gameObject.tag;
@@ -22,7 +16,7 @@ public class FriendlyBullet : Bullet
             }
         }
 
-        if (tag != "Player" && tag != "backend")
+        if(tag != "Player" && tag != "backend" && tag != "bullet")
         {
             Destroy(gameObject);
         }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3902870884543359406}
   m_Layer: 0
   m_Name: Frirendly Bullet
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,4 +146,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   speed: 20
-  bulletBody: {fileID: 0}

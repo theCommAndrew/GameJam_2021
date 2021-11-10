@@ -6,9 +6,6 @@ using UnityEngine;
 public class Player : Character
 {
     private Camera cam;
-    public GameObject bulletPrefab;
-    private UIScripts uiScripts;
-    public float fireDelta = 0.5f;
     public bool canDash = true;
     public float dashDistance = 5f;
     private bool canTakeDamage = true;
@@ -26,8 +23,14 @@ public class Player : Character
         public int playerHealth;
         public int maxHealth;
     }
-
-    public float bulletForce = 20f;
+    
+    //shooting variables
+    public GameObject bulletPrefab;
+    [SerializeField] private GameObject firePoint;
+    public float fireDelta = 0.5f;
+    public int bulletDamage = 5;
+    public float bulletSpeed = 20f;
+    public Vector3 bulletSize = new Vector3(.5f, .5f, 0);
     private float nextFire = 0.1f;
     private float myTime = 0.0f;
 
@@ -39,21 +42,17 @@ public class Player : Character
 
         cam = FindObjectOfType<Camera>();
 
-        uiScripts = FindObjectOfType<UIScripts>();
-        //uiScripts.Start();
         updateHealth?.Invoke(this, new UpdateHealthEvent
         {
             playerHealth = health,
             maxHealth = maxHealth
         });
-        //uiScripts.updateHealthBar();
     }
 
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
 
         if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
         {
@@ -62,6 +61,7 @@ public class Player : Character
             Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
             Dash(moveDir);
         }
+
         dashCooldown -= Time.deltaTime;
 
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -71,9 +71,8 @@ public class Player : Character
         if (Input.GetButton("Fire1") && myTime > nextFire)
         {
             nextFire = myTime + fireDelta;
-            GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation) as GameObject;
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(this.transform.up * bulletForce, ForceMode2D.Impulse);
+
+            shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
 
             nextFire = nextFire - myTime;
             myTime = 0.0f;
@@ -91,6 +90,8 @@ public class Player : Character
 
     public override void takeDamage(int damage)
     {
+        if(!canTakeDamage) return;
+
         health -= damage;
         updateHealth?.Invoke(this, new UpdateHealthEvent
         {
@@ -98,7 +99,6 @@ public class Player : Character
             maxHealth = maxHealth
         });
 
-        //uiScripts.updateHealthBar();
         if (health <= 0)
         {
             die();
@@ -115,7 +115,6 @@ public class Player : Character
             playerHealth = health,
             maxHealth = maxHealth
         });
-        //uiScripts.updateHealthBar();
     }
 
     public override void die()
@@ -143,11 +142,13 @@ public class Player : Character
     }
     private IEnumerator BecomeTemporarilyInvincible()
     {
+        canTakeDamage = false;
         this.gameObject.layer = 3;
-        for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
+        for(float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
             yield return new WaitForSeconds(invicibilityDeltaTime);
         }
         this.gameObject.layer = 6;
+        canTakeDamage = true;
     }
 }
