@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+
     public int contactDamage{get; set;} // damage done when running into player
     public float bulletForce{get; set;}
     public int lootChance{get; set;} // chance to drop something on death. int from 0-100
@@ -17,14 +18,14 @@ public class Enemy : Character
     public event EventHandler OnEnemyKilled;
 
     void Awake()
-    {  
+    {
         gameObject.SetActive(false);
         bulletForce = 20f;
         lootChance = 50;
-        contactDamage = 1;  
+        contactDamage = 1;
         player = GameObject.FindWithTag("Player");
     }
-  
+
     void FixedUpdate()
     {
         // look at player
@@ -38,7 +39,8 @@ public class Enemy : Character
         OnEnemySpawned?.Invoke(this, EventArgs.Empty);
     }
 
-    public override void die(){
+    public override void die()
+    {
         moveSpeed = 0;
         OnEnemyKilled?.Invoke(this, EventArgs.Empty);
         Destroy(gameObject);
@@ -46,8 +48,8 @@ public class Enemy : Character
             dropLoot();
     }
 
-    public void dropLoot(){
-
+    public void dropLoot()
+    {
         GameObject heart = Instantiate(heartPickupPrefab, this.transform.position, this.transform.rotation);
         // make sure hearts always face upwards when dropped
         Rigidbody2D heartBody = heart.GetComponent<Rigidbody2D>();
@@ -55,9 +57,19 @@ public class Enemy : Character
     }
 
     // contact damage to player
-    private void OnCollisionEnter2D(Collision2D col) {
+    private void OnCollisionEnter2D(Collision2D col)
+    {
         GameObject other = col.gameObject;
-        if(other.tag == "Player")
+        if (other.tag == "Player")
+        {
+            Character character = other.GetComponent<Character>();
+            character.takeDamage(contactDamage);
+        }
+    }
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        GameObject other = col.gameObject;
+        if (other.tag == "Player")
         {
             Character character = other.GetComponent<Character>();
             character.takeDamage(contactDamage);
