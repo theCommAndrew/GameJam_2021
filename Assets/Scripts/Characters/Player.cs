@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public Camera cam;
+    private Camera cam;
     public GameObject bulletPrefab;
     private UIScripts uiScripts;
     public float fireDelta = 0.5f;
@@ -20,11 +20,11 @@ public class Player : Character
     [SerializeField] private float invincibilityDurationSeconds = .3f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
 
-
-    public event EventHandler<OnDamagedEventArgs> OnDamaged;
-    public class OnDamagedEventArgs
+    public event EventHandler<UpdateHealthEvent> updateHealth;
+    public class UpdateHealthEvent
     {
-        public int damageTaken;
+        public int playerHealth;
+        public int maxHealth;
     }
 
     public float bulletForce = 20f;
@@ -37,9 +37,16 @@ public class Player : Character
         health = maxHealth;
         moveSpeed = 7f;
 
+        cam = FindObjectOfType<Camera>();
+
         uiScripts = FindObjectOfType<UIScripts>();
-        uiScripts.Start();
-        uiScripts.updateHealthBar();
+        //uiScripts.Start();
+        updateHealth?.Invoke(this, new UpdateHealthEvent
+        {
+            playerHealth = health,
+            maxHealth = maxHealth
+        });
+        //uiScripts.updateHealthBar();
     }
 
     void Update()
@@ -84,14 +91,14 @@ public class Player : Character
 
     public override void takeDamage(int damage)
     {
-        if (canTakeDamage == false) return;
-
         health -= damage;
-        OnDamaged?.Invoke(this, new OnDamagedEventArgs
+        updateHealth?.Invoke(this, new UpdateHealthEvent
         {
-            damageTaken = damage,
+            playerHealth = health,
+            maxHealth = maxHealth
         });
-        uiScripts.updateHealthBar();
+
+        //uiScripts.updateHealthBar();
         if (health <= 0)
         {
             die();
@@ -103,7 +110,12 @@ public class Player : Character
     public override void heal(int restoreAmount)
     {
         health = Math.Min(maxHealth, health + restoreAmount);
-        uiScripts.updateHealthBar();
+        updateHealth?.Invoke(this, new UpdateHealthEvent
+        {
+            playerHealth = health,
+            maxHealth = maxHealth
+        });
+        //uiScripts.updateHealthBar();
     }
 
     public override void die()
@@ -118,7 +130,6 @@ public class Player : Character
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, rayCastLayer);
 
-
         if (hit.collider == null)
         {
             transform.position += moveDir * dashDistance;
@@ -132,22 +143,11 @@ public class Player : Character
     }
     private IEnumerator BecomeTemporarilyInvincible()
     {
-        canTakeDamage = false;
-        print("invicible");
-
+        this.gameObject.layer = 3;
         for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
             yield return new WaitForSeconds(invicibilityDeltaTime);
         }
-        canTakeDamage = true;
-        print("not invicible");
-    }
-
-    private void triggerInvincibility()
-    {
-        if (canTakeDamage)
-        {
-            StartCoroutine(BecomeTemporarilyInvincible());
-        }
+        this.gameObject.layer = 6;
     }
 }
