@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8823526350376403900}
   - component: {fileID: 8823526350376403901}
   - component: {fileID: 8823526350376403903}
-  - component: {fileID: 8823526350376403891}
   - component: {fileID: 8823526350376403890}
   - component: {fileID: 8823526350376403897}
   - component: {fileID: 8823526350376403902}
   - component: {fileID: 8823526350376403896}
+  - component: {fileID: 8823526350376403891}
   m_Layer: 0
   m_Name: ChaserEnemy
   m_TagString: enemy
@@ -114,22 +114,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8823526350376403891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8823526350376403888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7fbb0682718584f85081a21d63bac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 8823526350376403890}
-  enemyPrefab: {fileID: 8823526350376403888}
-  enemyBulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
-  heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
 --- !u!50 &8823526350376403890
 Rigidbody2D:
   serializedVersion: 4
@@ -235,3 +219,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 4885228855602847952, guid: 99284bac580eb1c49b48e766f35b8241, type: 3}
+--- !u!114 &8823526350376403891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8823526350376403888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7fbb0682718584f85081a21d63bac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8823526350376403890}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}

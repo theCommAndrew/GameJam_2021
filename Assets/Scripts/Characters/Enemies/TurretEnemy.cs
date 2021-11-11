@@ -10,6 +10,7 @@ public class TurretEnemy : Enemy
     public Vector3 bulletSize = new Vector3(.75f, .5f, 0);
     private float shotTimer = 0;
 
+
     void Start()
     {
         maxHealth = 25;   
@@ -19,11 +20,15 @@ public class TurretEnemy : Enemy
 
     void Update()
     {    
+        // adding Line Of Sight
+        // Vector2 lookDirection = new Vector2(player.transform.position.x, player.transform.position.y) - rb.position;
+        // RaycastHit2D LOS = Physics2D.Raycast(firePoint.transform.position, lookDirection, Mathf.Infinity);
+
         // shoot on interval
         shotTimer += Time.deltaTime;
-        if(shotTimer >= shotInterval)
+        if(shotTimer >= shotInterval)// && LOS.collider.tag == "Player") 
         {
-            shotTimer = 0;               
+            shotTimer = 0;    
             shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
         }
     }

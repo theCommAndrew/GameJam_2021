@@ -21,12 +21,15 @@ public abstract class Character : MonoBehaviour
 
     public virtual void takeDamage(int damage)
     {
+
         health -= damage;
+        //StartCoroutine(pauseMovement());
+
         if(health <= 0)
         {
             alive = false;
             die();
-        }    
+        }        
     }
 
     public virtual void heal(int restoreAmount)

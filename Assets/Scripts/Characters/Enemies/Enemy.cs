@@ -6,11 +6,10 @@ using Pathfinding;
 
 public class Enemy : Character
 {
-
-    public int contactDamage { get; set; } // damage done when running into player
-    public float bulletForce { get; set; }
-    public int lootChance { get; set; } // chance to drop something on death. int from 0-100
-    [SerializeField] private Player player { get; set; }
+    public int contactDamage{get; set;} // damage done when running into player
+    public float bulletForce{get; set;}
+    public int lootChance{get; set;} // chance to drop something on death. int from 0-100
+    [SerializeField] protected GameObject player{get; set;}
     [SerializeField] protected GameObject firePoint;
     [SerializeField] protected GameObject bulletPrefab; // enemy projectile
     [SerializeField] private GameObject heartPickupPrefab; // healing item
