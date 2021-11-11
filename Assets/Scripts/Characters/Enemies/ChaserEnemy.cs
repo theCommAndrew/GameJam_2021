@@ -6,17 +6,18 @@ using Pathfinding;
 public class ChaserEnemy : Enemy
 {
     void Start()
-    {  
+    {
         maxHealth = 20;
-        health = maxHealth;   
+        health = maxHealth;
         moveSpeed = 1f;
     }
 
     void Update()
-    {    }
+    { }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
 
-     }
+    }
 
 }

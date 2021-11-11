@@ -14,8 +14,9 @@ public class Player : Character
     Vector2 mousePosition;
     private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1F;
-    [SerializeField] private float invincibilityDurationSeconds = .3f;
+    [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
+
 
     public event EventHandler<UpdateHealthEvent> updateHealth;
     public class UpdateHealthEvent
@@ -23,7 +24,7 @@ public class Player : Character
         public int playerHealth;
         public int maxHealth;
     }
-    
+
     //shooting variables
     public GameObject bulletPrefab;
     [SerializeField] private GameObject firePoint;
@@ -93,7 +94,7 @@ public class Player : Character
 
     public override void takeDamage(int damage)
     {
-        if(!canTakeDamage) return;
+        if (!canTakeDamage) return;
 
         health -= damage;
         updateHealth?.Invoke(this, new UpdateHealthEvent
@@ -143,15 +144,26 @@ public class Player : Character
 
         canDash = true;
     }
-    private IEnumerator BecomeTemporarilyInvincible()
+    public IEnumerator BecomeTemporarilyInvincible()
     {
         canTakeDamage = false;
-        //this.gameObject.layer = 3;
-        for(float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
+        for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
             yield return new WaitForSeconds(invicibilityDeltaTime);
         }
-        //this.gameObject.layer = 6;
         canTakeDamage = true;
+    }
+
+    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    {
+        float timer = 0;
+
+        while (knockbackDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector2 dir = (obj.transform.position - this.transform.position).normalized;
+            rb.AddForce(-dir * knockbackPower);
+        }
+        yield return 0;
     }
 }

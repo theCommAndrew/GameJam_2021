@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Enemy : Character
 {
-
     public int contactDamage{get; set;} // damage done when running into player
     public float bulletForce{get; set;}
     public int lootChance{get; set;} // chance to drop something on death. int from 0-100
@@ -17,13 +17,17 @@ public class Enemy : Character
     public event EventHandler OnEnemySpawned;
     public event EventHandler OnEnemyKilled;
 
+    public float knockbackPower = 300;
+    public float knockbackDuration = 1;
+    public float pauseDuration = .3f;
+
     void Awake()
     {
         gameObject.SetActive(false);
         bulletForce = 20f;
         lootChance = 50;
         contactDamage = 1;
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void FixedUpdate()
@@ -34,7 +38,8 @@ public class Enemy : Character
         rb.rotation = angle;
     }
 
-    public void spawn(){
+    public void spawn()
+    {
         gameObject.SetActive(true);
         OnEnemySpawned?.Invoke(this, EventArgs.Empty);
     }
@@ -44,7 +49,7 @@ public class Enemy : Character
         moveSpeed = 0;
         OnEnemyKilled?.Invoke(this, EventArgs.Empty);
         Destroy(gameObject);
-        if(generalFunctions.getPercentResult(lootChance))
+        if (generalFunctions.getPercentResult(lootChance))
             dropLoot();
     }
 
@@ -62,8 +67,10 @@ public class Enemy : Character
         GameObject other = col.gameObject;
         if (other.tag == "Player")
         {
-            Character character = other.GetComponent<Character>();
-            character.takeDamage(contactDamage);
+            StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, this.transform));
+            player.takeDamage(contactDamage);
+            StartCoroutine(delayMovement());
+            StartCoroutine(player.BecomeTemporarilyInvincible());
         }
     }
     private void OnCollisionStay2D(Collision2D col)
@@ -71,8 +78,18 @@ public class Enemy : Character
         GameObject other = col.gameObject;
         if (other.tag == "Player")
         {
-            Character character = other.GetComponent<Character>();
-            character.takeDamage(contactDamage);
+            player.takeDamage(contactDamage);
         }
+    }
+
+    private IEnumerator delayMovement()
+    {
+        IAstarAI enemyMovement = GetComponent<IAstarAI>();
+        enemyMovement.canMove = false;
+        yield return new WaitForSeconds(pauseDuration);
+        enemyMovement.maxSpeed = 4f;
+        enemyMovement.canMove = true;
+        yield return new WaitForSeconds(.8f);
+        enemyMovement.maxSpeed = 8f;
     }
 }
