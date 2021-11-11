@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Enemy : Character
 {
@@ -9,7 +10,7 @@ public class Enemy : Character
     public int contactDamage { get; set; } // damage done when running into player
     public float bulletForce { get; set; }
     public int lootChance { get; set; } // chance to drop something on death. int from 0-100
-    [SerializeField] private GameObject player { get; set; }
+    [SerializeField] private Player player { get; set; }
     [SerializeField] protected GameObject firePoint;
     [SerializeField] protected GameObject bulletPrefab; // enemy projectile
     [SerializeField] private GameObject heartPickupPrefab; // healing item
@@ -19,6 +20,7 @@ public class Enemy : Character
 
     public float knockbackPower = 300;
     public float knockbackDuration = 1;
+    public float pauseDuration = .3f;
 
     void Awake()
     {
@@ -26,7 +28,7 @@ public class Enemy : Character
         bulletForce = 20f;
         lootChance = 50;
         contactDamage = 1;
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void FixedUpdate()
@@ -66,10 +68,9 @@ public class Enemy : Character
         GameObject other = col.gameObject;
         if (other.tag == "Player")
         {
-            Character character = other.GetComponent<Character>();
-            Player player = other.GetComponent<Player>();
             StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, this.transform));
-            character.takeDamage(contactDamage);
+            player.takeDamage(contactDamage);
+            StartCoroutine(delayMovement());
             StartCoroutine(player.BecomeTemporarilyInvincible());
         }
     }
@@ -78,8 +79,18 @@ public class Enemy : Character
         GameObject other = col.gameObject;
         if (other.tag == "Player")
         {
-            Character character = other.GetComponent<Character>();
-            character.takeDamage(contactDamage);
+            player.takeDamage(contactDamage);
         }
+    }
+
+    private IEnumerator delayMovement()
+    {
+        IAstarAI enemyMovement = GetComponent<IAstarAI>();
+        enemyMovement.canMove = false;
+        yield return new WaitForSeconds(pauseDuration);
+        enemyMovement.maxSpeed = 4f;
+        enemyMovement.canMove = true;
+        yield return new WaitForSeconds(.8f);
+        enemyMovement.maxSpeed = 8f;
     }
 }
