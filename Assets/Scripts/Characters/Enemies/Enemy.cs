@@ -6,16 +6,19 @@ using UnityEngine;
 public class Enemy : Character
 {
 
-    public int contactDamage{get; set;} // damage done when running into player
-    public float bulletForce{get; set;}
-    public int lootChance{get; set;} // chance to drop something on death. int from 0-100
-    [SerializeField] private GameObject player{get; set;}
+    public int contactDamage { get; set; } // damage done when running into player
+    public float bulletForce { get; set; }
+    public int lootChance { get; set; } // chance to drop something on death. int from 0-100
+    [SerializeField] private GameObject player { get; set; }
     [SerializeField] protected GameObject firePoint;
     [SerializeField] protected GameObject bulletPrefab; // enemy projectile
     [SerializeField] private GameObject heartPickupPrefab; // healing item
 
     public event EventHandler OnEnemySpawned;
     public event EventHandler OnEnemyKilled;
+
+    public float knockbackPower = 300;
+    public float knockbackDuration = 1;
 
     void Awake()
     {
@@ -34,7 +37,8 @@ public class Enemy : Character
         rb.rotation = angle;
     }
 
-    public void spawn(){
+    public void spawn()
+    {
         gameObject.SetActive(true);
         OnEnemySpawned?.Invoke(this, EventArgs.Empty);
     }
@@ -44,7 +48,7 @@ public class Enemy : Character
         moveSpeed = 0;
         OnEnemyKilled?.Invoke(this, EventArgs.Empty);
         Destroy(gameObject);
-        if(generalFunctions.getPercentResult(lootChance))
+        if (generalFunctions.getPercentResult(lootChance))
             dropLoot();
     }
 
@@ -63,7 +67,10 @@ public class Enemy : Character
         if (other.tag == "Player")
         {
             Character character = other.GetComponent<Character>();
+            Player player = other.GetComponent<Player>();
+            StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, this.transform));
             character.takeDamage(contactDamage);
+            StartCoroutine(player.BecomeTemporarilyInvincible());
         }
     }
     private void OnCollisionStay2D(Collision2D col)
