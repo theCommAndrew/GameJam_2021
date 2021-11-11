@@ -51,31 +51,34 @@ public class Player : Character
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
+        if(!UIScripts.gameIsPaused)
         {
-            dashCooldown = DASH_COOLDOWN_MAX;
-            StartCoroutine(BecomeTemporarilyInvincible());
-            Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
-            Dash(moveDir);
-        }
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
 
-        dashCooldown -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
+            {
+                dashCooldown = DASH_COOLDOWN_MAX;
+                StartCoroutine(BecomeTemporarilyInvincible());
+                Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
+                Dash(moveDir);
+            }
 
-        mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            dashCooldown -= Time.deltaTime;
 
-        myTime += Time.deltaTime;
+            mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetButton("Fire1") && myTime > nextFire)
-        {
-            nextFire = myTime + fireDelta;
+            myTime += Time.deltaTime;
 
-            shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
+            if (Input.GetButton("Fire1") && myTime > nextFire)
+            {
+                nextFire = myTime + fireDelta;
 
-            nextFire = nextFire - myTime;
-            myTime = 0.0f;
+                shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
+
+                nextFire = nextFire - myTime;
+                myTime = 0.0f;
+            }
         }
     }
 
@@ -143,12 +146,12 @@ public class Player : Character
     private IEnumerator BecomeTemporarilyInvincible()
     {
         canTakeDamage = false;
-        this.gameObject.layer = 3;
+        //this.gameObject.layer = 3;
         for(float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
             yield return new WaitForSeconds(invicibilityDeltaTime);
         }
-        this.gameObject.layer = 6;
+        //this.gameObject.layer = 6;
         canTakeDamage = true;
     }
 }

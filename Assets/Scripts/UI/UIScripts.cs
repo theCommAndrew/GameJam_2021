@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIScripts : MonoBehaviour
 {
-    private static bool gameIsPaused = false;
+    public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOverScreen;
     public CameraFollow cameraFollow;
@@ -17,44 +18,30 @@ public class UIScripts : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    private void Awake() { }
     public void Start()
-    {
+    {   
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
+        Cursor.visible = false;
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
         cameraFollow.Setup(() => player.transform.position);
         
         player.updateHealth += updateHealthBar;
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           (gameIsPaused ? (Action)Resume : Pause)();
+           (gameIsPaused ? (Action)resumeGame : pauseGame)();
         }
 
         if(Time.timeScale == 0 && !player.alive)
         {
             GameOver();
         }
-
-        void Resume()
-        {
-            pauseMenuUI.SetActive(false);
-            Time.timeScale = 1f;
-            gameIsPaused = false;
-        }
-
-        void Pause()
-        {
-            pauseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
-            gameIsPaused = true;
-        }
     }
-
 
     private void updateHealthBar(object sender, Player.UpdateHealthEvent e){
         
@@ -63,6 +50,26 @@ public class UIScripts : MonoBehaviour
 
             hearts[i].enabled = i < e.maxHealth;       
         }
+    }
+
+    public void pauseGame()
+    {
+        Cursor.visible = true;
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0;
+        gameIsPaused = true;
+    }
+
+    public void resumeGame()
+    {
+        Cursor.visible = false;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1;
+        gameIsPaused = false;
+    }
+
+    public void quitGame(){
+        Application.Quit();
     }
 
     public void GameOver()
