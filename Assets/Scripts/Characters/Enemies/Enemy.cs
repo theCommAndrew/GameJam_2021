@@ -6,26 +6,28 @@ using Pathfinding;
 
 public class Enemy : Character
 {
-    public int contactDamage{get; set;} // damage done when running into player
-    public float bulletForce{get; set;}
-    public int lootChance{get; set;} // chance to drop something on death. int from 0-100
+    // objects
     [SerializeField] protected Player player{get; set;}
     [SerializeField] protected GameObject firePoint;
     [SerializeField] protected GameObject bulletPrefab; // enemy projectile
     [SerializeField] private GameObject heartPickupPrefab; // healing item
+    [SerializeField] private GameObject ammoPickup;
 
-    public event EventHandler OnEnemySpawned;
-    public event EventHandler OnEnemyKilled;
-
+    // movement/combat params
+    public int lootChance{get; set;} // chance to drop something on death. int from 0-100
+    public int contactDamage{get; set;} // damage done when running into player
     public float rotationSpeed = 5;
     public float knockbackPower = 300;
     public float knockbackDuration = 1;
     public float pauseDuration = .3f;
 
+    // events
+    public event EventHandler OnEnemySpawned;
+    public event EventHandler OnEnemyKilled;
+
     void Awake()
     {
         gameObject.SetActive(false);
-        bulletForce = 20f;
         lootChance = 50;
         contactDamage = 1;
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -44,6 +46,7 @@ public class Enemy : Character
 
     public void spawn()
     {
+        // fire OnEnemySpawned event
         gameObject.SetActive(true);
         OnEnemySpawned?.Invoke(this, EventArgs.Empty);
     }
@@ -59,10 +62,15 @@ public class Enemy : Character
 
     public void dropLoot()
     {
-        GameObject heart = Instantiate(heartPickupPrefab, this.transform.position, this.transform.rotation);
-        // make sure hearts always face upwards when dropped
-        Rigidbody2D heartBody = heart.GetComponent<Rigidbody2D>();
-        heartBody.SetRotation(0);
+        if(generalFunctions.getPercentResult(30))
+        {
+            GameObject heart = Instantiate(heartPickupPrefab, this.transform.position, Quaternion.Euler(0,0,0));
+            // make sure hearts always face upwards when dropped
+            //heart.GetComponent<Rigidbody2D>().SetRotation(0);
+        }
+        else{
+            GameObject ammo = Instantiate(ammoPickup, this.transform.position, Quaternion.Euler(0,0,0));
+        }
     }
 
     // contact damage to player

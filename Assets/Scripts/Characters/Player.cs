@@ -26,8 +26,8 @@ public class Player : Character
     }
 
     // weapon info
-    public List<Weapon> weapons;
-    public Weapon currentWeapon;
+    public Weapon[] weapons;
+    public int currentWeapon = 0;
     public AmmoInventory inventory;
 
 
@@ -54,7 +54,7 @@ public class Player : Character
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
+            if(Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
             {
                 dashCooldown = DASH_COOLDOWN_MAX;
                 StartCoroutine(BecomeTemporarilyInvincible());
@@ -68,7 +68,16 @@ public class Player : Character
 
             if(Input.GetButton("Fire1"))
             {
-                currentWeapon.Fire(inventory);
+                print($"firing {weapons[currentWeapon]}");
+                weapons[currentWeapon].Fire(inventory);
+            }
+
+            if(Input.GetKeyDown(KeyCode.Tab) && weapons.Length > 1)
+            {
+                print("swapping weapon");
+                weapons[currentWeapon].gameObject.SetActive(false);
+                currentWeapon =  (currentWeapon + 1) % 2;
+                weapons[currentWeapon].gameObject.SetActive(true);
             }
         }
     }

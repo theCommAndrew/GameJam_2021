@@ -26,6 +26,7 @@ public class Weapon : MonoBehaviour
     }
 
     public bool Fire(AmmoInventory ammo){
+        print($"firing when {myTime} > {fireDelta}");
         if(myTime > fireDelta)
         {
             int shotsFired = ammo.Spend(ammoType, ammoPerShot);
