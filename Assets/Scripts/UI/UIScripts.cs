@@ -18,16 +18,18 @@ public class UIScripts : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    public void Start()
+    public void Awake()
     {   
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
         Cursor.visible = false;
+        startTime();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
         cameraFollow.Setup(() => player.transform.position);
         
         player.updateHealth += updateHealthBar;
+        player.playerDeath += gameOver;
     }
 
     void Update()
@@ -35,11 +37,6 @@ public class UIScripts : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
            (gameIsPaused ? (Action)resumeGame : pauseGame)();
-        }
-
-        if(Time.timeScale == 0 && !player.alive)
-        {
-            GameOver();
         }
     }
 
@@ -56,24 +53,41 @@ public class UIScripts : MonoBehaviour
     {
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0;
-        gameIsPaused = true;
+        stopTime();
     }
 
     public void resumeGame()
     {
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1;
-        gameIsPaused = false;
+        startTime();
+    }
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene( SceneManager.GetSceneByName("mainScene").name);
+        gameOverScreen.SetActive(false);
     }
 
     public void quitGame(){
         Application.Quit();
     }
 
-    public void GameOver()
+    private void gameOver(object sender, System.EventArgs e)
     {
+        stopTime();
         gameOverScreen.SetActive(true);
+    }
+
+    private void stopTime()
+    {
+        gameIsPaused = true;
+        Time.timeScale = 0;
+    }
+
+    private void startTime()
+    {
+        gameIsPaused = false;
+        Time.timeScale = 1;
     }
 }
