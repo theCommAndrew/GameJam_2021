@@ -23,8 +23,6 @@ public abstract class Character : MonoBehaviour
     {
 
         health -= damage;
-        //StartCoroutine(pauseMovement());
-
         if(health <= 0)
         {
             alive = false;

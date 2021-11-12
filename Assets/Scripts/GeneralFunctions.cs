@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class GeneralFunctions// : MonoBehaviour
+public class GeneralFunctions
 {
     private Random randomGen = new Random();
 

@@ -55,6 +55,10 @@
      <Compile Include="Assets\Scripts\BattleSystem.cs" />
      <Compile Include="Assets\Scripts\EntryAlert.cs" />
      <Compile Include="Assets\Scripts\UI\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\AmmoInventory.cs" />
+     <Compile Include="Assets\Scripts\Ammo.cs" />
+     <Compile Include="Assets\Scripts\rapidGun.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

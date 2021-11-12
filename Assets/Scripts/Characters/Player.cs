@@ -26,14 +26,17 @@ public class Player : Character
     }
 
     //shooting variables
-    public GameObject bulletPrefab;
-    [SerializeField] private GameObject firePoint;
-    public float fireDelta = 0.5f;
-    public int bulletDamage = 5;
-    public float bulletSpeed = 20f;
-    public Vector3 bulletSize = new Vector3(.5f, .5f, 0);
-    private float nextFire = 0.1f;
-    private float myTime = 0.0f;
+    public List<Weapon> weapons;
+    public Weapon currentWeapon;
+    public AmmoInventory inventory;
+    //public GameObject bulletPrefab;
+    //[SerializeField] private GameObject firePoint;
+    //public int bulletDamage = 5;
+    //public float bulletSpeed = 20f;
+    //public Vector3 bulletSize = new Vector3(.5f, .5f, 0);
+    //public float fireDelta = 0.5f;
+    //private float nextFire = 0.1f;
+
 
     void Start()
     {
@@ -70,16 +73,19 @@ public class Player : Character
 
             mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            myTime += Time.deltaTime;
+            //float myTime = 0.0f;
+            //myTime += Time.deltaTime;
 
-            if (Input.GetButton("Fire1") && myTime > nextFire)
+            //if (Input.GetButton("Fire1") && myTime > nextFire)
+            if(Input.GetButton("Fire1"))
             {
-                nextFire = myTime + fireDelta;
+                //nextFire = myTime + fireDelta;
+                print("pew");
+                currentWeapon.Fire(inventory);
+                //shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
 
-                shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
-
-                nextFire = nextFire - myTime;
-                myTime = 0.0f;
+                //nextFire = nextFire - myTime;
+                //myTime = 0.0f;
             }
         }
     }
@@ -114,7 +120,7 @@ public class Player : Character
 
     public override void heal(int restoreAmount)
     {
-        health = Math.Min(maxHealth, health + restoreAmount);
+        health += restoreAmount;
         updateHealth?.Invoke(this, new UpdateHealthEvent
         {
             playerHealth = health,
