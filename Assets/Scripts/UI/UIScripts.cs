@@ -11,7 +11,7 @@ public class UIScripts : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject gameOverScreen;
     public CameraFollow cameraFollow;
-    private Player player; 
+    private Player player;
 
     //health bar stuff
     public Image[] hearts;
@@ -19,15 +19,15 @@ public class UIScripts : MonoBehaviour
     public Sprite emptyHeart;
 
     public void Awake()
-    {   
+    {
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
         Cursor.visible = false;
         startTime();
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         cameraFollow.Setup(() => player.transform.position);
-        
+
         player.updateHealth += updateHealthBar;
         player.playerDeath += gameOver;
     }
@@ -36,16 +36,18 @@ public class UIScripts : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           (gameIsPaused ? (Action)resumeGame : pauseGame)();
+            (gameIsPaused ? (Action)resumeGame : pauseGame)();
         }
     }
 
-    private void updateHealthBar(object sender, Player.UpdateHealthEvent e){
-        
-        for(int i = 0; i < hearts.Length; i++){
+    private void updateHealthBar(object sender, Player.UpdateHealthEvent e)
+    {
+        print("Updating healthbar");
+        for (int i = 0; i < hearts.Length; i++)
+        {
             hearts[i].sprite = i < e.playerHealth ? fullHeart : emptyHeart;
 
-            hearts[i].enabled = i < e.maxHealth;       
+            hearts[i].enabled = i < e.maxHealth;
         }
     }
 
@@ -65,11 +67,12 @@ public class UIScripts : MonoBehaviour
 
     public void restartGame()
     {
-        SceneManager.LoadScene( SceneManager.GetSceneByName("mainScene").name);
+        SceneManager.LoadScene(SceneManager.GetSceneByName("mainScene").name);
         gameOverScreen.SetActive(false);
     }
 
-    public void quitGame(){
+    public void quitGame()
+    {
         Application.Quit();
     }
 

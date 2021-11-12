@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 69823085}
   m_Layer: 8
   m_Name: Spike
-  m_TagString: enemy
+  m_TagString: spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -227,8 +227,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69823081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.88, y: -21.95, z: 0}
-  m_LocalScale: {x: 0.19, y: 10.11, z: 1}
+  m_LocalPosition: {x: 5.18, y: -23.82, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.28, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -248,7 +248,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -763,7 +763,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5843379166911902819}
         m_TargetAssemblyTypeName: UIScripts, Assembly-CSharp
-        m_MethodName: resumeGame
+        m_MethodName: restartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1060,6 +1060,8 @@ MonoBehaviour:
     m_Bits: 129
   invincibilityDurationSeconds: 1.5
   invicibilityDeltaTime: 0.1
+  spikeKnockbackpower: 0
+  spikeKnockbackDuration: 0
   bulletPrefab: {fileID: 4695644131091356760, guid: 0185abe91e3907047ac0fd1adbbc3b5a, type: 3}
   firePoint: {fileID: 834508060}
   fireDelta: 0.25
@@ -1177,7 +1179,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &482304249
 BoxCollider2D:
@@ -1364,7 +1366,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5843379166911902819}
         m_TargetAssemblyTypeName: UIScripts, Assembly-CSharp
-        m_MethodName: resumeGame
+        m_MethodName: restartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1425,7 +1427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8823526350376403888, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8823526350376403896, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
       propertyPath: target
@@ -1574,6 +1576,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8823526350376403891, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
+      propertyPath: pauseDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823526350376403891, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
       propertyPath: knockbackPower
       value: 300
       objectReference: {fileID: 0}
@@ -1660,7 +1666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872564380037174536, guid: 514dc5312565b5245819e3a8f2079dbc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1872564380037174537, guid: 514dc5312565b5245819e3a8f2079dbc, type: 3}
       propertyPath: bulletForce
@@ -2394,7 +2400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1258642902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2772,7 +2778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872564380037174536, guid: 514dc5312565b5245819e3a8f2079dbc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1872564380037174541, guid: 514dc5312565b5245819e3a8f2079dbc, type: 3}
       propertyPath: m_RootOrder
@@ -2935,7 +2941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8823526350376403888, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8823526350376403896, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
       propertyPath: target
@@ -3078,7 +3084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8823526350376403888, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8823526350376403896, guid: 8e2bd803be28d664ebfa47d8ea72a9e7, type: 3}
       propertyPath: target
@@ -3858,7 +3864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3310491164340415109
 MonoBehaviour:
   m_ObjectHideFlags: 0
