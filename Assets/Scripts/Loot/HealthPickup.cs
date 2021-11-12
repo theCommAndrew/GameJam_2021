@@ -8,15 +8,13 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if(col.gameObject.tag == "Player")
         {
-            Character character = col.gameObject.GetComponent<Character>();
-            if(character.health != character.maxHealth){
-                character.heal(restoreAmount);
+            Player player = col.gameObject.GetComponent<Player>();
+            if(player.health != player.maxHealth){
+                player.heal(restoreAmount);
                 Destroy(gameObject);
-            }            
+            }              
         }
     }
-
-
 }

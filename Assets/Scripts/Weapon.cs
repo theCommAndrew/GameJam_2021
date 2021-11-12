@@ -5,6 +5,7 @@ using Ammo;
 
 public class Weapon : MonoBehaviour
 {
+    // Contains definitions for a default gun
     [SerializeField] private GameObject bulletPrefab;
     public AmmoType ammoType;
     public int ammoPerShot = 1;
@@ -13,11 +14,10 @@ public class Weapon : MonoBehaviour
     public Vector3 bulletSize = new Vector3(.5f, .5f, 0);
     [SerializeField] private GameObject firePoint;
     // shot timing
-    float myTime;
+    float myTime = 0f;
     public float fireDelta;
 
     protected virtual void Awake() {
-        myTime = 0.0f;
         fireDelta = 0.5f;
     }
 

@@ -38,27 +38,28 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Projectiles\Bullet.cs" />
      <Compile Include="Assets\Scripts\Characters\Player.cs" />
-     <Compile Include="Assets\Scripts\Characters\Enemies\ChaserEnemy.cs" />
-     <Compile Include="Assets\Scripts\Loot\HealthPickup.cs" />
-     <Compile Include="Assets\Scripts\Characters\Enemies\TurretEnemy.cs" />
-     <Compile Include="Assets\Scripts\Characters\Character.cs" />
-     <Compile Include="Assets\Scripts\Projectiles\EnemyBullet.cs" />
-     <Compile Include="Assets\Scripts\Projectiles\FriendlyBullet.cs" />
-     <Compile Include="Assets\Scripts\UI\UIScripts.cs" />
-     <Compile Include="Assets\Scripts\Characters\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Scripts\AmmoInventory.cs" />
      <Compile Include="Assets\Scripts\GeneralFunctions.cs" />
-     <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Handler.cs" />
-     <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Camera.cs" />
+     <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
      <Compile Include="Assets\Scripts\UI\Crosshair.cs" />
      <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_Text.cs" />
-     <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\ChaserEnemy.cs" />
+     <Compile Include="Assets\Scripts\Loot\HealthPickup.cs" />
      <Compile Include="Assets\Scripts\BattleSystem.cs" />
-     <Compile Include="Assets\Scripts\EntryAlert.cs" />
-     <Compile Include="Assets\Scripts\UI\CameraFollow.cs" />
-     <Compile Include="Assets\Scripts\Weapon.cs" />
-     <Compile Include="Assets\Scripts\AmmoInventory.cs" />
-     <Compile Include="Assets\Scripts\Ammo.cs" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\TurretEnemy.cs" />
+     <Compile Include="Assets\Scripts\Characters\Character.cs" />
      <Compile Include="Assets\Scripts\rapidGun.cs" />
+     <Compile Include="Assets\Scripts\Projectiles\EnemyBullet.cs" />
+     <Compile Include="Assets\Scripts\UI\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\EntryAlert.cs" />
+     <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Handler.cs" />
+     <Compile Include="Assets\Scripts\Ammo.cs" />
+     <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Camera.cs" />
+     <Compile Include="Assets\Scripts\Characters\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Projectiles\FriendlyBullet.cs" />
+     <Compile Include="Assets\Scripts\UI\UIScripts.cs" />
+     <Compile Include="Assets\Scripts\Loot\AmmoPickup.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -302,11 +303,11 @@
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.21f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-        <HintPath>D:\Documents\GitHub\GameJam_2021\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
         <HintPath>D:\Documents\GitHub\GameJam_2021\Assets\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+        <HintPath>D:\Documents\GitHub\GameJam_2021\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.21f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -754,17 +755,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
-      <Project>{746b207b-0d8f-8b31-e436-ae308be8defd}</Project>
-      <Name>AstarPathfindingProjectEditor</Name>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{55c5338f-aca8-c0b2-5ac8-7b3a414508b0}</Project>
+      <Name>PackageToolsEditor</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProject.csproj">
       <Project>{f41fc3f8-9908-f041-5068-51d716016f7e}</Project>
       <Name>AstarPathfindingProject</Name>
     </ProjectReference>
-    <ProjectReference Include="PackageToolsEditor.csproj">
-      <Project>{55c5338f-aca8-c0b2-5ac8-7b3a414508b0}</Project>
-      <Name>PackageToolsEditor</Name>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{746b207b-0d8f-8b31-e436-ae308be8defd}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
