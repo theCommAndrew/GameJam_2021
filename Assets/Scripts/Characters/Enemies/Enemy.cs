@@ -28,6 +28,7 @@ public class Enemy : Character
         lootChance = 50;
         contactDamage = 1;
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        this.rb = this.GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()

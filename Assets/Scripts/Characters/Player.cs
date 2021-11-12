@@ -42,6 +42,7 @@ public class Player : Character
         moveSpeed = 7f;
 
         cam = FindObjectOfType<Camera>();
+        this.rb = this.GetComponent<Rigidbody2D>();
 
         updateHealth?.Invoke(this, new UpdateHealthEvent
         {

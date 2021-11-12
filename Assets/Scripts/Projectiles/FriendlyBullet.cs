@@ -9,11 +9,8 @@ public class FriendlyBullet : Bullet
         string tag = col.gameObject.tag;
         if (tag == "enemy")
         {
-            Character character = col.gameObject.GetComponent<Character>();
-            if(character.alive)
-            {
-                character.takeDamage(damage);
-            }
+            Enemy enemy = col.gameObject.GetComponent<Enemy>();
+            enemy.takeDamage(damage);
         }
 
         if(tag != "Player" && tag != "backend" && tag != "bullet")
