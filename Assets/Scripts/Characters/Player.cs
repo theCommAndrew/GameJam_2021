@@ -17,7 +17,7 @@ public class Player : Character
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
 
-
+    public event EventHandler playerDeath;
     public event EventHandler<UpdateHealthEvent> updateHealth;
     public class UpdateHealthEvent
     {
@@ -42,6 +42,7 @@ public class Player : Character
         moveSpeed = 7f;
 
         cam = FindObjectOfType<Camera>();
+        this.rb = this.GetComponent<Rigidbody2D>();
 
         updateHealth?.Invoke(this, new UpdateHealthEvent
         {
@@ -123,8 +124,7 @@ public class Player : Character
 
     public override void die()
     {
-        Time.timeScale = 0;
-        alive = false;
+        playerDeath?.Invoke(this, EventArgs.Empty);
     }
 
     private void Dash(Vector3 moveDir)

@@ -12,12 +12,4 @@ public class ChaserEnemy : Enemy
         moveSpeed = 1f;
     }
 
-    void Update()
-    { }
-
-    void FixedUpdate()
-    {
-
-    }
-
 }

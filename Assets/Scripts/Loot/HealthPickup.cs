@@ -5,13 +5,6 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public int restoreAmount;
-    void Start()
-    {
-        restoreAmount = 1;
-    }
-
-    void Update()
-    { }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
