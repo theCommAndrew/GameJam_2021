@@ -25,17 +25,10 @@ public class Player : Character
         public int maxHealth;
     }
 
-    //shooting variables
+    // weapon info
     public List<Weapon> weapons;
     public Weapon currentWeapon;
     public AmmoInventory inventory;
-    //public GameObject bulletPrefab;
-    //[SerializeField] private GameObject firePoint;
-    //public int bulletDamage = 5;
-    //public float bulletSpeed = 20f;
-    //public Vector3 bulletSize = new Vector3(.5f, .5f, 0);
-    //public float fireDelta = 0.5f;
-    //private float nextFire = 0.1f;
 
 
     void Start()
@@ -73,19 +66,9 @@ public class Player : Character
 
             mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            //float myTime = 0.0f;
-            //myTime += Time.deltaTime;
-
-            //if (Input.GetButton("Fire1") && myTime > nextFire)
             if(Input.GetButton("Fire1"))
             {
-                //nextFire = myTime + fireDelta;
-                print("pew");
                 currentWeapon.Fire(inventory);
-                //shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
-
-                //nextFire = nextFire - myTime;
-                //myTime = 0.0f;
             }
         }
     }

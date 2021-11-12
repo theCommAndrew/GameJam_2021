@@ -26,14 +26,10 @@ public class Weapon : MonoBehaviour
     }
 
     public bool Fire(AmmoInventory ammo){
-        print($"waiting until {myTime} > {fireDelta}");
         if(myTime > fireDelta)
         {
-            print("timing right");
             int shotsFired = ammo.Spend(ammoType, ammoPerShot);
-            print(shotsFired);
             if(shotsFired >= 1){
-                print("shooting bullet");
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
             }
@@ -47,7 +43,5 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().speed = speed;
         bullet.GetComponent<Bullet>().scale = scale;
-
-        print("bullet away");
     }
 }
