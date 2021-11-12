@@ -17,6 +17,7 @@ public class Enemy : Character
     public event EventHandler OnEnemySpawned;
     public event EventHandler OnEnemyKilled;
 
+    public float rotationSpeed = 5;
     public float knockbackPower = 300;
     public float knockbackDuration = 1;
     public float pauseDuration = .3f;
@@ -34,9 +35,11 @@ public class Enemy : Character
     void FixedUpdate()
     {
         // look at player
-        Vector2 lookDirection = new Vector2(player.transform.position.x, player.transform.position.y) - rb.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        float offset = 90f;
+        Vector3 lookDir = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle - offset));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
 
     public void spawn()
