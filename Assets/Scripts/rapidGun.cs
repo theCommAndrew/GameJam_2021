@@ -6,7 +6,7 @@ using Ammo;
 public class rapidGun : Weapon{
 
     protected override void Awake() {
-        fireDelta = .25f;
+        fireDelta = .15f;
         bulletDamage = 3;
         bulletSpeed = 30f;
     }

@@ -86,9 +86,9 @@ public class Player : Character
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        Vector2 lookDirection = mousePosition - rb.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        // Vector2 lookDirection = mousePosition - rb.position;
+        // float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+        // rb.rotation = angle;
     }
 
     public override void takeDamage(int damage)
