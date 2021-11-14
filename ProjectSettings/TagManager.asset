@@ -10,6 +10,8 @@ TagManager:
   - backend
   - spike
   - bullet
+  - SpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX

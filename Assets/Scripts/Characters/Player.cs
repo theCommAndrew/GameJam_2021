@@ -27,15 +27,11 @@ public class Player : Character
         public int maxHealth;
     }
 
-    //shooting variables
-    public GameObject bulletPrefab;
-    [SerializeField] private GameObject firePoint;
-    public float fireDelta = 0.5f;
-    public int bulletDamage = 5;
-    public float bulletSpeed = 20f;
-    public Vector3 bulletSize = new Vector3(.5f, .5f, 0);
-    private float nextFire = 0.1f;
-    private float myTime = 0.0f;
+    // weapon info
+    public Weapon[] weapons;
+    public int currentWeapon = 0;
+    public AmmoInventory inventory;
+
 
     void Start()
     {
@@ -60,7 +56,7 @@ public class Player : Character
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
+            if(Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
             {
                 dashCooldown = DASH_COOLDOWN_MAX;
                 StartCoroutine(BecomeTemporarilyInvincible());
@@ -72,16 +68,18 @@ public class Player : Character
 
             mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            myTime += Time.deltaTime;
-
-            if (Input.GetButton("Fire1") && myTime > nextFire)
+            if(Input.GetButton("Fire1"))
             {
-                nextFire = myTime + fireDelta;
+                print($"firing {weapons[currentWeapon]}");
+                weapons[currentWeapon].Fire(inventory);
+            }
 
-                shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
-
-                nextFire = nextFire - myTime;
-                myTime = 0.0f;
+            if(Input.GetKeyDown(KeyCode.Tab) && weapons.Length > 1)
+            {
+                print("swapping weapon");
+                weapons[currentWeapon].gameObject.SetActive(false);
+                currentWeapon =  (currentWeapon + 1) % 2;
+                weapons[currentWeapon].gameObject.SetActive(true);
             }
         }
     }
@@ -90,9 +88,9 @@ public class Player : Character
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        Vector2 lookDirection = mousePosition - rb.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        // Vector2 lookDirection = mousePosition - rb.position;
+        // float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+        // rb.rotation = angle;
     }
 
     public override void takeDamage(int damage)
@@ -116,7 +114,7 @@ public class Player : Character
 
     public override void heal(int restoreAmount)
     {
-        health = health += restoreAmount;
+        health += restoreAmount;
         updateHealth?.Invoke(this, new UpdateHealthEvent
         {
             playerHealth = health,

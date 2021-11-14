@@ -21,6 +21,7 @@ public class BattleSystem : MonoBehaviour
     private void Awake() {
         state = State.Idle;
     }
+    
     private void Start() {
         entryAlert.OnPlayerEnter += EntryAlert_OnPlayerEnter;
         foreach(Enemy enemy in enemiesArray){
