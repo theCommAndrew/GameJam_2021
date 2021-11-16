@@ -95,11 +95,14 @@ public class Enemy : Character
     private IEnumerator delayMovement()
     {
         IAstarAI enemyMovement = GetComponent<IAstarAI>();
-        enemyMovement.canMove = false;
-        yield return new WaitForSeconds(pauseDuration);
-        enemyMovement.maxSpeed = 4f;
-        enemyMovement.canMove = true;
-        yield return new WaitForSeconds(.8f);
-        enemyMovement.maxSpeed = 8f;
+        if(enemyMovement != null){
+            enemyMovement.canMove = false;
+            yield return new WaitForSeconds(pauseDuration);
+            enemyMovement.maxSpeed = 4f;
+            enemyMovement.canMove = true;
+            yield return new WaitForSeconds(.8f);
+            enemyMovement.maxSpeed = 8f;
+        }
+
     }
 }

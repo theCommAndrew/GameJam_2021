@@ -53,11 +53,13 @@ public class BattleSystem : MonoBehaviour
         if(enemyCount == 0){
             state = State.Completed;
             OnBattleEnd?.Invoke(this, EventArgs.Empty);
+            
+            Destroy(gameObject);
         }
     }
 
     private void startBattle(){
-        Destroy(this.GetComponent<BoxCollider2D>());
+        // Destroy(this.GetComponent<BoxCollider2D>());
 
         foreach( GameObject enemy in enemiesArray){
             enemy.GetComponent<Enemy>().spawn();

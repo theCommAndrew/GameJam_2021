@@ -26,7 +26,7 @@ public class UIScripts : MonoBehaviour
         startTime();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
-        cameraFollow.Setup(() => player.transform.position);
+        //cameraFollow.Setup(() => player.transform.position);
         
         player.updateHealth += updateHealthBar;
         player.playerDeath += gameOver;
