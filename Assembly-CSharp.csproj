@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\WeaponAim.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Bullet.cs" />
      <Compile Include="Assets\Scripts\Characters\Player.cs" />
      <Compile Include="Assets\Scripts\AmmoInventory.cs" />
@@ -44,10 +45,13 @@
      <Compile Include="Assets\Scripts\UI\Crosshair.cs" />
      <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_Text.cs" />
      <Compile Include="Assets\Scripts\Characters\Enemies\ChaserEnemy.cs" />
+     <Compile Include="Assets\Scripts\Loot\AmmoPickup.cs" />
      <Compile Include="Assets\Scripts\Loot\HealthPickup.cs" />
      <Compile Include="Assets\Scripts\BattleSystem.cs" />
      <Compile Include="Assets\Scripts\Characters\Enemies\TurretEnemy.cs" />
      <Compile Include="Assets\Scripts\Characters\Character.cs" />
+     <Compile Include="Assets\Scripts\RoomSpawner.cs" />
+     <Compile Include="Assets\Scripts\FloorTemplates.cs" />
      <Compile Include="Assets\Scripts\rapidGun.cs" />
      <Compile Include="Assets\Scripts\Projectiles\EnemyBullet.cs" />
      <Compile Include="Assets\Scripts\UI\CameraFollow.cs" />
@@ -59,10 +63,6 @@
      <Compile Include="Assets\Scripts\Characters\Enemies\Enemy.cs" />
      <Compile Include="Assets\Scripts\Projectiles\FriendlyBullet.cs" />
      <Compile Include="Assets\Scripts\UI\UIScripts.cs" />
-     <Compile Include="Assets\Scripts\Loot\AmmoPickup.cs" />
-     <Compile Include="Assets\Scripts\WeaponAim.cs" />
-     <Compile Include="Assets\Scripts\RoomSpawner.cs" />
-     <Compile Include="Assets\Scripts\RoomTemplates.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

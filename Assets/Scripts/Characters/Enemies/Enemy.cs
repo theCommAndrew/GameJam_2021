@@ -65,8 +65,6 @@ public class Enemy : Character
         if(generalFunctions.getPercentResult(30))
         {
             GameObject heart = Instantiate(heartPickupPrefab, this.transform.position, Quaternion.Euler(0,0,0));
-            // make sure hearts always face upwards when dropped
-            //heart.GetComponent<Rigidbody2D>().SetRotation(0);
         }
         else{
             GameObject ammo = Instantiate(ammoPickup, this.transform.position, Quaternion.Euler(0,0,0));
