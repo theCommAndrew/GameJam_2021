@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class BattleSystem : MonoBehaviour
 {
     private enum State{
@@ -11,8 +11,10 @@ public class BattleSystem : MonoBehaviour
         Completed
     }
     private State state;
-    [SerializeField] private Enemy[] enemiesArray;
-    [SerializeField] private EntryAlert entryAlert;
+    private FloorTemplates templates;
+    private int rand;
+    private List<GameObject> enemiesArray = new List<GameObject>();
+    private EntryAlert entryAlert;
     public event EventHandler OnBattleStart;
     public event EventHandler OnBattleEnd;
     private int enemyCount = 0;
@@ -23,8 +25,13 @@ public class BattleSystem : MonoBehaviour
     }
     
     private void Start() {
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<FloorTemplates>();
+        unpackEnemies();
+
+        entryAlert = gameObject.GetComponent<EntryAlert>();
         entryAlert.OnPlayerEnter += EntryAlert_OnPlayerEnter;
-        foreach(Enemy enemy in enemiesArray){
+        foreach(GameObject e in enemiesArray){
+            Enemy enemy = e.GetComponent<Enemy>();
             enemy.OnEnemySpawned += Enemy_OnSpawn;
             enemy.OnEnemyKilled += Enemy_OnDeath;
         }
@@ -46,17 +53,32 @@ public class BattleSystem : MonoBehaviour
         if(enemyCount == 0){
             state = State.Completed;
             OnBattleEnd?.Invoke(this, EventArgs.Empty);
+            
+            Destroy(gameObject);
         }
     }
 
     private void startBattle(){
-        foreach( Enemy enemy in enemiesArray){
-            enemy.spawn();
+        // Destroy(this.GetComponent<BoxCollider2D>());
+
+        foreach( GameObject enemy in enemiesArray){
+            enemy.GetComponent<Enemy>().spawn();
         }
 
         if(enemyCount > 0){
             state = State.Active;
             OnBattleStart?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    private void unpackEnemies(){
+        rand = Random.Range(0, templates.enemyLayouts.Length);
+        GameObject enemyLayout = Instantiate(templates.enemyLayouts[rand], transform.parent.position, Quaternion.identity);    
+        for(int i = 0; i < enemyLayout.transform.childCount; i++)
+        {
+            var enemy = enemyLayout.transform.GetChild(i).gameObject ;
+            enemiesArray.Add(enemy);
+        }
+
     }
 }
