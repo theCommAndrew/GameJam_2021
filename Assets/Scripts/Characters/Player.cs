@@ -16,6 +16,8 @@ public class Player : Character
     const float DASH_COOLDOWN_MAX = 1F;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
+    public float spikeKnockbackpower = 200f;
+    public float spikeKnockbackDuration = 1f;
 
     public event EventHandler playerDeath;
     public event EventHandler<UpdateHealthEvent> updateHealth;
@@ -49,7 +51,7 @@ public class Player : Character
 
     void Update()
     {
-        if(!UIScripts.gameIsPaused)
+        if (!UIScripts.gameIsPaused)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -158,10 +160,27 @@ public class Player : Character
 
         while (knockbackDuration > timer)
         {
-            timer += Time.deltaTime;
             Vector2 dir = (obj.transform.position - this.transform.position).normalized;
+            timer += Time.deltaTime;
             rb.AddForce(-dir * knockbackPower);
         }
         yield return 0;
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        GameObject other = col.gameObject;
+        if (other.tag == "spike")
+        {
+            StartCoroutine(Knockback(spikeKnockbackDuration, spikeKnockbackpower, other.transform));
+            StartCoroutine(pausePlayerMovement());
+            takeDamage(1);
+        }
+    }
+
+    private IEnumerator pausePlayerMovement()
+    {
+        moveSpeed = 5f;
+        yield return new WaitForSeconds(.8f);
+        moveSpeed = 7f;
     }
 }

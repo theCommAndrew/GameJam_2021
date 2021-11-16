@@ -103,6 +103,5 @@ public class Enemy : Character
             yield return new WaitForSeconds(.8f);
             enemyMovement.maxSpeed = 8f;
         }
-
     }
 }
