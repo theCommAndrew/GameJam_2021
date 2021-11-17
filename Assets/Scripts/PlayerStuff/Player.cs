@@ -9,14 +9,12 @@ public class Player : Character
     public float dashDistance = 5f;
     private bool canTakeDamage = true;
     Vector2 movement;
-    Vector2 mousePosition;
     private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1F;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
     public float spikeKnockbackpower = 200f;
     public float spikeKnockbackDuration = 1f;
-
     public event EventHandler playerDeath;
     public event EventHandler<UpdateHealthEvent> updateHealth;
     public class UpdateHealthEvent
@@ -24,11 +22,6 @@ public class Player : Character
         public int playerHealth;
         public int maxHealth;
     }
-
-    // weapon info
-    public Weapon[] weapons;
-    public int currentWeapon = 0;
-    public AmmoInventory inventory;
 
 
     void Start()
@@ -62,20 +55,6 @@ public class Player : Character
             }
 
             dashCooldown -= Time.deltaTime;
-
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if(Input.GetButton("Fire1"))
-            {
-                weapons[currentWeapon].Fire(inventory);
-            }
-
-            if(Input.GetKeyDown(KeyCode.Tab) && weapons.Length > 1)
-            {
-                weapons[currentWeapon].gameObject.SetActive(false);
-                currentWeapon =  (currentWeapon + 1) % 2;
-                weapons[currentWeapon].gameObject.SetActive(true);
-            }
         }
     }
 

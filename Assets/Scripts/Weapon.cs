@@ -6,22 +6,31 @@ using Ammo;
 public class Weapon : MonoBehaviour
 {
     // Contains definitions for a default gun
+    // shooting info
     [SerializeField] private GameObject bulletPrefab;
-    public AmmoType ammoType;
-    public int ammoPerShot = 1;
     public int bulletDamage = 5;
     public float bulletSpeed = 20f;
     public Vector3 bulletSize = new Vector3(.4f, .4f, 0);
     [SerializeField] private GameObject firePoint;
+    // ammo info
+    public struct GunAmmo{
+        public int stock;
+        public int maxCapacity;
+        public int ammoPerShot;
+    }
+    [SerializeField] protected GunAmmo ammoReserve = new GunAmmo(); 
     // shot timing
-    float myTime = 0f;
-    public float fireDelta;
+    private float myTime = 0f;
+    public float fireDelta;  
     // pickup stuff
     private bool pickedUp = false;
     private bool pickupAllowed = false;
 
     protected virtual void Awake() {
         fireDelta = 0.5f;
+        ammoReserve.stock = 100;
+        ammoReserve.maxCapacity = 100;
+        ammoReserve.ammoPerShot = 1;
     }
 
     protected virtual void Update() {
@@ -30,14 +39,28 @@ public class Weapon : MonoBehaviour
         if(pickupAllowed && Input.GetKeyDown(KeyCode.E))
         {
             print("being picked up");
-            //transform.parent = other.GetComponentInChildren<WeaponAim>().transform;
+            transform.parent = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>().transform;
         }
     }
 
-    public bool Fire(AmmoInventory ammo){
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Player")
+        {
+            pickupAllowed = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.tag == "Player")
+        {
+            pickupAllowed = false;
+        }
+    }
+
+    public bool Fire(){
         if(myTime > fireDelta)
         {
-            int shotsFired = ammo.Spend(ammoType, ammoPerShot);
+            int shotsFired = Spend(ammoReserve.ammoPerShot);
             if(shotsFired >= 1){
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
@@ -54,17 +77,21 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().scale = scale;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Player")
-        {
-            pickupAllowed = true;
-        }
+     public int GetCurrentStock(AmmoType type){
+        return ammoReserve.stock;
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.tag == "Player")
-        {
-            pickupAllowed = false;
-        }
+    // add [amount] ammo to stock, returns amount added
+    public int Collect(AmmoType type, int amount){
+        int collect = Mathf.Min(amount, ammoReserve.maxCapacity - ammoReserve.stock);
+        ammoReserve.stock += collect;
+        return collect;
+    }    
+
+    // spend [amount] ammo, returns amount spent    
+    public int Spend(int amount){
+        int spend = Mathf.Min(amount, ammoReserve.stock);
+        ammoReserve.stock -= spend;
+        return spend;
     }
 }
