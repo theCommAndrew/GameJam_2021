@@ -41,7 +41,6 @@ public class UIScripts : MonoBehaviour
 
     private void updateHealthBar(object sender, Player.UpdateHealthEvent e)
     {
-        print("Updating healthbar");
         for (int i = 0; i < hearts.Length; i++)
         {
             hearts[i].sprite = i < e.playerHealth ? fullHeart : emptyHeart;
