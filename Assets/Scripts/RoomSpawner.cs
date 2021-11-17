@@ -6,11 +6,11 @@ public class RoomSpawner : MonoBehaviour
 {
     public bool left;
     public bool main = true;
-    private RoomTemplates templates;
+    private FloorTemplates templates;
     private int rand;
 
     private void Start() {
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<FloorTemplates>();
         if(main)
         {
             Invoke("spawnMain", 0.1f);
@@ -23,7 +23,7 @@ public class RoomSpawner : MonoBehaviour
     }
 
     private void spawnMain(){
-        if(templates.rooms < 9)
+        if(templates.rooms < 8)
         {
             rand = Random.Range(0, templates.mainRooms.Length);
             float flipped = (Random.value > 0.5f) ? 0 : 180;

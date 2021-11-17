@@ -145,10 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42aa8bf201d63da4084e92d00bbc8cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1872564380037174542}
   firePoint: {fileID: 5119014978303448865}
   bulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
+  ammoPickup: {fileID: 8149657182447556840, guid: 5ebff97adb28fb34db507dceefdf2191, type: 3}
+  rotationSpeed: 5
+  knockbackPower: 300
+  knockbackDuration: 1
+  pauseDuration: 0.3
   shotInterval: 0
   bulletDamage: 1
   bulletSpeed: 30

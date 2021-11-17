@@ -65,8 +65,6 @@ public class Enemy : Character
         if(generalFunctions.getPercentResult(30))
         {
             GameObject heart = Instantiate(heartPickupPrefab, this.transform.position, Quaternion.Euler(0,0,0));
-            // make sure hearts always face upwards when dropped
-            //heart.GetComponent<Rigidbody2D>().SetRotation(0);
         }
         else{
             GameObject ammo = Instantiate(ammoPickup, this.transform.position, Quaternion.Euler(0,0,0));
@@ -97,11 +95,13 @@ public class Enemy : Character
     private IEnumerator delayMovement()
     {
         IAstarAI enemyMovement = GetComponent<IAstarAI>();
-        enemyMovement.canMove = false;
-        yield return new WaitForSeconds(pauseDuration);
-        enemyMovement.maxSpeed = 4f;
-        enemyMovement.canMove = true;
-        yield return new WaitForSeconds(1.3f);
-        enemyMovement.maxSpeed = 7f;
+        if(enemyMovement != null){
+            enemyMovement.canMove = false;
+            yield return new WaitForSeconds(pauseDuration);
+            enemyMovement.maxSpeed = 4f;
+            enemyMovement.canMove = true;
+            yield return new WaitForSeconds(.8f);
+            enemyMovement.maxSpeed = 8f;
+        }
     }
 }

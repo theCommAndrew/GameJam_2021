@@ -25,9 +25,8 @@ public class UIScripts : MonoBehaviour
         Cursor.visible = false;
         startTime();
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        cameraFollow.Setup(() => player.transform.position);
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
+        //cameraFollow.Setup(() => player.transform.position);
         player.updateHealth += updateHealthBar;
         player.playerDeath += gameOver;
     }
