@@ -56,7 +56,7 @@ public class Player : Character
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if(Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
+            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
             {
                 dashCooldown = DASH_COOLDOWN_MAX;
                 StartCoroutine(BecomeTemporarilyInvincible());
@@ -68,17 +68,17 @@ public class Player : Character
 
             mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            if(Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1"))
             {
                 print($"firing {weapons[currentWeapon]}");
                 weapons[currentWeapon].Fire(inventory);
             }
 
-            if(Input.GetKeyDown(KeyCode.Tab) && weapons.Length > 1)
+            if (Input.GetKeyDown(KeyCode.Tab) && weapons.Length > 1)
             {
                 print("swapping weapon");
                 weapons[currentWeapon].gameObject.SetActive(false);
-                currentWeapon =  (currentWeapon + 1) % 2;
+                currentWeapon = (currentWeapon + 1) % 2;
                 weapons[currentWeapon].gameObject.SetActive(true);
             }
         }
@@ -86,7 +86,10 @@ public class Player : Character
 
     void FixedUpdate()
     {
+
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+
 
         // Vector2 lookDirection = mousePosition - rb.position;
         // float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
@@ -147,6 +150,7 @@ public class Player : Character
     public IEnumerator BecomeTemporarilyInvincible()
     {
         canTakeDamage = false;
+        print("Invincible");
         for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
             yield return new WaitForSeconds(invicibilityDeltaTime);
@@ -175,12 +179,41 @@ public class Player : Character
             StartCoroutine(pausePlayerMovement());
             takeDamage(1);
         }
+        if (other.tag == "Fire")
+        {
+            Destroy(gameObject);
+            die();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        GameObject other = col.gameObject;
+        if (other.tag == "whip")
+        {
+            takeDamage(1);
+            StartCoroutine(BecomeTemporarilyInvincible());
+        }
+        if (other.tag == "cobweb")
+        {
+            moveSpeed = 2f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GameObject other = collision.gameObject;
+
+        if (other.tag == "cobweb")
+        {
+            moveSpeed = 7f;
+        }
     }
 
     private IEnumerator pausePlayerMovement()
     {
-        moveSpeed = 5f;
-        yield return new WaitForSeconds(.8f);
+        moveSpeed = 3f;
+        yield return new WaitForSeconds(.6f);
         moveSpeed = 7f;
     }
 }

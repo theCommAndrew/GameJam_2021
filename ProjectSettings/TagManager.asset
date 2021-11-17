@@ -12,6 +12,11 @@ TagManager:
   - bullet
   - SpawnPoint
   - Rooms
+  - Fire
+  - Hittable
+  - Damage
+  - whip
+  - cobweb
   layers:
   - Default
   - TransparentFX
