@@ -14,37 +14,42 @@ public class WeaponHolder : MonoBehaviour
 
     void Update()
     {
-        // aim at mouse position
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector3 lookDirection = mousePosition - transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-        // shoot on M1
-        if(Input.GetButton("Fire1"))
+        if(!UIScripts.gameIsPaused)
         {
-            weapons[currentWeapon].Fire();
-        }
+            // aim at mouse position
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // swap weapons
-        if(Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
-        {
+            Vector3 lookDirection = mousePosition - transform.position;
+            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-            weapons[currentWeapon].gameObject.SetActive(false);
-            currentWeapon = (currentWeapon + 1) % 2;
-            weapons[currentWeapon].gameObject.SetActive(true);
+            // shoot on M1
+            if(Input.GetButton("Fire1"))
+            {
+                weapons[currentWeapon].Fire();
+            }
+
+            // swap weapons
+            if(Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
+            {
+
+                weapons[currentWeapon].gameObject.SetActive(false);
+                currentWeapon = (currentWeapon + 1) % 2;
+                weapons[currentWeapon].gameObject.SetActive(true);
+            }
         }
     }
 
     public void addWeapon(Weapon weaponToAdd){
-        if(weapons.Count >= 1)
+        if(weapons.Count >= 2)
         {
             dropWeapon(weapons[currentWeapon]);
             weapons[currentWeapon] = weaponToAdd;
         }
         else{
             weapons.Add(weaponToAdd);
+            weapons[currentWeapon].gameObject.SetActive(false);
+            currentWeapon += 1;
         }
             
         weaponToAdd.transform.parent = transform;
