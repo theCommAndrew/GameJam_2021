@@ -6,17 +6,12 @@ using Ammo;
 
 public class WeaponHolder : MonoBehaviour
 {
-
-    private Camera cam;
-    Vector3 mousePosition;
-
-    private void Awake() {
-        cam = FindObjectOfType<Camera>();
-    }
+    private Vector3 mousePosition;
 
     void FixedUpdate()
     {
-        mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        // aim at mouse position
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 lookDirection = mousePosition - transform.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
