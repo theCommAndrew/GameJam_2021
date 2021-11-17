@@ -41,9 +41,10 @@ GameObject:
   - component: {fileID: 866013091819514517}
   - component: {fileID: 5430418369717096773}
   - component: {fileID: 2757987754204363403}
+  - component: {fileID: 4916044672234927574}
   m_Layer: 0
   m_Name: rapidGun
-  m_TagString: Untagged
+  m_TagString: backend
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,10 +128,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4695644131091356760, guid: 0185abe91e3907047ac0fd1adbbc3b5a, type: 3}
-  ammoType: 0
-  ammoPerShot: 1
   bulletDamage: 5
   bulletSpeed: 20
   bulletSize: {x: 0.5, y: 0.5, z: 0}
   firePoint: {fileID: 1929662345018835608}
   fireDelta: 0.5
+--- !u!61 &4916044672234927574
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8152936766118824102}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.062139034, y: 0.06303948}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.623564, y: 0.9171481}
+  m_EdgeRadius: 0

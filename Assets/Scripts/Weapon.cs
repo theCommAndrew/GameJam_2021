@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
         public int maxCapacity;
         public int ammoPerShot;
     }
-    [SerializeField] protected GunAmmo ammoReserve = new GunAmmo(); 
+    public GunAmmo ammoReserve = new GunAmmo(); 
     // shot timing
     private float myTime = 0f;
     public float fireDelta;  
@@ -39,7 +39,8 @@ public class Weapon : MonoBehaviour
         if(pickupAllowed && Input.GetKeyDown(KeyCode.E))
         {
             print("being picked up");
-            transform.parent = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>().transform;
+            WeaponHolder playerWeapons = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>();
+            playerWeapons.addWeapon(this);
         }
     }
 

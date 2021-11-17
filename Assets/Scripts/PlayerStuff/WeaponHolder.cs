@@ -30,10 +30,35 @@ public class WeaponHolder : MonoBehaviour
         // swap weapons
         if(Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
         {
+
             weapons[currentWeapon].gameObject.SetActive(false);
             currentWeapon = (currentWeapon + 1) % 2;
             weapons[currentWeapon].gameObject.SetActive(true);
         }
+    }
+
+    public void addWeapon(Weapon weaponToAdd){
+        if(weapons.Count >= 1)
+        {
+            dropWeapon(weapons[currentWeapon]);
+            weapons[currentWeapon] = weaponToAdd;
+        }
+        else{
+            weapons.Add(weaponToAdd);
+        }
+            
+        weaponToAdd.transform.parent = transform;
+        weaponToAdd.transform.position = transform.position;
+        weaponToAdd.transform.rotation = transform.rotation;
+        weaponToAdd.GetComponent<SpriteRenderer>().sortingOrder = 25;
+
+    }
+
+    private void dropWeapon(Weapon weaponToDrop)
+    {   
+        weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        weaponToDrop.transform.parent = null;
+        weapons[currentWeapon] = null;
     }
 
 }
