@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ammo;
 
-public class WeaponAim : MonoBehaviour
+public class WeaponHolder : MonoBehaviour
 {
 
     private Camera cam;
@@ -17,8 +17,6 @@ public class WeaponAim : MonoBehaviour
     void FixedUpdate()
     {
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        //transform.MovePosition(transform.position + movement * moveSpeed * Time.fixedDeltaTime);
 
         Vector3 lookDirection = mousePosition - transform.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;

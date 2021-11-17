@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class Player : Character
 {
-    private Camera cam;
     public bool canDash = true;
     public float dashDistance = 5f;
     private bool canTakeDamage = true;
-    public LayerMask rayCastLayer = default;
     Vector2 movement;
     Vector2 mousePosition;
     private float dashCooldown;
@@ -39,7 +37,6 @@ public class Player : Character
         health = maxHealth;
         moveSpeed = 7f;
 
-        cam = FindObjectOfType<Camera>();
         this.rb = this.GetComponent<Rigidbody2D>();
 
         updateHealth?.Invoke(this, new UpdateHealthEvent
@@ -66,17 +63,15 @@ public class Player : Character
 
             dashCooldown -= Time.deltaTime;
 
-            mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             if(Input.GetButton("Fire1"))
             {
-                print($"firing {weapons[currentWeapon]}");
                 weapons[currentWeapon].Fire(inventory);
             }
 
             if(Input.GetKeyDown(KeyCode.Tab) && weapons.Length > 1)
             {
-                print("swapping weapon");
                 weapons[currentWeapon].gameObject.SetActive(false);
                 currentWeapon =  (currentWeapon + 1) % 2;
                 weapons[currentWeapon].gameObject.SetActive(true);
@@ -87,10 +82,6 @@ public class Player : Character
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-        // Vector2 lookDirection = mousePosition - rb.position;
-        // float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        // rb.rotation = angle;
     }
 
     public override void takeDamage(int damage)
@@ -131,7 +122,7 @@ public class Player : Character
     {
         canDash = false;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, rayCastLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, default); // can set this as a variable if it needs to change
 
         if (hit.collider == null)
         {

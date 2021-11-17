@@ -11,11 +11,14 @@ public class Weapon : MonoBehaviour
     public int ammoPerShot = 1;
     public int bulletDamage = 5;
     public float bulletSpeed = 20f;
-    public Vector3 bulletSize = new Vector3(.5f, .5f, 0);
+    public Vector3 bulletSize = new Vector3(.4f, .4f, 0);
     [SerializeField] private GameObject firePoint;
     // shot timing
     float myTime = 0f;
     public float fireDelta;
+    // pickup stuff
+    private bool pickedUp = false;
+    private bool pickupAllowed = false;
 
     protected virtual void Awake() {
         fireDelta = 0.5f;
@@ -23,6 +26,12 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Update() {
         myTime += Time.deltaTime;
+
+        if(pickupAllowed && Input.GetKeyDown(KeyCode.E))
+        {
+            print("being picked up");
+            //transform.parent = other.GetComponentInChildren<WeaponAim>().transform;
+        }
     }
 
     public bool Fire(AmmoInventory ammo){
@@ -43,5 +52,19 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().speed = speed;
         bullet.GetComponent<Bullet>().scale = scale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Player")
+        {
+            pickupAllowed = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.tag == "Player")
+        {
+            pickupAllowed = false;
+        }
     }
 }

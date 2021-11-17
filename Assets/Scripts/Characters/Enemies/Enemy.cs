@@ -49,6 +49,9 @@ public class Enemy : Character
         // fire OnEnemySpawned event
         gameObject.SetActive(true);
         OnEnemySpawned?.Invoke(this, EventArgs.Empty);
+        var pathfinder = gameObject.GetComponent<AIDestinationSetter>();
+        if(pathfinder != null)
+            pathfinder.target = player.transform;
     }
 
     public override void die()
