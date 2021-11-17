@@ -9,7 +9,7 @@ public class WeaponHolder : MonoBehaviour
     private Vector3 mousePosition;
 
     public List<Weapon> weapons = new List<Weapon>();
-    private int currentWeapon = 0;
+    public int currentWeapon = 0;
 
 
     void Update()

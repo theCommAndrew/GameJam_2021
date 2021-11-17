@@ -60,7 +60,7 @@ public class Weapon : MonoBehaviour
     public bool Fire(){
         if(myTime > fireDelta)
         {
-            int shotsFired = Spend(ammoReserve.ammoPerShot);
+            int shotsFired = spendAmmo(ammoReserve.ammoPerShot);
             if(shotsFired >= 1){
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
@@ -77,19 +77,19 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().scale = scale;
     }
 
-     public int GetCurrentStock(AmmoType type){
+     public int GetCurrentAmmo(AmmoType type){
         return ammoReserve.stock;
     }
 
     // add [amount] ammo to stock, returns amount added
-    public int Collect(AmmoType type, int amount){
+    public int collectAmmo(int amount){
         int collect = Mathf.Min(amount, ammoReserve.maxCapacity - ammoReserve.stock);
         ammoReserve.stock += collect;
         return collect;
     }    
 
     // spend [amount] ammo, returns amount spent    
-    public int Spend(int amount){
+    public int spendAmmo(int amount){
         int spend = Mathf.Min(amount, ammoReserve.stock);
         ammoReserve.stock -= spend;
         return spend;

@@ -21,8 +21,9 @@ public class AmmoPickup : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Player player = col.gameObject.GetComponent<Player>();
-            amount -= player.inventory.Collect(type, amount);
+            var playerWeapons = col.gameObject.GetComponent<Player>().GetComponentInChildren<WeaponHolder>();
+            Weapon weaponInHand = playerWeapons.weapons[playerWeapons.currentWeapon];
+            amount -= weaponInHand.collectAmmo(amount);
             textField.text = amount.ToString();
             if(amount == 0){
                 Destroy(gameObject);
