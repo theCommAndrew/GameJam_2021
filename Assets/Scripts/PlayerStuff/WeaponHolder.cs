@@ -19,7 +19,6 @@ public class WeaponHolder : MonoBehaviour
 
     private void Start() {
         currentWeapon = 0;
-        print("making init calls for inventory UI");
         updateUIAmmo();
         updateUIActiveWeapon();
         updateInventorySprite(weapons[currentWeapon]);

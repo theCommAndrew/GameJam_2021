@@ -24,11 +24,9 @@ public class UIScripts : MonoBehaviour
         gameOverScreen.SetActive(false);
         Cursor.visible = false;
         startTime();
-
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();     
-        //cameraFollow.Setup(() => player.transform.position);
-        player.updateHealth += updateHealthBar;
-        player.playerDeath += gameOver;
+        
+        Player.updateHealth += (playerHealth, maxHealth) => updateHealthBar(playerHealth, maxHealth);
+        Player.playerDeath += gameOver;
     }
 
     void Update()
@@ -39,13 +37,13 @@ public class UIScripts : MonoBehaviour
         }
     }
 
-    private void updateHealthBar(object sender, Player.UpdateHealthEvent e)
+    private void updateHealthBar(int playerHealth, int maxHealth)
     {
         for (int i = 0; i < hearts.Count; i++)
         {
-            hearts[i].sprite = i < e.playerHealth ? fullHeart : emptyHeart;
+            hearts[i].sprite = i < playerHealth ? fullHeart : emptyHeart;
 
-            hearts[i].enabled = i < e.maxHealth;
+            hearts[i].enabled = i < maxHealth;
         }
     }
 

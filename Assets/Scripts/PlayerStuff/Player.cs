@@ -19,13 +19,8 @@ public class Player : Character
     public float spikeKnockbackpower = 200f;
     public float spikeKnockbackDuration = 1f;
     // event calls
-    public event EventHandler playerDeath;
-    public event EventHandler<UpdateHealthEvent> updateHealth;
-    public class UpdateHealthEvent
-    {
-        public int playerHealth;
-        public int maxHealth;
-    }
+    public static event EventHandler playerDeath;
+    public static event Action<int,int> updateHealth = (playerHealth, maxHealth) => {};
 
 
     void Start()
@@ -36,11 +31,7 @@ public class Player : Character
 
         this.rb = this.GetComponent<Rigidbody2D>();
 
-        updateHealth?.Invoke(this, new UpdateHealthEvent
-        {
-            playerHealth = health,
-            maxHealth = maxHealth
-        });
+        updateHealth?.Invoke(health, maxHealth);
     }
 
     void Update()
@@ -72,11 +63,7 @@ public class Player : Character
         if (!canTakeDamage) return;
 
         health -= damage;
-        updateHealth?.Invoke(this, new UpdateHealthEvent
-        {
-            playerHealth = health,
-            maxHealth = maxHealth
-        });
+        updateHealth?.Invoke(health, maxHealth);
 
         if (health <= 0)
         {
@@ -89,11 +76,7 @@ public class Player : Character
     public override void heal(int restoreAmount)
     {
         health += restoreAmount;
-        updateHealth?.Invoke(this, new UpdateHealthEvent
-        {
-            playerHealth = health,
-            maxHealth = maxHealth
-        });
+        updateHealth?.Invoke(health, maxHealth);
     }
 
     public override void die()
