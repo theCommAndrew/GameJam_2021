@@ -10,7 +10,7 @@ public class WeaponHolder : MonoBehaviour
     private Vector3 mousePosition;
 
     public List<Weapon> weapons = new List<Weapon>();
-    public int currentWeapon = 0;
+    public int currentWeapon;
 
     // UI events
     public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => {};
@@ -18,6 +18,8 @@ public class WeaponHolder : MonoBehaviour
     public static event Action<int, Sprite> updateSlotImage = (index, newImage) => {};
 
     private void Start() {
+        currentWeapon = 0;
+        print("making init calls for inventory UI");
         updateUIAmmo();
         updateUIActiveWeapon();
         updateInventorySprite(weapons[currentWeapon]);
@@ -70,6 +72,7 @@ public class WeaponHolder : MonoBehaviour
         weaponToAdd.transform.rotation = transform.rotation;
         weaponToAdd.GetComponent<SpriteRenderer>().sortingOrder = 25;
         updateUIAmmo();
+        updateUIActiveWeapon();
         updateInventorySprite(weaponToAdd);
     }
 
