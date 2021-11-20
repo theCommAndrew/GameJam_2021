@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour
         {
             int shotsFired = spendAmmo(ammoReserve.ammoPerShot);
             if(shotsFired >= 1){
-                shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
+                shoot(bulletPrefab, firePoint, bulletDamage + Player.extraDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
             }
             return shotsFired > 0;

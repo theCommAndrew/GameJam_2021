@@ -15,6 +15,7 @@ public class Player : Character
     private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1F;
     // damage and invincibility
+    public static int extraDamage = 0;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
     public float spikeKnockbackpower = 200f;
@@ -95,6 +96,7 @@ public class Player : Character
                 break;
             
             case PlayerStat.Damage:
+                extraDamage += 1;
                 break;
         }
         
