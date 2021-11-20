@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,6 @@ public class Weapon : MonoBehaviour
     private float myTime = 0f;
     public float fireDelta;  
     // pickup stuff
-    private bool pickedUp = false;
     private bool pickupAllowed = false;
 
     protected virtual void Awake() {
@@ -78,8 +78,8 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().scale = scale;
     }
 
-     public int GetCurrentAmmo(AmmoType type){
-        return ammoReserve.stock;
+    public (int, int) GetCurrentAmmo(){
+        return (ammoReserve.stock, ammoReserve.maxCapacity);
     }
 
     // add [amount] ammo to stock, returns amount added

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Ammo;
 using TMPro;
 
 public class AmmoPickup : MonoBehaviour
@@ -10,7 +9,6 @@ public class AmmoPickup : MonoBehaviour
     [SerializeField] private GameObject displayText;
     private TextMesh textField;
     [SerializeField] private int amount;
-    [SerializeField] private AmmoType type;
 
     private void Start() {
         textField = displayText.GetComponent<TextMesh>();
