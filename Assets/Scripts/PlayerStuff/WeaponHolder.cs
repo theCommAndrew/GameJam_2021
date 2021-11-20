@@ -1,4 +1,4 @@
- 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +11,12 @@ public class WeaponHolder : MonoBehaviour
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeapon = 0;
 
+    // firing event
+    public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => {};
+
+    private void Start() {
+        updateUIAmmo();
+    }
 
     void Update()
     {
@@ -25,17 +31,18 @@ public class WeaponHolder : MonoBehaviour
 
             // shoot on M1
             if(Input.GetButton("Fire1"))
-            {
-                weapons[currentWeapon].Fire();
+            {   
+                if(weapons[currentWeapon].Fire())
+                    updateUIAmmo();
             }
 
             // swap weapons
             if(Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
             {
-
                 weapons[currentWeapon].gameObject.SetActive(false);
                 currentWeapon = (currentWeapon + 1) % 2;
                 weapons[currentWeapon].gameObject.SetActive(true);
+                updateUIAmmo();
             }
         }
     }
@@ -56,14 +63,20 @@ public class WeaponHolder : MonoBehaviour
         weaponToAdd.transform.position = transform.position;
         weaponToAdd.transform.rotation = transform.rotation;
         weaponToAdd.GetComponent<SpriteRenderer>().sortingOrder = 25;
-
+        updateUIAmmo();
     }
 
     private void dropWeapon(Weapon weaponToDrop)
     {   
         weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        weaponToDrop.transform.rotation = Quaternion.Euler(0,0,-90);
         weaponToDrop.transform.parent = null;
         weapons[currentWeapon] = null;
+    }
+
+    private void updateUIAmmo()
+    {
+        ammoChangedEvent?.Invoke(weapons[currentWeapon].ammoReserve.stock, weapons[currentWeapon].ammoReserve.maxCapacity);
     }
 
 }

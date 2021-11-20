@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class Player : Character
 {
+    // movement
+    Vector2 movement;
+    // dashing
     public bool canDash = true;
     public float dashDistance = 5f;
     private bool canTakeDamage = true;
-    Vector2 movement;
     private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1F;
+    // damage and invincibility
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
     public float spikeKnockbackpower = 200f;
     public float spikeKnockbackDuration = 1f;
+    // event calls
     public event EventHandler playerDeath;
     public event EventHandler<UpdateHealthEvent> updateHealth;
     public class UpdateHealthEvent

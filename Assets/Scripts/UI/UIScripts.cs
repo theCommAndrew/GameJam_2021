@@ -14,7 +14,7 @@ public class UIScripts : MonoBehaviour
     private Player player;
 
     //health bar stuff
-    public Image[] hearts;
+    public List<Image> hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
@@ -41,7 +41,7 @@ public class UIScripts : MonoBehaviour
 
     private void updateHealthBar(object sender, Player.UpdateHealthEvent e)
     {
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < hearts.Count; i++)
         {
             hearts[i].sprite = i < e.playerHealth ? fullHeart : emptyHeart;
 
