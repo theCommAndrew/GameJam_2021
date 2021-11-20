@@ -10,13 +10,7 @@ public class UIScripts : MonoBehaviour
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOverScreen;
-    public CameraFollow cameraFollow;
-    private Player player;
 
-    //health bar stuff
-    public List<Image> hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
 
     public void Awake()
     {
@@ -25,7 +19,6 @@ public class UIScripts : MonoBehaviour
         Cursor.visible = false;
         startTime();
         
-        Player.updateHealth += (playerHealth, maxHealth) => updateHealthBar(playerHealth, maxHealth);
         Player.playerDeath += gameOver;
     }
 
@@ -34,16 +27,6 @@ public class UIScripts : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             (gameIsPaused ? (Action)resumeGame : pauseGame)();
-        }
-    }
-
-    private void updateHealthBar(int playerHealth, int maxHealth)
-    {
-        for (int i = 0; i < hearts.Count; i++)
-        {
-            hearts[i].sprite = i < playerHealth ? fullHeart : emptyHeart;
-
-            hearts[i].enabled = i < maxHealth;
         }
     }
 

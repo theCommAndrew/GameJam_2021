@@ -11,7 +11,7 @@ public class BattleSystem : MonoBehaviour
         Completed
     }
     private State state;
-    private FloorTemplates templates;
+    private LevelInfo templates;
     private int rand;
     private List<GameObject> enemiesArray = new List<GameObject>();
     private EntryAlert entryAlert;
@@ -25,7 +25,7 @@ public class BattleSystem : MonoBehaviour
     }
     
     private void Start() {
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<FloorTemplates>();
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<LevelInfo>();
         unpackEnemies();
 
         entryAlert = gameObject.GetComponent<EntryAlert>();

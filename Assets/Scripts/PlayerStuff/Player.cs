@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerStats;
 
 public class Player : Character
 {
@@ -77,6 +78,26 @@ public class Player : Character
     {
         health += restoreAmount;
         updateHealth?.Invoke(health, maxHealth);
+    }
+
+    public void increaseStat(PlayerStat statToIncrease)
+    {
+        switch(statToIncrease)
+        {
+            case PlayerStat.Health:
+                maxHealth += 1; 
+                health = maxHealth;
+                updateHealth?.Invoke(health, maxHealth);
+                break;
+
+            case PlayerStat.Speed:
+                moveSpeed += 1f;
+                break;
+            
+            case PlayerStat.Damage:
+                break;
+        }
+        
     }
 
     public override void die()

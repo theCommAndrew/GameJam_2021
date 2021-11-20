@@ -2,13 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ammo;
 
 
 public class WeaponHolder : MonoBehaviour
 {
     private Vector3 mousePosition;
-
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeapon;
 
