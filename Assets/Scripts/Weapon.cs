@@ -38,7 +38,6 @@ public class Weapon : MonoBehaviour
 
         if(pickupAllowed && Input.GetKeyDown(KeyCode.E))
         {
-            print("being picked up");
             WeaponHolder playerWeapons = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>();
             playerWeapons.addWeapon(this);
         }
@@ -94,5 +93,9 @@ public class Weapon : MonoBehaviour
         int spend = Mathf.Min(amount, ammoReserve.stock);
         ammoReserve.stock -= spend;
         return spend;
+    }
+
+    public Sprite getImage(){
+        return gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 }

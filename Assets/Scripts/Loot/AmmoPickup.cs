@@ -26,6 +26,7 @@ public class AmmoPickup : MonoBehaviour
             if(amount == 0){
                 Destroy(gameObject);
             }         
+            playerWeapons.updateUIAmmo();
         }
     }
 

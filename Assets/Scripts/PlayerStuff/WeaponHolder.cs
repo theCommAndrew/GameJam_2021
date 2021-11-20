@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ammo;
 
+
 public class WeaponHolder : MonoBehaviour
 {
     private Vector3 mousePosition;
@@ -11,11 +12,15 @@ public class WeaponHolder : MonoBehaviour
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeapon = 0;
 
-    // firing event
+    // UI events
     public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => {};
+    public static event Action<int> upateActiveWeapon = (index) => {};
+    public static event Action<int, Sprite> updateSlotImage = (index, newImage) => {};
 
     private void Start() {
         updateUIAmmo();
+        updateUIActiveWeapon();
+        updateInventorySprite(weapons[currentWeapon]);
     }
 
     void Update()
@@ -43,6 +48,7 @@ public class WeaponHolder : MonoBehaviour
                 currentWeapon = (currentWeapon + 1) % 2;
                 weapons[currentWeapon].gameObject.SetActive(true);
                 updateUIAmmo();
+                updateUIActiveWeapon();
             }
         }
     }
@@ -64,6 +70,7 @@ public class WeaponHolder : MonoBehaviour
         weaponToAdd.transform.rotation = transform.rotation;
         weaponToAdd.GetComponent<SpriteRenderer>().sortingOrder = 25;
         updateUIAmmo();
+        updateInventorySprite(weaponToAdd);
     }
 
     private void dropWeapon(Weapon weaponToDrop)
@@ -74,9 +81,19 @@ public class WeaponHolder : MonoBehaviour
         weapons[currentWeapon] = null;
     }
 
-    private void updateUIAmmo()
+    public void updateUIAmmo()
     {
         ammoChangedEvent?.Invoke(weapons[currentWeapon].ammoReserve.stock, weapons[currentWeapon].ammoReserve.maxCapacity);
+    }
+
+    private void updateUIActiveWeapon()
+    {
+        upateActiveWeapon?.Invoke(currentWeapon);
+    }
+
+    private void updateInventorySprite(Weapon weapon)
+    {   
+        updateSlotImage?.Invoke(currentWeapon, weapon.getImage());
     }
 
 }
