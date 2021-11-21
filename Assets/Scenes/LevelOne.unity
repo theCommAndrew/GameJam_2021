@@ -978,7 +978,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43300c6a69275a84297d1bcaa60d4144, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   weapons:
   - {fileID: 1757233598}
   currentWeapon: 0
@@ -2995,6 +2995,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &1572497073 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 866013091819514517, guid: 972c6b9fd6ebfb14697e884e52072db7, type: 3}
+  m_PrefabInstance: {fileID: 746978709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1601613728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3916,6 +3921,7 @@ MonoBehaviour:
   invicibilityDeltaTime: 0.1
   spikeKnockbackpower: 200
   spikeKnockbackDuration: 1
+  dashEffect: {fileID: 921558079183481366, guid: 6d999f10d8b7420498581e60688c9f16, type: 3}
 --- !u!50 &2014349418
 Rigidbody2D:
   serializedVersion: 4

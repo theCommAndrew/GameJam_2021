@@ -41,7 +41,7 @@ public class Player : Character
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if(Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
+            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
             {
                 dashCooldown = DASH_COOLDOWN_MAX;
                 StartCoroutine(BecomeTemporarilyInvincible());
@@ -92,10 +92,12 @@ public class Player : Character
 
         if (hit.collider == null)
         {
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
             transform.position += moveDir * dashDistance;
         }
         else
         {
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
             transform.position = hit.point;
         }
 
