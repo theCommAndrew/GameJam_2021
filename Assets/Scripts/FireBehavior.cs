@@ -10,7 +10,7 @@ public class FireBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        UIScripts UI = GetComponent<UIScripts>();
     }
 
     // Update is called once per frame
@@ -21,7 +21,11 @@ public class FireBehavior : MonoBehaviour
 
     public IEnumerator FireSpreading()
     {
-        this.transform.localScale += moveFireUp;
-        yield return new WaitForSeconds(30f);
+        if (!UIScripts.gameIsPaused)
+        {
+            this.transform.position += moveFireUp;
+            yield return new WaitForSeconds(30f);
+        }
+
     }
 }

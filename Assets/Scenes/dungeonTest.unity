@@ -905,6 +905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43300c6a69275a84297d1bcaa60d4144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons: []
+  currentWeapon: 0
 --- !u!1 &555978452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,17 +2722,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1572497072 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2757987754204363403, guid: 972c6b9fd6ebfb14697e884e52072db7, type: 3}
-  m_PrefabInstance: {fileID: 746978709}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdcbce52abf45a947b8903057123a868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1572497073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 866013091819514517, guid: 972c6b9fd6ebfb14697e884e52072db7, type: 3}
@@ -3005,17 +2996,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7877283394770207011, guid: 25cd62735fcd876409ef6044a66e04be, type: 3}
   m_PrefabInstance: {fileID: 1804977295}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1757233598 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4210462842773431348, guid: 25cd62735fcd876409ef6044a66e04be, type: 3}
-  m_PrefabInstance: {fileID: 1804977295}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 662814b4ae8115e44a1083691fbce607, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1787689847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3532,11 +3512,7 @@ MonoBehaviour:
   invicibilityDeltaTime: 0.1
   spikeKnockbackpower: 200
   spikeKnockbackDuration: 1
-  weapons:
-  - {fileID: 1757233598}
-  - {fileID: 1572497072}
-  currentWeapon: 0
-  inventory: {fileID: 707352475}
+  dashEffect: {fileID: 921558079183481366, guid: 6d999f10d8b7420498581e60688c9f16, type: 3}
 --- !u!50 &2014349418
 Rigidbody2D:
   serializedVersion: 4
