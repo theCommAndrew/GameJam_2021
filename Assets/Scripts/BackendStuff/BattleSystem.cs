@@ -59,8 +59,6 @@ public class BattleSystem : MonoBehaviour
     }
 
     private void startBattle(){
-        // Destroy(this.GetComponent<BoxCollider2D>());
-
         foreach( GameObject enemy in enemiesArray){
             enemy.GetComponent<Enemy>().spawn();
         }
