@@ -152,13 +152,17 @@ public class Player : Character
         if (other.tag == "spike")
         {
             StartCoroutine(Knockback(spikeKnockbackDuration, spikeKnockbackpower, other.transform));
-            StartCoroutine(pausePlayerMovement());
+            slowPlayer();
             takeDamage(1);
         }
     }
 
-    private IEnumerator pausePlayerMovement()
-    {
+    public void slowPlayer(){
+        StartCoroutine(slowPlayerMovement());
+    }
+
+    private IEnumerator slowPlayerMovement()
+    {   
         moveSpeed = 5f;
         yield return new WaitForSeconds(.8f);
         moveSpeed = 7f;
