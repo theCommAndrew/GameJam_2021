@@ -11,8 +11,9 @@ public class BattleSystem : MonoBehaviour
         Completed
     }
     private State state;
-    private FloorTemplates templates;
+    private LevelInfo templates;
     private int rand;
+    public GameObject[] uniqueLayouts;
     private List<GameObject> enemiesArray = new List<GameObject>();
     private EntryAlert entryAlert;
     public event EventHandler OnBattleStart;
@@ -25,7 +26,7 @@ public class BattleSystem : MonoBehaviour
     }
     
     private void Start() {
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<FloorTemplates>();
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<LevelInfo>();
         unpackEnemies();
 
         entryAlert = gameObject.GetComponent<EntryAlert>();
@@ -59,8 +60,6 @@ public class BattleSystem : MonoBehaviour
     }
 
     private void startBattle(){
-        // Destroy(this.GetComponent<BoxCollider2D>());
-
         foreach( GameObject enemy in enemiesArray){
             enemy.GetComponent<Enemy>().spawn();
         }
@@ -72,13 +71,26 @@ public class BattleSystem : MonoBehaviour
     }
 
     private void unpackEnemies(){
-        rand = Random.Range(0, templates.enemyLayouts.Length);
-        GameObject enemyLayout = Instantiate(templates.enemyLayouts[rand], transform.parent.position, Quaternion.identity);    
+        GameObject layout;
+        if(uniqueLayouts.Length == 0)
+        {
+            print("pulling from general template");
+            rand = Random.Range(0, templates.enemyLayouts.Length);
+            layout = templates.enemyLayouts[rand];
+        }
+        else
+        {
+            print("pulling unique layout");
+            rand = Random.Range(0, uniqueLayouts.Length);
+            layout = uniqueLayouts[rand];
+        }
+        
+        
+        GameObject enemyLayout = Instantiate(layout, transform.parent.position, transform.parent.parent.rotation);    
         for(int i = 0; i < enemyLayout.transform.childCount; i++)
         {
             var enemy = enemyLayout.transform.GetChild(i).gameObject ;
             enemiesArray.Add(enemy);
         }
-
     }
 }

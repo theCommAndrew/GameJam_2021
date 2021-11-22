@@ -6,11 +6,11 @@ public class RoomSpawner : MonoBehaviour
 {
     public bool left;
     public bool main = true;
-    private FloorTemplates templates;
+    private LevelInfo templates;
     private int rand;
 
     private void Start() {
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<FloorTemplates>();
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<LevelInfo>();
         if(main)
         {
             Invoke("spawnMain", 0.1f);

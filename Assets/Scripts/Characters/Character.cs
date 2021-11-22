@@ -11,6 +11,7 @@ public abstract class Character : MonoBehaviour
     public bool alive{get; set;}
     public int maxHealth{get; set;}
     public int health{get; set;}
+    public bool flying = false;
     protected  Rigidbody2D rb;
 
     

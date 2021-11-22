@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerStats;
 
 public class Player : Character
 {
@@ -14,6 +15,7 @@ public class Player : Character
     private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1F;
     // damage and invincibility
+    public static int extraDamage = 0;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
     public float spikeKnockbackpower = 200f;
@@ -79,6 +81,27 @@ public class Player : Character
         updateHealth?.Invoke(health, maxHealth);
     }
 
+    public void increaseStat(PlayerStat statToIncrease)
+    {
+        switch(statToIncrease)
+        {
+            case PlayerStat.Health:
+                maxHealth += 1; 
+                health = maxHealth;
+                updateHealth?.Invoke(health, maxHealth);
+                break;
+
+            case PlayerStat.Speed:
+                moveSpeed += 1f;
+                break;
+            
+            case PlayerStat.Damage:
+                extraDamage += 1;
+                break;
+        }
+        
+    }
+
     public override void die()
     {
         playerDeath?.Invoke(this, EventArgs.Empty);
@@ -131,13 +154,17 @@ public class Player : Character
         if (other.tag == "spike")
         {
             StartCoroutine(Knockback(spikeKnockbackDuration, spikeKnockbackpower, other.transform));
-            StartCoroutine(pausePlayerMovement());
+            slowPlayer();
             takeDamage(1);
         }
     }
 
-    private IEnumerator pausePlayerMovement()
-    {
+    public void slowPlayer(){
+        StartCoroutine(slowPlayerMovement());
+    }
+
+    private IEnumerator slowPlayerMovement()
+    {   
         moveSpeed = 5f;
         yield return new WaitForSeconds(.8f);
         moveSpeed = 7f;

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorTemplates : MonoBehaviour
+public class LevelInfo : MonoBehaviour
 {
+    public int levelCount = 1;
     public GameObject[] mainRooms;
     public GameObject[] sideRooms;
     public GameObject finalRoom;
