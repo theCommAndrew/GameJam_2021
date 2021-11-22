@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8823526350376403902}
   - component: {fileID: 8823526350376403896}
   - component: {fileID: 8823526350376403891}
+  - component: {fileID: 7044648190666169031}
   m_Layer: 0
   m_Name: ChaserEnemy
   m_TagString: enemy
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 8823526350376403888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.67, y: 6.37, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.9245283, g: 0.047970813, b: 0.047970813, a: 1}
+  m_Sprite: {fileID: 5878492945270880141, guid: 2caa974486445a3458c3467d93d196db, type: 3}
+  m_Color: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,18 +102,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000008940697, y: 0}
+  m_Offset: {x: 0.00000012665987, y: -0.0017123334}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.17, y: 0.13}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.19174354, y: 0.18831843}
   m_EdgeRadius: 0
 --- !u!50 &8823526350376403890
 Rigidbody2D:
@@ -197,7 +198,7 @@ MonoBehaviour:
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
-  rotationSpeed: 360
+  rotationSpeed: 0
   slowdownDistance: 0.6
   pickNextWaypointDist: 2
   endReachedDistance: 0.2
@@ -235,7 +236,26 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
   ammoPickup: {fileID: 8149657182447556840, guid: 5ebff97adb28fb34db507dceefdf2191, type: 3}
-  rotationSpeed: 5
+  rotationSpeed: 0
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
+--- !u!95 &7044648190666169031
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8823526350376403888}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa96925de9029c24c9c510eea953e40f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

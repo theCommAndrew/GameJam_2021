@@ -18,6 +18,7 @@ TagManager:
   - whip
   - cobweb
   - shieldEnemy
+  - shield
   layers:
   - Default
   - TransparentFX
@@ -50,7 +51,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - background
   m_SortingLayers:
   - name: Default
     uniqueID: 0

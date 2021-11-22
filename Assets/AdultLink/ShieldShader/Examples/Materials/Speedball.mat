@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Speedball
   m_Shader: {fileID: 4800000, guid: 61054a61bebe19f49a8d9767c1c3212d, type: 3}
-  m_ShaderKeywords: _ENABLENOISE_ON _INVERTMAINTEXTURE_ON _INVERT_ON
+  m_ShaderKeywords: _ENABLEDISTORTION_ON _ENABLEPULSATION_ON _INVERTMAINTEXTURE_ON
+    _INVERT_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -85,16 +86,16 @@ Material:
     - _Distortionspeed: 0.5
     - _DstBlend: 0
     - _EdgeLength: 15
-    - _Enabledistortion: 0
-    - _Enablenoise: 1
-    - _Enablepulsation: 0
+    - _Enabledistortion: 1
+    - _Enablenoise: 0
+    - _Enablepulsation: 1
     - _Extraroughness: 10
     - _GlobalFade: 1
     - _Globalopacity: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Innerfresnelintensity: 0
+    - _Innerfresnelintensity: 0.626
     - _Invert: 1
     - _Invertmaintexture: 1
     - _Invertsecondarytexture: 0
@@ -104,7 +105,7 @@ Material:
     - _Noisescale: 50
     - _Noisesize: 3.4
     - _OcclusionStrength: 1
-    - _Outerfresnelintensity: 1
+    - _Outerfresnelintensity: 0.268
     - _Parallax: 0.02
     - _Power: 1.2
     - _Pulseamplitude: 0.05
@@ -131,14 +132,15 @@ Material:
     m_Colors:
     - _Bordercolor: {r: 0, g: 0.70980394, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Edgecolor: {r: 1.4142135, g: 0, b: 0.011091871, a: 1}
+    - _Edgecolor: {r: 0, g: 1.8346497, b: 1.82199, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainPanningspeed: {r: 0, g: -0.1, b: 0, a: 0}
     - _Maincolor: {r: 2, g: 0.015686275, b: 0, a: 1}
     - _Mainpanningspeed: {r: 0, g: -1, b: 0, a: 0}
     - _Noisespeed: {r: 0, g: 1, b: 0, a: 0}
     - _Panningspeed: {r: 0, g: 0.1, b: 0, a: 0}
-    - _Secondarycolor: {r: 1, g: 0.2627451, b: 0.58431375, a: 1}
+    - _Secondarycolor: {r: 0, g: 0.8020909, b: 1, a: 1}
     - _Secondarypanningspeed: {r: 0, g: 0.2, b: 0, a: 0}
     - _Staticcolor: {r: 0.26470587, g: 0.6957404, b: 1, a: 0.978}
     - _Staticpanningspeed: {r: 0, g: 2, b: 0, a: 0}
+  m_BuildTextureStacks: []

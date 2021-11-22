@@ -24,7 +24,7 @@ public class UIScripts : MonoBehaviour
         gameOverScreen.SetActive(false);
         Cursor.visible = false;
         startTime();
-        
+
         Player.updateHealth += (playerHealth, maxHealth) => updateHealthBar(playerHealth, maxHealth);
         Player.playerDeath += gameOver;
     }
@@ -63,7 +63,7 @@ public class UIScripts : MonoBehaviour
 
     public void restartGame()
     {
-        SceneManager.LoadScene( SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameOverScreen.SetActive(false);
     }
 
@@ -88,5 +88,9 @@ public class UIScripts : MonoBehaviour
     {
         gameIsPaused = false;
         Time.timeScale = 1;
+    }
+    public IEnumerator delayDeath()
+    {
+        yield return new WaitForSeconds(3);
     }
 }

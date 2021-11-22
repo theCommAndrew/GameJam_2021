@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Shield2
   m_Shader: {fileID: 4800000, guid: 61054a61bebe19f49a8d9767c1c3212d, type: 3}
-  m_ShaderKeywords: _ENABLEDISTORTION_ON _ENABLENOISE_ON _INVERTSECONDARYTEXTURE_ON
+  m_ShaderKeywords: _ENABLEPULSATION_ON _INVERTSECONDARYTEXTURE_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -84,20 +84,20 @@ Material:
     - _Distortionspeed: 0.78
     - _DstBlend: 0
     - _EdgeLength: 15
-    - _Enabledistortion: 1
-    - _Enablenoise: 1
-    - _Enablepulsation: 0
+    - _Enabledistortion: 0
+    - _Enablenoise: 0
+    - _Enablepulsation: 1
     - _Extraroughness: 1
     - _GlobalFade: 1
     - _Globalopacity: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Innerfresnelintensity: 0
+    - _Innerfresnelintensity: 0.191
     - _Invert: 0
     - _Invertmaintexture: 0
     - _Invertsecondarytexture: 1
-    - _Maintextureintensity: 0.5
+    - _Maintextureintensity: 0.36
     - _Metallic: 0
     - _Mode: 0
     - _Noisescale: 8
@@ -105,7 +105,7 @@ Material:
     - _OcclusionStrength: 1
     - _Outerfresnelintensity: 1
     - _Parallax: 0.02
-    - _Power: 1.81
+    - _Power: 0.41
     - _Pulseamplitude: 0
     - _Pulsefrequency: 0
     - _Pulseoffset: 0
@@ -140,3 +140,4 @@ Material:
     - _Secondarypanningspeed: {r: 0, g: -5, b: 0, a: 0}
     - _Staticcolor: {r: 0.26470587, g: 0.6957404, b: 1, a: 0.978}
     - _Staticpanningspeed: {r: 0, g: 2, b: 0, a: 0}
+  m_BuildTextureStacks: []

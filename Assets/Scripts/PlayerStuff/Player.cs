@@ -13,6 +13,7 @@ public class Player : Character
     private bool canTakeDamage = true;
     private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1F;
+    public GameObject dashEffect;
     // damage and invincibility
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.15f;
@@ -20,7 +21,9 @@ public class Player : Character
     public float spikeKnockbackDuration = 1f;
     // event calls
     public static event EventHandler playerDeath;
-    public static event Action<int,int> updateHealth = (playerHealth, maxHealth) => {};
+    public static event Action<int, int> updateHealth = (playerHealth, maxHealth) => { };
+    //animation
+    public Animator animator;
 
 
     void Start()
@@ -40,6 +43,17 @@ public class Player : Character
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+
+            animator.SetFloat("Speed", Mathf.Abs(movement.x) + Mathf.Abs(movement.y));
+
+            if (movement.x < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+            else if (movement.x > 0)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
 
             if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
             {
@@ -81,6 +95,7 @@ public class Player : Character
 
     public override void die()
     {
+        animator.Play("PlayerDie");
         playerDeath?.Invoke(this, EventArgs.Empty);
     }
 
@@ -92,13 +107,15 @@ public class Player : Character
 
         if (hit.collider == null)
         {
-            Instantiate(dashEffect, transform.position, Quaternion.identity);
+            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
             transform.position += moveDir * dashDistance;
+            Destroy(dasheffectvar, 1);
         }
         else
         {
-            Instantiate(dashEffect, transform.position, Quaternion.identity);
+            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
             transform.position = hit.point;
+            Destroy(dasheffectvar, 1);
         }
 
         canDash = true;
@@ -141,5 +158,9 @@ public class Player : Character
         moveSpeed = 5f;
         yield return new WaitForSeconds(.8f);
         moveSpeed = 7f;
+    }
+    public IEnumerator delayDeath()
+    {
+        yield return new WaitForSeconds(3);
     }
 }

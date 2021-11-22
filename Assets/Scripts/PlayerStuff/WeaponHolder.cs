@@ -13,11 +13,12 @@ public class WeaponHolder : MonoBehaviour
     public int currentWeapon;
 
     // UI events
-    public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => {};
-    public static event Action<int> upateActiveWeapon = (index) => {};
-    public static event Action<int, Sprite> updateSlotImage = (index, newImage) => {};
+    public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => { };
+    public static event Action<int> upateActiveWeapon = (index) => { };
+    public static event Action<int, Sprite> updateSlotImage = (index, newImage) => { };
 
-    private void Start() {
+    private void Start()
+    {
         currentWeapon = 0;
         updateUIAmmo();
         updateUIActiveWeapon();
@@ -26,7 +27,7 @@ public class WeaponHolder : MonoBehaviour
 
     void Update()
     {
-        if(!UIScripts.gameIsPaused)
+        if (!UIScripts.gameIsPaused)
         {
             // aim at mouse position
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -36,14 +37,14 @@ public class WeaponHolder : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
             // shoot on M1
-            if(Input.GetButton("Fire1"))
-            {   
-                if(weapons[currentWeapon].Fire())
+            if (Input.GetButton("Fire1"))
+            {
+                if (weapons[currentWeapon].Fire())
                     updateUIAmmo();
             }
 
             // swap weapons
-            if(Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
+            if (Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
             {
                 weapons[currentWeapon].gameObject.SetActive(false);
                 currentWeapon = (currentWeapon + 1) % 2;
@@ -54,18 +55,20 @@ public class WeaponHolder : MonoBehaviour
         }
     }
 
-    public void addWeapon(Weapon weaponToAdd){
-        if(weapons.Count >= 2)
+    public void addWeapon(Weapon weaponToAdd)
+    {
+        if (weapons.Count >= 2)
         {
             dropWeapon(weapons[currentWeapon]);
             weapons[currentWeapon] = weaponToAdd;
         }
-        else{
+        else
+        {
             weapons.Add(weaponToAdd);
             weapons[currentWeapon].gameObject.SetActive(false);
             currentWeapon += 1;
         }
-            
+
         weaponToAdd.transform.parent = transform;
         weaponToAdd.transform.position = transform.position;
         weaponToAdd.transform.rotation = transform.rotation;
@@ -76,9 +79,9 @@ public class WeaponHolder : MonoBehaviour
     }
 
     private void dropWeapon(Weapon weaponToDrop)
-    {   
+    {
         weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 0;
-        weaponToDrop.transform.rotation = Quaternion.Euler(0,0,-90);
+        weaponToDrop.transform.rotation = Quaternion.Euler(0, 0, -90);
         weaponToDrop.transform.parent = null;
         weapons[currentWeapon] = null;
     }
@@ -94,7 +97,7 @@ public class WeaponHolder : MonoBehaviour
     }
 
     private void updateInventorySprite(Weapon weapon)
-    {   
+    {
         updateSlotImage?.Invoke(currentWeapon, weapon.getImage());
     }
 

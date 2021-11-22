@@ -87,7 +87,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Innerfresnelintensity: 0.2
+    - _Innerfresnelintensity: 0.467
     - _Invertmaintexture: 0
     - _Invertsecondarytexture: 0
     - _Maintextureintensity: 0
@@ -126,3 +126,4 @@ Material:
     - _Secondarycolor: {r: 1, g: 0, b: 0.9342737, a: 0}
     - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []
