@@ -6,7 +6,6 @@ using UnityEngine;
 // Parent class for all character game objects
 public abstract class Character : MonoBehaviour
 {
-    public GeneralFunctions generalFunctions;
     public float moveSpeed{get; set;}
     public bool alive{get; set;}
     public int maxHealth{get; set;}
@@ -16,7 +15,6 @@ public abstract class Character : MonoBehaviour
 
     
     protected Character(){
-        generalFunctions = new GeneralFunctions();  
         alive = true;
     }
 

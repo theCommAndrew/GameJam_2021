@@ -14,7 +14,7 @@ public class Enemy : Character
     [SerializeField] private GameObject ammoPickup;
 
     // movement/combat params
-    public int lootChance = 25; // chance to drop something on death. int from 0-100
+    public int lootChance = 10; // chance to drop something on death. int from 0-100
     public int contactDamage = 1; // damage done when running into player
     public float rotationSpeed = 5;
     public float knockbackPower = 300;
@@ -23,7 +23,7 @@ public class Enemy : Character
 
     // events
     public event EventHandler OnEnemySpawned;
-    public event EventHandler OnEnemyKilled;
+    public static event Action<int, Transform> OnEnemyKilled;
 
     void Awake()
     {
@@ -78,21 +78,8 @@ public class Enemy : Character
     public override void die()
     {
         moveSpeed = 0;
-        OnEnemyKilled?.Invoke(this, EventArgs.Empty);
+        OnEnemyKilled?.Invoke(lootChance, this.transform);
         Destroy(gameObject);
-        if (generalFunctions.getPercentResult(lootChance))
-            dropLoot();
-    }
-
-    public void dropLoot()
-    {
-        if(generalFunctions.getPercentResult(30))
-        {
-            GameObject heart = Instantiate(heartPickupPrefab, this.transform.position, Quaternion.Euler(0,0,0));
-        }
-        else{
-            GameObject ammo = Instantiate(ammoPickup, this.transform.position, Quaternion.Euler(0,0,0));
-        }
     }
 
     // contact damage to player

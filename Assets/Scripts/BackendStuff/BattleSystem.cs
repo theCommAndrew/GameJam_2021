@@ -31,6 +31,7 @@ public class BattleSystem : MonoBehaviour
 
         entryAlert = gameObject.GetComponent<EntryAlert>();
         entryAlert.OnPlayerEnter += EntryAlert_OnPlayerEnter;
+        Enemy.OnEnemyKilled += (int pass, Transform loc) => Enemy_OnDeath(pass, loc);
     }
 
     private void EntryAlert_OnPlayerEnter(object sender, System.EventArgs e){
@@ -44,7 +45,7 @@ public class BattleSystem : MonoBehaviour
         enemyCount += 1;
     }
 
-    private void Enemy_OnDeath(object sender, System.EventArgs e){
+    private void Enemy_OnDeath(int pass, Transform loc){
         enemyCount -= 1;
         if(enemyCount == 0){
             endBattle();
@@ -95,7 +96,6 @@ public class BattleSystem : MonoBehaviour
             if(enemy)
             {
                 enemy.OnEnemySpawned += Enemy_OnSpawn;
-                enemy.OnEnemyKilled += Enemy_OnDeath;
                 enemiesArray.Add(enemy);
             }
         }

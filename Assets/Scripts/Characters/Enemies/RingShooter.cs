@@ -15,6 +15,7 @@ public class RingShooter : Enemy
     {
         maxHealth = 40;
         health = maxHealth;
+        lootChance = 50;
         moveSpeed = 0f;
     }
 

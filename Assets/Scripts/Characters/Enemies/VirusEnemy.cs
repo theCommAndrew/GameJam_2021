@@ -9,6 +9,7 @@ public class VirusEnemy : Enemy
         maxHealth = 20;
         health = maxHealth;
         moveSpeed = 0f;
+        lootChance = 100;
         Player player = GetComponent<Player>();
     }
     private void Update()

@@ -78,7 +78,7 @@ public class Player : Character
 
     public override void heal(int restoreAmount)
     {
-        health += restoreAmount;
+        health = Mathf.Min(health + restoreAmount, maxHealth);
         updateHealth?.Invoke(health, maxHealth);
     }
 
