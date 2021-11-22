@@ -9,6 +9,7 @@ public class WeaponHolder : MonoBehaviour
     private Vector3 mousePosition;
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeapon;
+    private bool canFire;
 
     // UI events
     public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => {};
@@ -34,10 +35,16 @@ public class WeaponHolder : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
             // shoot on M1
-            if(Input.GetButton("Fire1"))
+            if(Input.GetButton("Fire1") && !weapons[currentWeapon].reloading)
             {   
                 if(weapons[currentWeapon].Fire())
-                    updateUIAmmo();
+                    updateUIAmmo();  
+            }
+
+            if(Input.GetKeyDown(KeyCode.R) && weapons[currentWeapon].ammoReserve.inClip != weapons[currentWeapon].ammoReserve.maxClip && !weapons[currentWeapon].reloading)
+            {
+                weapons[currentWeapon].reloading = true;
+                StartCoroutine(weapons[currentWeapon].reload());
             }
 
             // swap weapons
@@ -83,7 +90,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void updateUIAmmo()
     {
-        ammoChangedEvent?.Invoke(weapons[currentWeapon].ammoReserve.stock, weapons[currentWeapon].ammoReserve.maxCapacity);
+        ammoChangedEvent?.Invoke(weapons[currentWeapon].ammoReserve.inClip, weapons[currentWeapon].ammoReserve.stock);
     }
 
     private void updateUIActiveWeapon()

@@ -8,8 +8,9 @@ public class LevelInfo : MonoBehaviour
     public GameObject[] mainRooms;
     public GameObject[] sideRooms;
     public GameObject finalRoom;
-
-    public int rooms = 0;
-
     public GameObject[] enemyLayouts;
+    public GameObject[] enemyDrops;
+    public GameObject[] roomRewards;
+    public GameObject[] bossRewards;
+    public int rooms = 0;
 }

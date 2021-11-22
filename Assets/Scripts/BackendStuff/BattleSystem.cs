@@ -31,15 +31,6 @@ public class BattleSystem : MonoBehaviour
 
         entryAlert = gameObject.GetComponent<EntryAlert>();
         entryAlert.OnPlayerEnter += EntryAlert_OnPlayerEnter;
-        
-        /*foreach(GameObject e in enemiesArray){
-            Enemy enemy = e.GetComponent<Enemy>();
-            if(enemy)
-            {
-                enemy.OnEnemySpawned += Enemy_OnSpawn;
-                enemy.OnEnemyKilled += Enemy_OnDeath;
-            }
-        }*/
     }
 
     private void EntryAlert_OnPlayerEnter(object sender, System.EventArgs e){
@@ -61,7 +52,7 @@ public class BattleSystem : MonoBehaviour
     }
 
     private void startBattle(){
-        foreach( Enemy enemy in enemiesArray){
+        foreach(Enemy enemy in enemiesArray){
             enemy.spawn();
         }
 
