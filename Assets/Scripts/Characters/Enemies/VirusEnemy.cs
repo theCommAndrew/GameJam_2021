@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VirusEnemy : Enemy
 {
-    // Start is called before the first frame update
     void Start()
     {
         maxHealth = 20;
@@ -19,4 +18,5 @@ public class VirusEnemy : Enemy
             player.moveSpeed = 2f;
         }
     }
+
 }

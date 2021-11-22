@@ -6,7 +6,7 @@ public class FriendlyBullet : Bullet
 {
     private void OnTriggerEnter2D(Collider2D col)
     {
-        InRangeEnemy shieldEnemy = GetComponent<InRangeEnemy>();
+        InRangeEnemy shieldEnemy = col.gameObject.GetComponent<InRangeEnemy>();
         string tag = col.gameObject.tag;
         if (tag == "enemy")
         {

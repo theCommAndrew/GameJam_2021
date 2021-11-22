@@ -44,6 +44,26 @@ public class Enemy : Character
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
 
+    public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale){
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().speed = speed;
+        bullet.GetComponent<Bullet>().scale = scale;
+    }
+
+    public void shootSpread(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, int cone, int bullets)
+    {   
+        float halfRange = cone/2;
+        float step = cone/(bullets-1);
+        for(float i = -1*halfRange; i <= halfRange; i += step)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation * Quaternion.Euler(0,0,i)) as GameObject;
+            bullet.GetComponent<Bullet>().damage = damage;
+            bullet.GetComponent<Bullet>().speed = speed;
+        }
+    }
+    
+
     public void spawn()
     {
         // fire OnEnemySpawned event
