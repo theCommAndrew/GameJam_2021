@@ -61,6 +61,7 @@ Transform:
   m_Children:
   - {fileID: 3498342972172914778}
   - {fileID: 948335006602446723}
+  - {fileID: 5330479430323845578}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -237,6 +238,72 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4366310452005825745, guid: fbb5ad80c8845db4a96f3fe7cf12e8f8, type: 3}
   m_PrefabInstance: {fileID: 296363647773602426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &456363569610231836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8170914076573011588}
+    m_Modifications:
+    - target: {fileID: 1681809955626156732, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_Name
+      value: TelePortal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1915348256558219469, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: battleSystem
+      value: 
+      objectReference: {fileID: 388028481486726728}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+--- !u!4 &5330479430323845578 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5741243945056643542, guid: 478afd1994c93a143a64d737db1b600e, type: 3}
+  m_PrefabInstance: {fileID: 456363569610231836}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2244300268819963131
 PrefabInstance:
@@ -809,3 +876,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1914866713516246798, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
   m_PrefabInstance: {fileID: 9091895097960803319}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &388028481486726728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8885157529929223615, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
+  m_PrefabInstance: {fileID: 9091895097960803319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e456a13b17636046bd12fea602c3fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
