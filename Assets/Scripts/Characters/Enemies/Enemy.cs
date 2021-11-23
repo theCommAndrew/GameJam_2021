@@ -77,9 +77,13 @@ public class Enemy : Character
     
     public override void die()
     {
-        moveSpeed = 0;
-        OnEnemyKilled?.Invoke(lootChance, this.transform);
-        Destroy(gameObject);
+        if(alive)
+        {
+            alive = false;
+            moveSpeed = 0;
+            OnEnemyKilled?.Invoke(lootChance, this.transform);
+            Destroy(gameObject);
+        } 
     }
 
     // contact damage to player

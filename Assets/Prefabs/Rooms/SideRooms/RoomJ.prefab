@@ -1151,6 +1151,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 30.000004
       objectReference: {fileID: 0}
+    - target: {fileID: 8084153275199201062, guid: 34f8cb2641e723f43ae001daaefa48a2, type: 3}
+      propertyPath: battleSystem
+      value: 
+      objectReference: {fileID: 5096657807352982896}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34f8cb2641e723f43ae001daaefa48a2, type: 3}
 --- !u!4 &3848598432279837699 stripped

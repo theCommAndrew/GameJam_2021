@@ -71,8 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e456a13b17636046bd12fea602c3fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueLayouts:
-  - {fileID: 8736957790132090695, guid: 33e9135230b257b45b62eb2a4b2ef0f7, type: 3}
+  uniqueLayouts: []
 --- !u!114 &5287219733138207563
 MonoBehaviour:
   m_ObjectHideFlags: 0

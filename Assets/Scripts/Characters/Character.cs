@@ -23,7 +23,6 @@ public abstract class Character : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
-            alive = false;
             die();
         }        
     }

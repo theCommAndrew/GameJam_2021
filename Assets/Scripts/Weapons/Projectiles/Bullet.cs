@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     {
         Rigidbody2D bulletBody = GetComponent<Rigidbody2D>();
 
-        this.transform.localScale = scale;
+        //this.transform.localScale = scale;
 
         bulletBody.velocity = transform.up * speed;
     }

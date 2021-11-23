@@ -14,8 +14,7 @@ public class Player : Character
     public float dashDistance = 5f;
     private bool canTakeDamage = true;
     private float dashCooldown;
-    const float DASH_COOLDOWN_MAX = 1F;
-    public GameObject dashEffect;
+    const float DASH_COOLDOWN_MAX = 1f;
     // damage and invincibility
     public static int extraDamage = 0;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;

@@ -22,7 +22,7 @@ public class Shotgun : Weapon{
         bullets = 3;
     }
 
-    public override void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale)
+    public override void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed)
     {   
         float halfRange = cone/2;
         float step = cone/(bullets-1);
