@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelInfo : MonoBehaviour
 {
-    public int levelCount = 1;
+    public int levelNumber;
     public GameObject[] mainRooms;
     public GameObject[] sideRooms;
     public GameObject finalRoom;
@@ -42,5 +42,10 @@ public class LevelInfo : MonoBehaviour
     private float roll(int range)
     {
         return Random.Range(0,range);
+    }
+
+    public int getLevelNumber()
+    {
+        return levelNumber;
     }
 }
