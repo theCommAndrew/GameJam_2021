@@ -92,7 +92,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Innerfresnelintensity: 0
+    - _Innerfresnelintensity: 0.271
     - _Invert: 1
     - _Invertmaintexture: 0
     - _Invertsecondarytexture: 0
@@ -104,7 +104,7 @@ Material:
     - _OcclusionStrength: 1
     - _Outerfresnelintensity: 1
     - _Parallax: 0.02
-    - _Power: 1.22
+    - _Power: 0.37
     - _Pulseamplitude: 0.25
     - _Pulsefrequency: 1
     - _Pulseoffset: 0
@@ -112,6 +112,7 @@ Material:
     - _Scale: 1.5
     - _Secondarytextureintensity: 1
     - _Seondarytextureintensity: 1
+    - _Sharpennoise: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -138,3 +139,4 @@ Material:
     - _Secondarypanningspeed: {r: 0, g: 0, b: 0, a: 0}
     - _Staticcolor: {r: 0.2647059, g: 0.6957404, b: 1, a: 0.978}
     - _Staticpanningspeed: {r: 0, g: 2, b: 0, a: 0}
+  m_BuildTextureStacks: []

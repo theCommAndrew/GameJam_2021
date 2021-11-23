@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FriendlyBullet : Bullet
 {
+    public GameObject hitPrefab;
+    public Animation animator;
     private void OnTriggerEnter2D(Collider2D col)
     {
-        InRangeEnemy shieldEnemy = GetComponent<InRangeEnemy>();
         string tag = col.gameObject.tag;
         if (tag == "enemy")
         {
@@ -14,14 +15,11 @@ public class FriendlyBullet : Bullet
             enemy.takeDamage(damage);
         }
 
-        if (tag == "shieldEnemy" && shieldEnemy.canBeDamaged == true)
-        {
-            shieldEnemy.takeDamage(damage);
-        }
-
         if (tag != "Player" && tag != "backend" && tag != "bullet")
         {
+            var hitindicator = Instantiate(hitPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            Destroy(hitindicator, .5f);
         }
     }
 }

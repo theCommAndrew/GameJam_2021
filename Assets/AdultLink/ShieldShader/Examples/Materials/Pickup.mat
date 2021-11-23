@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Pickup
   m_Shader: {fileID: 4800000, guid: 61054a61bebe19f49a8d9767c1c3212d, type: 3}
-  m_ShaderKeywords: _INVERTMAINTEXTURE_ON _INVERT_ON
+  m_ShaderKeywords: _ENABLEDISTORTION_ON _ENABLENOISE_ON _ENABLEPULSATION_ON _INVERTMAINTEXTURE_ON
+    _INVERT_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -44,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Maintexture:
-        m_Texture: {fileID: 2800000, guid: d6e52df542787e3429ff4238387f1624, type: 3}
+        m_Texture: {fileID: 2800000, guid: f0a687370aec67b4796344e4f85a1364, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -89,16 +90,16 @@ Material:
     - _Distortionspeed: 0.27
     - _DstBlend: 0
     - _EdgeLength: 15
-    - _Enabledistortion: 0
-    - _Enablenoise: 0
-    - _Enablepulsation: 0
+    - _Enabledistortion: 1
+    - _Enablenoise: 1
+    - _Enablepulsation: 1
     - _Extraroughness: 0.89
     - _GlobalFade: 1
     - _Globalopacity: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Innerfresnelintensity: 0.266
+    - _Innerfresnelintensity: 0.494
     - _Invert: 1
     - _Invertmaintexture: 1
     - _Invertsecondarytexture: 0
@@ -108,7 +109,7 @@ Material:
     - _Noisescale: 1
     - _Noisesize: 3.4
     - _OcclusionStrength: 1
-    - _Outerfresnelintensity: 1
+    - _Outerfresnelintensity: 0.074
     - _Parallax: 0.02
     - _Power: 3.45
     - _Pulseamplitude: 0.25
@@ -145,3 +146,4 @@ Material:
     - _Secondarypanningspeed: {r: 0, g: 1, b: 0, a: 0}
     - _Staticcolor: {r: 0.26470587, g: 0.6957404, b: 1, a: 0.978}
     - _Staticpanningspeed: {r: 0, g: 2, b: 0, a: 0}
+  m_BuildTextureStacks: []
