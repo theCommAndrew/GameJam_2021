@@ -19,6 +19,7 @@ TagManager:
   - cobweb
   - shieldEnemy
   - shield
+  - Trap
   layers:
   - Default
   - TransparentFX

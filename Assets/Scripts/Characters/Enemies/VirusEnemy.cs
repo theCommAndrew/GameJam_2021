@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class VirusEnemy : Enemy
 {
-    // Start is called before the first frame update
     void Start()
     {
         maxHealth = 20;
         health = maxHealth;
         moveSpeed = 0f;
+        lootChance = 100;
         Player player = GetComponent<Player>();
     }
     private void Update()
@@ -19,4 +19,5 @@ public class VirusEnemy : Enemy
             player.moveSpeed = 2f;
         }
     }
+
 }

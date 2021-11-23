@@ -118,7 +118,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4739340484695108688, guid: cdd9d40dbd36c55479445812edf880b8, type: 3}
       propertyPath: m_Name
-      value: SpinningTrapTwoArms
+      value: SpinningTrapTwoArms Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739340484695108688, guid: cdd9d40dbd36c55479445812edf880b8, type: 3}
+      propertyPath: m_TagString
+      value: Trap
       objectReference: {fileID: 0}
     - target: {fileID: 4739340484695108700, guid: cdd9d40dbd36c55479445812edf880b8, type: 3}
       propertyPath: m_RootOrder

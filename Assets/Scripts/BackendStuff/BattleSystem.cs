@@ -14,7 +14,7 @@ public class BattleSystem : MonoBehaviour
     private LevelInfo templates;
     private int rand;
     public GameObject[] uniqueLayouts;
-    private List<GameObject> enemiesArray = new List<GameObject>();
+    private List<Enemy> enemiesArray = new List<Enemy>();
     private EntryAlert entryAlert;
     public event EventHandler OnBattleStart;
     public event EventHandler OnBattleEnd;
@@ -31,11 +31,7 @@ public class BattleSystem : MonoBehaviour
 
         entryAlert = gameObject.GetComponent<EntryAlert>();
         entryAlert.OnPlayerEnter += EntryAlert_OnPlayerEnter;
-        foreach(GameObject e in enemiesArray){
-            Enemy enemy = e.GetComponent<Enemy>();
-            enemy.OnEnemySpawned += Enemy_OnSpawn;
-            enemy.OnEnemyKilled += Enemy_OnDeath;
-        }
+        Enemy.OnEnemyKilled += (int pass, Transform loc) => Enemy_OnDeath(pass, loc);
     }
 
     private void EntryAlert_OnPlayerEnter(object sender, System.EventArgs e){
@@ -49,38 +45,43 @@ public class BattleSystem : MonoBehaviour
         enemyCount += 1;
     }
 
-    private void Enemy_OnDeath(object sender, System.EventArgs e){
+    private void Enemy_OnDeath(int pass, Transform loc){
         enemyCount -= 1;
         if(enemyCount == 0){
-            state = State.Completed;
-            OnBattleEnd?.Invoke(this, EventArgs.Empty);
-            
-            Destroy(gameObject);
+            endBattle();
         }
     }
 
     private void startBattle(){
-        foreach( GameObject enemy in enemiesArray){
-            enemy.GetComponent<Enemy>().spawn();
+        foreach(Enemy enemy in enemiesArray){
+            enemy.spawn();
         }
 
         if(enemyCount > 0){
             state = State.Active;
             OnBattleStart?.Invoke(this, EventArgs.Empty);
         }
+        else{
+            endBattle();
+        }
+    }
+
+    private void endBattle(){
+        state = State.Completed;
+        OnBattleEnd?.Invoke(this, EventArgs.Empty);
+        
+        Destroy(gameObject);
     }
 
     private void unpackEnemies(){
         GameObject layout;
         if(uniqueLayouts.Length == 0)
         {
-            print("pulling from general template");
             rand = Random.Range(0, templates.enemyLayouts.Length);
             layout = templates.enemyLayouts[rand];
         }
         else
         {
-            print("pulling unique layout");
             rand = Random.Range(0, uniqueLayouts.Length);
             layout = uniqueLayouts[rand];
         }
@@ -89,8 +90,14 @@ public class BattleSystem : MonoBehaviour
         GameObject enemyLayout = Instantiate(layout, transform.parent.position, transform.parent.parent.rotation);    
         for(int i = 0; i < enemyLayout.transform.childCount; i++)
         {
-            var enemy = enemyLayout.transform.GetChild(i).gameObject ;
-            enemiesArray.Add(enemy);
+            var obj = enemyLayout.transform.GetChild(i).gameObject ;
+        
+            Enemy enemy = obj.GetComponent<Enemy>();
+            if(enemy)
+            {
+                enemy.OnEnemySpawned += Enemy_OnSpawn;
+                enemiesArray.Add(enemy);
+            }
         }
     }
 }

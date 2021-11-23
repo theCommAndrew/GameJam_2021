@@ -14,8 +14,8 @@ public class Enemy : Character
     [SerializeField] private GameObject ammoPickup;
 
     // movement/combat params
-    public int lootChance{get; set;} // chance to drop something on death. int from 0-100
-    public int contactDamage{get; set;} // damage done when running into player
+    public int lootChance = 10; // chance to drop something on death. int from 0-100
+    public int contactDamage = 1; // damage done when running into player
     public float rotationSpeed = 5;
     public float knockbackPower = 300;
     public float knockbackDuration = 1;
@@ -23,13 +23,11 @@ public class Enemy : Character
 
     // events
     public event EventHandler OnEnemySpawned;
-    public event EventHandler OnEnemyKilled;
+    public static event Action<int, Transform> OnEnemyKilled;
 
     void Awake()
     {
         gameObject.SetActive(false);
-        lootChance = 50;
-        contactDamage = 1;
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         this.rb = this.GetComponent<Rigidbody2D>();
     }
@@ -44,34 +42,44 @@ public class Enemy : Character
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
 
-    public void spawn()
-    {
-        // fire OnEnemySpawned event
-        gameObject.SetActive(true);
+    public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale){
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().speed = speed;
+        bullet.GetComponent<Bullet>().scale = scale;
+    }
+
+    public void shootSpread(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, int cone, int bullets)
+    {   
+        float halfRange = cone/2;
+        float step = cone/(bullets-1);
+        for(float i = -1*halfRange; i <= halfRange; i += step)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation * Quaternion.Euler(0,0,i)) as GameObject;
+            bullet.GetComponent<Bullet>().damage = damage;
+            bullet.GetComponent<Bullet>().speed = speed;
+        }
+    }
+
+    public void spawn(){
         OnEnemySpawned?.Invoke(this, EventArgs.Empty);
+        gameObject.SetActive(true);
+        StartCoroutine(spawnEnemy());        
+    }
+
+    public IEnumerator spawnEnemy()
+    {
+        yield return new WaitForSeconds(1f);
         var pathfinder = gameObject.GetComponent<AIDestinationSetter>();
         if(pathfinder != null)
             pathfinder.target = player.transform;
     }
-
+    
     public override void die()
     {
         moveSpeed = 0;
-        OnEnemyKilled?.Invoke(this, EventArgs.Empty);
+        OnEnemyKilled?.Invoke(lootChance, this.transform);
         Destroy(gameObject);
-        if (generalFunctions.getPercentResult(lootChance))
-            dropLoot();
-    }
-
-    public void dropLoot()
-    {
-        if(generalFunctions.getPercentResult(30))
-        {
-            GameObject heart = Instantiate(heartPickupPrefab, this.transform.position, Quaternion.Euler(0,0,0));
-        }
-        else{
-            GameObject ammo = Instantiate(ammoPickup, this.transform.position, Quaternion.Euler(0,0,0));
-        }
     }
 
     // contact damage to player
@@ -107,4 +115,5 @@ public class Enemy : Character
             enemyMovement.maxSpeed = 8f;
         }
     }
+
 }

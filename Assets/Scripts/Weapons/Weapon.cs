@@ -13,8 +13,9 @@ public class Weapon : MonoBehaviour
     public Vector3 bulletSize = new Vector3(.4f, .4f, 0);
     [SerializeField] private GameObject firePoint;
     // ammo info
-    public struct GunAmmo
-    {
+    public struct GunAmmo{
+        public int inClip;
+        public int maxClip;
         public int stock;
         public int maxCapacity;
         public int ammoPerShot;
@@ -22,16 +23,27 @@ public class Weapon : MonoBehaviour
     public GunAmmo ammoReserve = new GunAmmo();
     // shot timing
     private float myTime = 0f;
-    public float fireDelta;
+    public float fireDelta;  
+    public float reloadTime;
+    public bool reloading = false;
     // pickup stuff
     private bool pickupAllowed = false;
+    private WeaponHolder playerWeapons;
 
     protected virtual void Awake()
     {
         fireDelta = 0.5f;
-        ammoReserve.stock = 100;
+        ammoReserve.maxClip = 10;
+        ammoReserve.inClip = ammoReserve.maxClip;
         ammoReserve.maxCapacity = 100;
+        ammoReserve.stock = ammoReserve.maxCapacity;
         ammoReserve.ammoPerShot = 1;
+
+        reloadTime = 2;
+    }
+
+    private void Start() {
+        playerWeapons = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>();
     }
 
     protected virtual void Update()
@@ -71,6 +83,10 @@ public class Weapon : MonoBehaviour
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
             }
+            else if(ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading){
+                reloading = true;
+                StartCoroutine(reload());
+            }
             return shotsFired > 0;
         }
         return false;
@@ -84,9 +100,8 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().scale = scale;
     }
 
-    public (int, int) GetCurrentAmmo()
-    {
-        return (ammoReserve.stock, ammoReserve.maxCapacity);
+    public (int, int) GetCurrentAmmo(){
+        return (ammoReserve.inClip, ammoReserve.stock);
     }
 
     // add [amount] ammo to stock, returns amount added
@@ -98,15 +113,26 @@ public class Weapon : MonoBehaviour
     }
 
     // spend [amount] ammo, returns amount spent    
-    public int spendAmmo(int amount)
-    {
-        int spend = Mathf.Min(amount, ammoReserve.stock);
-        ammoReserve.stock -= spend;
+    public int spendAmmo(int amount){
+        int spend = Mathf.Min(amount, ammoReserve.inClip);
+        ammoReserve.inClip -= spend;
         return spend;
     }
 
     public Sprite getImage()
     {
         return gameObject.GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public IEnumerator reload()
+    {
+        yield return new WaitForSeconds(this.reloadTime);
+
+        int loadingAmmo = Mathf.Min(ammoReserve.maxClip - ammoReserve.inClip, ammoReserve.stock);
+        ammoReserve.inClip = ammoReserve.maxClip;
+        ammoReserve.stock -= loadingAmmo;
+
+        reloading = false;
+        playerWeapons.updateUIAmmo();
     }
 }

@@ -5,28 +5,30 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private float cameraSpeed;
-    private Func<Vector3> getCameraPosition;
+    [SerializeField] private float extraHeight;
+    private Player player;
+    private float cameraHeight;
+    private bool followingPlayer = false;
 
-    public void Setup(Func<Vector3> getCameraPosition){
-        this.getCameraPosition = getCameraPosition;
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
+        cameraHeight = Camera.main.transform.position.z - extraHeight;
     }
 
     void Update()
     {
-        Vector3 cameraPos = getCameraPosition();
-        cameraPos.z = transform.position.z;
-
-        Vector3 cameraDir = (cameraPos - transform.position).normalized;
-        float distance = Vector3.Distance(cameraPos, transform.position);;
-
-        if(distance > 0)
-        {
-            Vector3 newPosition = transform.position = transform.position + cameraDir * distance * cameraSpeed * Time.deltaTime;
-
-            float distanceAfterMove = Vector3.Distance(newPosition, cameraPos);
-            transform.position = distanceAfterMove > distance ? cameraPos : newPosition;
+        if(followingPlayer){
+            Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cameraHeight);
         }
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Player player = other.GetComponent<Player>();
+        if(player){
+           followingPlayer = !followingPlayer;
+        }
     }
 }

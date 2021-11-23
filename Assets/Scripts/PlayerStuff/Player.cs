@@ -9,6 +9,7 @@ public class Player : Character
     // movement
     Vector2 movement;
     // dashing
+    public GameObject dashEffect;
     public bool canDash = true;
     public float dashDistance = 5f;
     private bool canTakeDamage = true;
@@ -91,7 +92,7 @@ public class Player : Character
 
     public override void heal(int restoreAmount)
     {
-        health += restoreAmount;
+        health = Mathf.Min(health + restoreAmount, maxHealth);
         updateHealth?.Invoke(health, maxHealth);
     }
 
