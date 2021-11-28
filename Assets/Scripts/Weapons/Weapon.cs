@@ -13,7 +13,9 @@ public class Weapon : MonoBehaviour
     public Vector3 bulletSize = new Vector3(.4f, .4f, 0);
     [SerializeField] private GameObject firePoint;
     // ammo info
-    public struct GunAmmo{
+
+    public struct GunAmmo
+    {
         public int inClip;
         public int maxClip;
         public int stock;
@@ -23,12 +25,13 @@ public class Weapon : MonoBehaviour
     public GunAmmo ammoReserve = new GunAmmo();
     // shot timing
     private float myTime = 0f;
-    public float fireDelta;  
+    public float fireDelta;
     public float reloadTime;
     public bool reloading = false;
     // pickup stuff
     private bool pickupAllowed = false;
     private WeaponHolder playerWeapons;
+
 
     protected virtual void Awake()
     {
@@ -42,7 +45,8 @@ public class Weapon : MonoBehaviour
         reloadTime = 2;
     }
 
-    private void Start() {
+    private void Start()
+    {
         playerWeapons = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>();
     }
 
@@ -83,7 +87,8 @@ public class Weapon : MonoBehaviour
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
             }
-            else if(ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading){
+            else if (ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading)
+            {
                 reloading = true;
                 StartCoroutine(reload());
             }
@@ -100,7 +105,8 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().scale = scale;
     }
 
-    public (int, int) GetCurrentAmmo(){
+    public (int, int) GetCurrentAmmo()
+    {
         return (ammoReserve.inClip, ammoReserve.stock);
     }
 
@@ -113,7 +119,8 @@ public class Weapon : MonoBehaviour
     }
 
     // spend [amount] ammo, returns amount spent    
-    public int spendAmmo(int amount){
+    public int spendAmmo(int amount)
+    {
         int spend = Mathf.Min(amount, ammoReserve.inClip);
         ammoReserve.inClip -= spend;
         return spend;

@@ -1623,6 +1623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tileset x3_241 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 9053619920928796588, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}
 --- !u!1001 &3164210389317574329
@@ -1947,6 +1951,10 @@ PrefabInstance:
     - target: {fileID: 9053619920928796588, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}
       propertyPath: m_Name
       value: tileset x3_241 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053619920928796588, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}
@@ -2690,7 +2698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7756819455112813869, guid: 7dcae41ee1efc014e9725a19a58d34bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7756819455112813869, guid: 7dcae41ee1efc014e9725a19a58d34bd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4089,6 +4097,10 @@ PrefabInstance:
     - target: {fileID: 9053619920928796588, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}
       propertyPath: m_Name
       value: tileset x3_241 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053619920928796588, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babbde12c75ee8f478a2ac50709e96fe, type: 3}

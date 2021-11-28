@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8943765198979503945}
   - component: {fileID: 3244936744530636740}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: tileset x3_241 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

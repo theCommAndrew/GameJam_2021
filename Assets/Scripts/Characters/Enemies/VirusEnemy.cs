@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class VirusEnemy : Enemy
 {
+
+    public Animator animator;
     void Start()
     {
         maxHealth = 20;
@@ -14,10 +16,19 @@ public class VirusEnemy : Enemy
     }
     private void Update()
     {
-        if (maxHealth > 0)
+        if (alive)
         {
-            player.moveSpeed = 2f;
+            player.canDash = false;
         }
+        else
+        {
+            player.canDash = true;
+        }
+    }
+    public override void die()
+    {
+        animator.Play("VirusEnemyDie");
+        Destroy(gameObject, 1f);
     }
 
 }

@@ -7,7 +7,7 @@ using Pathfinding;
 public class Enemy : Character
 {
     // objects
-    [SerializeField] protected Player player{get; set;}
+    [SerializeField] protected Player player { get; set; }
     [SerializeField] protected GameObject firePoint;
     [SerializeField] protected GameObject bulletPrefab; // enemy projectile
     [SerializeField] private GameObject heartPickupPrefab; // healing item
@@ -32,17 +32,9 @@ public class Enemy : Character
         this.rb = this.GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
-    {
-        // look at player
-        float offset = 90f;
-        Vector3 lookDir = player.transform.position - transform.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle - offset));
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-    }
 
-    public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale){
+    public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale)
+    {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().speed = speed;
@@ -50,31 +42,32 @@ public class Enemy : Character
     }
 
     public void shootSpread(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, int cone, int bullets)
-    {   
-        float halfRange = cone/2;
-        float step = cone/(bullets-1);
-        for(float i = -1*halfRange; i <= halfRange; i += step)
+    {
+        float halfRange = cone / 2;
+        float step = cone / (bullets - 1);
+        for (float i = -1 * halfRange; i <= halfRange; i += step)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation * Quaternion.Euler(0,0,i)) as GameObject;
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation * Quaternion.Euler(0, 0, i)) as GameObject;
             bullet.GetComponent<Bullet>().damage = damage;
             bullet.GetComponent<Bullet>().speed = speed;
         }
     }
 
-    public void spawn(){
+    public void spawn()
+    {
         OnEnemySpawned?.Invoke(this, EventArgs.Empty);
         gameObject.SetActive(true);
-        StartCoroutine(spawnEnemy());        
+        StartCoroutine(spawnEnemy());
     }
 
     public IEnumerator spawnEnemy()
     {
         yield return new WaitForSeconds(1f);
         var pathfinder = gameObject.GetComponent<AIDestinationSetter>();
-        if(pathfinder != null)
+        if (pathfinder != null)
             pathfinder.target = player.transform;
     }
-    
+
     public override void die()
     {
         moveSpeed = 0;
@@ -106,7 +99,8 @@ public class Enemy : Character
     private IEnumerator delayMovement()
     {
         IAstarAI enemyMovement = GetComponent<IAstarAI>();
-        if(enemyMovement != null){
+        if (enemyMovement != null)
+        {
             enemyMovement.canMove = false;
             yield return new WaitForSeconds(pauseDuration);
             enemyMovement.maxSpeed = 4f;

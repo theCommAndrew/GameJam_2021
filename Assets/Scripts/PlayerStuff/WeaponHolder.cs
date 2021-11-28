@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
-    private Vector3 mousePosition;
+    public Vector3 mousePosition;
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeapon;
     private bool canFire;
@@ -15,6 +15,7 @@ public class WeaponHolder : MonoBehaviour
     public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => { };
     public static event Action<int> upateActiveWeapon = (index) => { };
     public static event Action<int, Sprite> updateSlotImage = (index, newImage) => { };
+
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class WeaponHolder : MonoBehaviour
     {
         if (!UIScripts.gameIsPaused)
         {
+            Player player = gameObject.GetComponent<Player>();
             // aim at mouse position
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -35,14 +37,15 @@ public class WeaponHolder : MonoBehaviour
             float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
+
             // shoot on M1
-            if(Input.GetButton("Fire1") && !weapons[currentWeapon].reloading)
-            {   
-                if(weapons[currentWeapon].Fire())
-                    updateUIAmmo();  
+            if (Input.GetButton("Fire1") && !weapons[currentWeapon].reloading)
+            {
+                if (weapons[currentWeapon].Fire())
+                    updateUIAmmo();
             }
 
-            if(Input.GetKeyDown(KeyCode.R) && weapons[currentWeapon].ammoReserve.inClip != weapons[currentWeapon].ammoReserve.maxClip && !weapons[currentWeapon].reloading)
+            if (Input.GetKeyDown(KeyCode.R) && weapons[currentWeapon].ammoReserve.inClip != weapons[currentWeapon].ammoReserve.maxClip && !weapons[currentWeapon].reloading)
             {
                 weapons[currentWeapon].reloading = true;
                 StartCoroutine(weapons[currentWeapon].reload());

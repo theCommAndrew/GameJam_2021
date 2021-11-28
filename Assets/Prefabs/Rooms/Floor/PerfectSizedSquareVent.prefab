@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7756819455112813869}
   - component: {fileID: 6343521440332154132}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: PerfectSizedSquareVent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

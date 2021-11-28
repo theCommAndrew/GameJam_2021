@@ -2004,7 +2004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804601869698562947, guid: 294968cef2437ae4087e151d48364c0d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4804601869698562947, guid: 294968cef2437ae4087e151d48364c0d, type: 3}
       propertyPath: m_LocalScale.y
@@ -2943,9 +2943,12 @@ MonoBehaviour:
   sideRooms:
   - {fileID: 5205211829325159833, guid: 5d899ba574945be408ac530ad5ac7e4f, type: 3}
   finalRoom: {fileID: 5846020893727613153, guid: d8decb181b41618458dc87f1a45de6e6, type: 3}
-  rooms: 0
   enemyLayouts:
   - {fileID: 6787105315498589796, guid: 63644d89304756744beb77d263cccba1, type: 3}
+  enemyDrops: []
+  roomRewards: []
+  bossRewards: []
+  rooms: 0
 --- !u!4 &1601613730
 Transform:
   m_ObjectHideFlags: 0
@@ -3875,6 +3878,7 @@ MonoBehaviour:
   invicibilityDeltaTime: 0.1
   spikeKnockbackpower: 200
   spikeKnockbackDuration: 1
+  animator: {fileID: 0}
 --- !u!50 &2014349418
 Rigidbody2D:
   serializedVersion: 4

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3902870884543359406}
   - component: {fileID: -1405621811455901700}
   m_Layer: 0
-  m_Name: Friendly Bullet
+  m_Name: Frirendly Bullet
   m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   speed: 20
   scale: {x: 0.5, y: 0.5, z: 0}
   hitPrefab: {fileID: 6137081715008669534, guid: 80fc0f9ece21895448866d9a8bb33259, type: 3}
+  animator: {fileID: 0}
 --- !u!95 &-1405621811455901700
 Animator:
   serializedVersion: 3

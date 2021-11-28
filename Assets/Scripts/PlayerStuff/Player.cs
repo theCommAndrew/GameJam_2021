@@ -8,6 +8,7 @@ public class Player : Character
 {
     // movement
     Vector2 movement;
+    public bool facingRight;
     // dashing
     public GameObject dashEffect;
     public bool canDash = true;
@@ -15,7 +16,6 @@ public class Player : Character
     private bool canTakeDamage = true;
     private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1F;
-    public GameObject dashEffect;
     // damage and invincibility
     public static int extraDamage = 0;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
@@ -44,6 +44,7 @@ public class Player : Character
     {
         if (!UIScripts.gameIsPaused)
         {
+            WeaponHolder weapon = gameObject.GetComponent<WeaponHolder>();
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
@@ -52,14 +53,17 @@ public class Player : Character
             if (movement.x < 0)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
+                facingRight = false;
             }
             else if (movement.x > 0)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
+                facingRight = true;
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
             {
+                CameraFollow camera = GetComponent<CameraFollow>();
                 dashCooldown = DASH_COOLDOWN_MAX;
                 StartCoroutine(BecomeTemporarilyInvincible());
                 Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
@@ -67,6 +71,15 @@ public class Player : Character
             }
 
             dashCooldown -= Time.deltaTime;
+
+            if (movement.y > 0 || movement.y < 0)
+            {
+                dashEffect.transform.localScale = new Vector3(1, 16, 1);
+            }
+            else
+            {
+                dashEffect.transform.localScale = new Vector3(16, 1, 1);
+            }
         }
     }
 
@@ -98,10 +111,10 @@ public class Player : Character
 
     public void increaseStat(PlayerStat statToIncrease)
     {
-        switch(statToIncrease)
+        switch (statToIncrease)
         {
             case PlayerStat.Health:
-                maxHealth += 1; 
+                maxHealth += 1;
                 health = maxHealth;
                 updateHealth?.Invoke(health, maxHealth);
                 break;
@@ -109,12 +122,12 @@ public class Player : Character
             case PlayerStat.Speed:
                 moveSpeed += 1f;
                 break;
-            
+
             case PlayerStat.Damage:
                 extraDamage += 1;
                 break;
         }
-        
+
     }
 
     public override void die()
@@ -177,12 +190,13 @@ public class Player : Character
         }
     }
 
-    public void slowPlayer(){
+    public void slowPlayer()
+    {
         StartCoroutine(slowPlayerMovement());
     }
 
     private IEnumerator slowPlayerMovement()
-    {   
+    {
         moveSpeed = 5f;
         yield return new WaitForSeconds(.8f);
         moveSpeed = 7f;
