@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1872564380037174543}
   - component: {fileID: 1872564380037174542}
   - component: {fileID: 1872564380037174537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurretEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.9254902, g: 0.427597, b: 0.047058836, a: 1}
   m_FlipX: 0
@@ -145,10 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42aa8bf201d63da4084e92d00bbc8cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flying: 0
   firePoint: {fileID: 5119014978303448865}
   bulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
   ammoPickup: {fileID: 8149657182447556840, guid: 5ebff97adb28fb34db507dceefdf2191, type: 3}
+  lootChance: 10
+  contactDamage: 1
   rotationSpeed: 5
   knockbackPower: 300
   knockbackDuration: 1
@@ -166,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 762533294212028050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

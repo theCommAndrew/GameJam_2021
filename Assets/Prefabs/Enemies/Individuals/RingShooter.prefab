@@ -104,7 +104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
   m_Color: {r: 0.990566, g: 0.07008721, b: 0.87587136, a: 1}
   m_FlipX: 0
@@ -170,10 +170,12 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   heartPickupPrefab: {fileID: 212672542495226685, guid: 6259237f60e96ce4992e4ac84f540559, type: 3}
   ammoPickup: {fileID: 8149657182447556840, guid: 5ebff97adb28fb34db507dceefdf2191, type: 3}
+  lootChance: 10
+  contactDamage: 1
   rotationSpeed: 5
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
-  shotInterval: 3
+  actionInverval: 2
   bulletDamage: 1
   bulletSpeed: 15

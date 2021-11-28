@@ -18,7 +18,6 @@ public class CrabTank : Enemy
 
         for(int i = 0; i < transform.childCount; i++)
         {
-            print($"{transform.GetChild(i)}");
             cannons.Add(transform.GetChild(i).gameObject);
         }
     }
