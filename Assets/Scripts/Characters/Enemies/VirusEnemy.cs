@@ -5,7 +5,6 @@ using UnityEngine;
 public class VirusEnemy : Enemy
 {
 
-    public Animator animator;
     void Start()
     {
         maxHealth = 20;
@@ -13,6 +12,7 @@ public class VirusEnemy : Enemy
         moveSpeed = 0f;
         lootChance = 100;
         Player player = GetComponent<Player>();
+        deathAnimation = "VirusEnemyDie";
     }
     private void Update()
     {
@@ -25,10 +25,6 @@ public class VirusEnemy : Enemy
             player.canDash = true;
         }
     }
-    public override void die()
-    {
-        animator.Play("VirusEnemyDie");
-        Destroy(gameObject, 1f);
-    }
+
 
 }

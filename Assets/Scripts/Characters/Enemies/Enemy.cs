@@ -6,12 +6,12 @@ using Pathfinding;
 
 public class Enemy : Character
 {
+    public Animator animator;
+    protected String deathAnimation;
     // objects
     [SerializeField] protected Player player { get; set; }
     [SerializeField] protected GameObject firePoint;
     [SerializeField] protected GameObject bulletPrefab; // enemy projectile
-    [SerializeField] private GameObject heartPickupPrefab; // healing item
-    [SerializeField] private GameObject ammoPickup;
 
     // movement/combat params
     public int lootChance = 10; // chance to drop something on death. int from 0-100
@@ -70,12 +70,13 @@ public class Enemy : Character
 
     public override void die()
     {
-        if(alive)
-        {
-            alive = false;
+        if(this.alive)
+        {   
+            this.alive = false;
             moveSpeed = 0;
             OnEnemyKilled?.Invoke(lootChance, this.transform);
-            Destroy(gameObject);
+            gameObject.GetComponent<Animator>().Play(deathAnimation);
+            Destroy(gameObject, 1f);
         } 
     }
 

@@ -9,21 +9,20 @@ public class TurretEnemy : Enemy
     public float bulletSpeed = 30f;
     public Vector3 bulletSize = new Vector3(.75f, .5f, 0);
     private float shotTimer = 0;
-    public bool isDead;
 
     //animation
-    public Animator animator;
+    //public Animator animator;
 
     void Start()
     {
         maxHealth = 25;
         health = maxHealth;
         shotInterval = 2;
-        isDead = false;
+        deathAnimation = "TurretEnemyDie";
     }
     void FixedUpdate()
     {
-        if (isDead == false)
+        if (alive)
         {
             // look at player
             float offset = 0f;
@@ -43,21 +42,12 @@ public class TurretEnemy : Enemy
 
         // shoot on interval
         shotTimer += Time.deltaTime;
-        if (shotTimer >= shotInterval && isDead == false)// && LOS.collider.tag == "Player") 
+        if (shotTimer >= shotInterval && alive)// && LOS.collider.tag == "Player") 
         {
             shotTimer = 0;
             animator.Play("TurretEnemyShoot");
             shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
         }
     }
-    public override void die()
-    {
-        //IAstarAI enemyMovement = GetComponent<IAstarAI>();
-        //enemyMovement.canMove = false;
-        //moveSpeed = 0;
-        //OnEnemyKilled?.Invoke(lootChance, this.transform);
-        isDead = true;
-        animator.Play("TurretEnemyDie");
-        Destroy(gameObject, 1f);
-    }
+
 }

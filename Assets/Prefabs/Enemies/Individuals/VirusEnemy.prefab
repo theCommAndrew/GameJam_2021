@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6593bdea73c33224aa4e324a3cb2c08a, type: 3}
   m_Color: {r: 1, g: 0.9396016, b: 0, a: 1}
   m_FlipX: 0
@@ -146,17 +146,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flying: 0
+  animator: {fileID: 136750385204606288}
   firePoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  heartPickupPrefab: {fileID: 0}
-  ammoPickup: {fileID: 0}
   lootChance: 10
   contactDamage: 1
   rotationSpeed: 5
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
-  animator: {fileID: 136750385204606288}
 --- !u!95 &136750385204606288
 Animator:
   serializedVersion: 3
