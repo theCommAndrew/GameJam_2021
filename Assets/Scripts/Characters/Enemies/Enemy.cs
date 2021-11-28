@@ -22,7 +22,6 @@ public class Enemy : Character
     public float pauseDuration = .3f;
 
     // events
-    public event EventHandler OnEnemySpawned;
     public static event Action<int, Transform> OnEnemyKilled;
 
     void Awake()
@@ -55,7 +54,6 @@ public class Enemy : Character
 
     public void spawn()
     {
-        OnEnemySpawned?.Invoke(this, EventArgs.Empty);
         gameObject.SetActive(true);
         StartCoroutine(spawnEnemy());
     }

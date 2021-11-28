@@ -126,7 +126,7 @@ public class Player : Character
     {
         canDash = false;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, default); // can set this as a variable if it needs to change
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, LayerMask.GetMask("Walls")); // can set this as a variable if it needs to change
 
         float particleAngle = Vector3.Angle(moveDir, transform.up);
         particleAngle = moveDir.x > 0 ? -particleAngle : particleAngle;
