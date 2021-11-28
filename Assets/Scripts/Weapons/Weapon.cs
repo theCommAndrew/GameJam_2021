@@ -82,7 +82,7 @@ public class Weapon : MonoBehaviour
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed);
                 myTime = 0.0f;
             }
-            else if(ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading){
+            if(ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading){
                 reloading = true;
                 StartCoroutine(reload());
             }
