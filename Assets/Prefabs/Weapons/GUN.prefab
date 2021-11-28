@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1334467344933015669}
   - component: {fileID: 4210462842773431348}
   - component: {fileID: 7578967857022152440}
+  - component: {fileID: 1402267800}
   m_Layer: 0
   m_Name: GUN
   m_TagString: backend
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 654707075937347919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 4198835974483063837}
   m_Father: {fileID: 0}
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 25
-  m_Sprite: {fileID: 21300000, guid: 0c0e2f27e80188c44bc1958ec9f50430, type: 3}
+  m_Sprite: {fileID: 4371079567834484094, guid: bb48a478f5724af4693a491c147016b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662814b4ae8115e44a1083691fbce607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4695644131091356760, guid: 0185abe91e3907047ac0fd1adbbc3b5a, type: 3}
+  bulletPrefab: {fileID: 4695644131091356760, guid: b6b7f47b40cd9ef47bd2dd7347fa00f1, type: 3}
   bulletDamage: 5
   bulletSpeed: 20
+  bulletSize: {x: 5, y: 5, z: 0}
   firePoint: {fileID: 2980845488183701296}
   fireDelta: 0.5
   reloadTime: 0
@@ -117,19 +119,38 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0020197537, y: 0.004039414}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.1, y: 0.07}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.09921394, y: 0.07093814}
   m_EdgeRadius: 0
+--- !u!95 &1402267800
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654707075937347919}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7cd4d9e17ad2554a861d7fc58954b5e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2980845488183701296
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2980845488183701296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0.051, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7877283394770207011}

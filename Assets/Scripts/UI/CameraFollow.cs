@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     private float cameraHeight;
     private bool followingPlayer = false;
 
+
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -19,16 +20,19 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
-        if(followingPlayer){
+        if (followingPlayer)
+        {
             Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cameraHeight);
         }
-        
+
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         Player player = other.GetComponent<Player>();
-        if(player){
-           followingPlayer = !followingPlayer;
+        if (player)
+        {
+            followingPlayer = !followingPlayer;
         }
     }
 }

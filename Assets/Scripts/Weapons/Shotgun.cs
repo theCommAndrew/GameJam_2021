@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : Weapon{
+public class Shotgun : Weapon
+{
 
     public int cone;
     public int bullets;
-    protected override void Awake() {
+
+    //animator
+    public Animator animator;
+    protected override void Awake()
+    {
         fireDelta = .5f;
         bulletDamage = 5;
         bulletSpeed = 15f;
@@ -22,13 +27,13 @@ public class Shotgun : Weapon{
         bullets = 3;
     }
 
-    public override void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed)
-    {   
-        float halfRange = cone/2;
-        float step = cone/(bullets-1);
-        for(float i = -1*halfRange; i <= halfRange; i += step)
+    public override void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale)
+    {
+        float halfRange = cone / 2;
+        float step = cone / (bullets - 1);
+        for (float i = -1 * halfRange; i <= halfRange; i += step)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation * Quaternion.Euler(0,0,i)) as GameObject;
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation * Quaternion.Euler(0, 0, i)) as GameObject;
             bullet.GetComponent<Bullet>().damage = damage;
             bullet.GetComponent<Bullet>().speed = speed;
         }
