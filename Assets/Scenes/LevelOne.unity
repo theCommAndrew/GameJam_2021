@@ -2385,7 +2385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flying: 0
-  dashEffect: {fileID: 921558079183481366, guid: 6d999f10d8b7420498581e60688c9f16, type: 3}
+  dashEffect: {fileID: 921558079183481366, guid: 96af3a2fa30d40a4a82fa4d6769b514e, type: 3}
   canDash: 1
   dashDistance: 10
   invincibilityDurationSeconds: 1.5

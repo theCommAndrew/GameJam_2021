@@ -128,17 +128,22 @@ public class Player : Character
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, default); // can set this as a variable if it needs to change
 
+        float particleAngle = Vector3.Angle(moveDir, transform.up);
+        particleAngle = moveDir.x > 0 ? -particleAngle : particleAngle;
+
         if (hit.collider == null)
         {
-            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
+            //var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
+            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler( 0,0,particleAngle));
             transform.position += moveDir * dashDistance;
-            Destroy(dasheffectvar, 1);
+            //Destroy(dasheffectvar, 1);
         }
         else
         {
-            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
+            //var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
+            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler( 0,0,particleAngle));
             transform.position = hit.point;
-            Destroy(dasheffectvar, 1);
+            //Destroy(dasheffectvar, 1);
         }
 
         canDash = true;
