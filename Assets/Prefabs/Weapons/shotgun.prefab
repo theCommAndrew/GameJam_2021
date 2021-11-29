@@ -131,6 +131,7 @@ MonoBehaviour:
   fireDelta: 1
   reloadTime: 0
   reloading: 0
+  callout: {fileID: 0}
   cone: 20
   bullets: 3
   animator: {fileID: 500606842}

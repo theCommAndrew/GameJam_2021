@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
     // pickup stuff
     private bool pickupAllowed = false;
     private WeaponHolder playerWeapons;
+    public TextMesh callout;
 
     protected virtual void Awake()
     {
@@ -43,6 +44,7 @@ public class Weapon : MonoBehaviour
 
     private void Start() {
         playerWeapons = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>();
+        callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
     }
 
     protected virtual void Update()
@@ -124,14 +126,24 @@ public class Weapon : MonoBehaviour
 
     public IEnumerator reload()
     {
-        yield return new WaitForSeconds(getReloadTime());
-
+        String msg = "";
+        char[] characters = {'R', 'e', 'l', 'o', 'a', 'd', 'e', 'd', '.'}; 
+        float step = getReloadTime() / characters.Length;
+        callout.text = "_";
+         for (int i = 0; i < characters.Length; i += 1)
+        {
+            yield return new WaitForSeconds(step);
+            msg += characters[i];
+            callout.text = msg + "_";
+        }
+        
         int loadingAmmo = Mathf.Min(ammoReserve.maxClip - ammoReserve.inClip, ammoReserve.stock);
         ammoReserve.inClip = ammoReserve.maxClip;
         ammoReserve.stock -= loadingAmmo;
 
         reloading = false;
         playerWeapons.updateUIAmmo();
+        callout.text = "";
     }
 
     public float getReloadTime()

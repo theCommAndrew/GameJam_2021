@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7685058438810931726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.71, y: -3.21, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 7685058439040735767}
@@ -130,6 +130,7 @@ MonoBehaviour:
   fireDelta: 0
   reloadTime: 0
   reloading: 0
+  callout: {fileID: 0}
 --- !u!1 &7685058439040735752
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class Player : Character
     //animation
     public Animator animator;
     private SpriteRenderer playerSprite;
+    private TextMesh callout;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class Player : Character
 
         this.rb = this.GetComponent<Rigidbody2D>();
         this.playerSprite = transform.GetChild(transform.childCount - 1).GetComponent<SpriteRenderer>();
+        this.callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
 
         updateHealth?.Invoke(health, maxHealth);
     }
@@ -52,10 +54,12 @@ public class Player : Character
             if (movement.x < 0)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
+                callout.transform.eulerAngles = new Vector3(0, 0, 0);
             }
             else if (movement.x > 0)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
+                callout.transform.eulerAngles = new Vector3(0, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && canDash)

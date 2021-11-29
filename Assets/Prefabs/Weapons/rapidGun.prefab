@@ -135,6 +135,7 @@ MonoBehaviour:
   fireDelta: 0.5
   reloadTime: 0
   reloading: 0
+  callout: {fileID: 0}
 --- !u!61 &4916044672234927574
 BoxCollider2D:
   m_ObjectHideFlags: 0
