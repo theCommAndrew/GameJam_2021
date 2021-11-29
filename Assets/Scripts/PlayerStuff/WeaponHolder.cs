@@ -41,6 +41,15 @@ public class WeaponHolder : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
 
+            if (mousePosition.x < transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 180, -angle);
+            }
+            else if (mousePosition.x >= transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 0, angle);
+            }
+
             // shoot on M1
             if (Input.GetButton("Fire1") && !weapons[currentWeapon].reloading)
             {

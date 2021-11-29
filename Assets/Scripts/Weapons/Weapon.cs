@@ -127,7 +127,7 @@ public class Weapon : MonoBehaviour
     public IEnumerator reload()
     {
         String msg = "";
-        char[] characters = {'R', 'e', 'l', 'o', 'a', 'd', 'e', 'd', '.'}; 
+        char[] characters = {'R', 'e', 'l', 'o', 'a', 'd', 'i', 'n', 'g', '.'}; 
         float step = getReloadTime() / characters.Length;
         callout.text = "_";
          for (int i = 0; i < characters.Length; i += 1)

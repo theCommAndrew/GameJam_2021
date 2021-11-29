@@ -11,9 +11,15 @@ public class UIScripts : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject gameOverScreen;
 
+    
 
     public void Awake()
     {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("UI");
+        if(objs.Length > 1)
+            Destroy(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
+
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
         Cursor.visible = false;
@@ -47,6 +53,7 @@ public class UIScripts : MonoBehaviour
     public void restartGame()
     {
         SceneManager.LoadScene(1);
+        pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
     }
 

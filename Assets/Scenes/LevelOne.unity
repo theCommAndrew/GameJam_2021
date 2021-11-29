@@ -786,36 +786,35 @@ MonoBehaviour:
   m_Text: 'A problem has been detected and your OS has been shut down to prevent
     damage to your computer.
 
-    
 
-    If this is the first time you''ve seen
-    this stop error screen, restart your computer. if this screen appears again,
-    follow these steps:
 
-    
+    If this is the first time you''ve seen this stop
+    error screen, restart your computer. if this screen appears again, follow these
+    steps:
 
-    Check to make sure any new hardware or software
-    is properly installed. I this is a new installation, ask your hardware or software
-    manufacturer for any updates you might need.
 
-    
 
-    If problems continue,
-    disable or remove any newly installed hardware or software. Disable BIOS memory
-    options such as caching or shadowing. If you need to use Safe Mode to remove
-    or disable components, restart your computer, press F8 to select Advanced Startup
-    Options, and then select Safe Mode.
+    Check to make sure any new hardware or software is properly installed.
+    I this is a new installation, ask your hardware or software manufacturer for
+    any updates you might need.
+
+
+
+    If problems continue, disable or remove any
+    newly installed hardware or software. Disable BIOS memory options such as caching
+    or shadowing. If you need to use Safe Mode to remove or disable components, restart
+    your computer, press F8 to select Advanced Startup Options, and then select Safe
+    Mode.
 
 
     Or consider writing better code.
 
-    
 
-    Technical
-    information:
 
-    *** STOP: 0x000000FE (0x00000008, 0x000000006, 0x00000009,
-    0x847075cc)'
+    Technical information:
+
+    ***
+    STOP: 0x000000FE (0x00000008, 0x000000006, 0x00000009, 0x847075cc)'
 --- !u!222 &398690323
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1271,7 +1270,7 @@ GameObject:
   - component: {fileID: 648380086}
   m_Layer: 5
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2430,7 +2429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1101251477
 Animator:
   serializedVersion: 3

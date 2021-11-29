@@ -8,6 +8,7 @@ public class Player : Character
 {
     // movement
     Vector2 movement;
+    Vector2 mousePosition;
     // dashing
     public GameObject dashEffect;
     public bool canDash = true;
@@ -31,6 +32,7 @@ public class Player : Character
 
     void Start()
     {
+        //DontDestroyOnLoad(this);
         maxHealth = 3;
         health = maxHealth;
         moveSpeed = 7f;
@@ -48,15 +50,16 @@ public class Player : Character
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             animator.SetFloat("Speed", Mathf.Abs(movement.x) + Mathf.Abs(movement.y));
 
-            if (movement.x < 0)
+            if (mousePosition.x < transform.position.x)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
                 callout.transform.eulerAngles = new Vector3(0, 0, 0);
             }
-            else if (movement.x > 0)
+            else if (mousePosition.x >= transform.position.x)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 callout.transform.eulerAngles = new Vector3(0, 0, 0);
