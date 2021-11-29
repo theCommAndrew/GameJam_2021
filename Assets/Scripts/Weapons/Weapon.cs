@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
         if (myTime > fireDelta)
         {
             int shotsFired = spendAmmo(ammoReserve.ammoPerShot);
-            if (shotsFired >= 1)
+            if(shotsFired >= 1)
             {
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed);
                 myTime = 0.0f;

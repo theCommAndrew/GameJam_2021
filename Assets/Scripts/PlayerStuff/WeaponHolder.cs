@@ -10,6 +10,7 @@ public class WeaponHolder : MonoBehaviour
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeapon;
     private bool canFire;
+    private TextMesh callout;
 
     // UI events
     public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => { };
@@ -23,6 +24,8 @@ public class WeaponHolder : MonoBehaviour
         updateUIAmmo();
         updateUIActiveWeapon();
         updateInventorySprite(weapons[currentWeapon]);
+
+        callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
     }
 
     void Update()
@@ -55,10 +58,13 @@ public class WeaponHolder : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
             {
                 weapons[currentWeapon].gameObject.SetActive(false);
+                weapons[currentWeapon].reloading = false;
                 currentWeapon = (currentWeapon + 1) % 2;
                 weapons[currentWeapon].gameObject.SetActive(true);
                 updateUIAmmo();
                 updateUIActiveWeapon();
+
+                callout.text = "";
             }
         }
     }

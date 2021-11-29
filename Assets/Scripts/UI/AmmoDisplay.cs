@@ -7,10 +7,10 @@ using TMPro;
 public class AmmoDisplay : MonoBehaviour
 {
 
-    private TextMeshProUGUI textField;
+    private Text textField;
 
     void Awake(){
-        textField = gameObject.GetComponent<TextMeshProUGUI>();
+        textField = gameObject.GetComponent<Text>();
 
         WeaponHolder.ammoChangedEvent += (stock, maxCapacity) => changeAmmoDisplay(stock, maxCapacity);
     }
