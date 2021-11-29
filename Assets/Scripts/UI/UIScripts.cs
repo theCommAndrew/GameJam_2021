@@ -46,7 +46,7 @@ public class UIScripts : MonoBehaviour
 
     public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(1);
         gameOverScreen.SetActive(false);
     }
 
