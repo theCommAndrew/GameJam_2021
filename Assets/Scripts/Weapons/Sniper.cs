@@ -8,7 +8,7 @@ public class Sniper : Weapon
     protected override void Awake()
     {
         fireDelta = .15f;
-        bulletDamage = 20;
+        bulletDamage = 25;
         bulletSpeed = 40f;
         ammoReserve.maxClip = 1;
         ammoReserve.inClip = ammoReserve.maxClip;

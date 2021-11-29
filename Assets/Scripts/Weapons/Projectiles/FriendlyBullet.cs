@@ -12,7 +12,7 @@ public class FriendlyBullet : Bullet
         if (tag == "enemy")
         {
             Enemy enemy = col.gameObject.GetComponent<Enemy>();
-            enemy.takeDamage(damage);
+            enemy.takeDamage( (int)(damage * Player.extraDamage) );
         }
 
         if (tag != "Player" && tag != "backend" && tag != "bullet")

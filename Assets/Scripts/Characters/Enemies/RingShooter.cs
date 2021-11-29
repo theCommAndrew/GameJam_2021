@@ -14,9 +14,10 @@ public class RingShooter : Enemy
     {
         maxHealth = 40;
         health = maxHealth;
-        lootChance = 50;
+        lootChance = 75;
         moveSpeed = 0f;
     }
+    
 
     private void Update() {
         actionTimer += Time.deltaTime;
@@ -25,6 +26,17 @@ public class RingShooter : Enemy
             actionTimer = 0;    
             shootSpread(bulletPrefab, firePoint, bulletDamage, bulletSpeed, 360, 12);
         }
+
+        if (alive)
+        {
+            // look at player
+            float offset = 0f;
+            Vector3 lookDir = player.transform.position - transform.position;
+            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle - offset));
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        }
+
     }
 
     

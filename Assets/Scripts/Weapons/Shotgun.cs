@@ -23,7 +23,7 @@ public class Shotgun : Weapon
 
         reloadTime = 1;
 
-        cone = 30;
+        cone = 20;
         bullets = 3;
     }
 

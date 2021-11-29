@@ -52,13 +52,11 @@ public class BattleSystem : MonoBehaviour
     }
 
     private void startBattle(){
-        print($"{enemiesArray.Count} enemies in array");
         foreach(Enemy enemy in enemiesArray){
             enemy.spawn();
             enemyCount += 1;
         }
 
-        print($"enemy count is {enemyCount}");
         if(enemyCount > 0){
             state = State.Active;
             OnBattleStart?.Invoke(this, EventArgs.Empty);
@@ -101,6 +99,5 @@ public class BattleSystem : MonoBehaviour
                 enemiesArray.Add(enemy);
             }
         }
-        print($"unpacked enemies: {enemiesArray}");
     }
 }

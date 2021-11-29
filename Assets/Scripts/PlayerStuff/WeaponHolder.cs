@@ -91,7 +91,7 @@ public class WeaponHolder : MonoBehaviour
         weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 0;
         weaponToDrop.transform.rotation = Quaternion.Euler(0, 0, -90);
         weaponToDrop.transform.parent = null;
-        weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 25;
+        weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 15;
         weapons[currentWeapon] = null;
     }
 
