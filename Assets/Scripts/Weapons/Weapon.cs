@@ -124,7 +124,7 @@ public class Weapon : MonoBehaviour
 
     public IEnumerator reload()
     {
-        yield return new WaitForSeconds(this.reloadTime);
+        yield return new WaitForSeconds(getReloadTime());
 
         int loadingAmmo = Mathf.Min(ammoReserve.maxClip - ammoReserve.inClip, ammoReserve.stock);
         ammoReserve.inClip = ammoReserve.maxClip;
@@ -132,5 +132,10 @@ public class Weapon : MonoBehaviour
 
         reloading = false;
         playerWeapons.updateUIAmmo();
+    }
+
+    public float getReloadTime()
+    {
+        return reloadTime * Player.reloadRecudtion;
     }
 }

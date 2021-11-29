@@ -16,6 +16,7 @@ public class Player : Character
     // damage and invincibility
     private bool canTakeDamage = true;
     public static float extraDamage = 1;
+    public static float reloadRecudtion = 1;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     [SerializeField] private float invicibilityDeltaTime = 0.25f;
     public float spikeKnockbackpower = 200f;
@@ -107,7 +108,11 @@ public class Player : Character
                 break;
             
             case PlayerStat.Damage:
-                extraDamage += .1f;
+                extraDamage += .25f;
+                break;
+
+            case PlayerStat.Reload:
+                reloadRecudtion *= .9f;
                 break;
         }
         
