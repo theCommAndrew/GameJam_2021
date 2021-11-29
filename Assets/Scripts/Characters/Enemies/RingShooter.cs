@@ -16,6 +16,7 @@ public class RingShooter : Enemy
         health = maxHealth;
         lootChance = 75;
         moveSpeed = 0f;
+        deathAnimation = "BasicEnemyDie";
     }
     
 
