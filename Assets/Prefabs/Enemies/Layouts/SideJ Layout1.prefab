@@ -152,6 +152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpinningTrapTwoArms Variant (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7536898186867968971, guid: bf53d78a90c227a43b51f4af7d3fb5e9, type: 3}
+      propertyPath: rotateSpeed
+      value: -45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf53d78a90c227a43b51f4af7d3fb5e9, type: 3}
 --- !u!4 &2887361419653857871 stripped

@@ -23,7 +23,7 @@ public class RoomSpawner : MonoBehaviour
     }
 
     private void spawnMain(){
-        if(templates.rooms < 8)
+        if(templates.rooms < 5)
         {
             rand = Random.Range(0, templates.mainRooms.Length);
             float flipped = (Random.value > 0.5f) ? 0 : 180;

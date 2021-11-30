@@ -21,7 +21,7 @@ TagManager:
   - shield
   - Trap
   - PlayerCallout
-  - UI
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX

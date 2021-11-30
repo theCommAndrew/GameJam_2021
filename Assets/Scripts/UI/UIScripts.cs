@@ -59,6 +59,8 @@ public class UIScripts : MonoBehaviour
     public void quitGame()
     {
         SceneManager.LoadScene(0);
+        Destroy(gameObject);
+        Cursor.visible = true;
     }
 
     private void gameOver(object sender, System.EventArgs e)

@@ -128,6 +128,7 @@ public class Player : Character
         alive = false;
         animator.Play("PlayerDie");
         playerDeath?.Invoke(this, EventArgs.Empty);
+        StartCoroutine(delayDestroy());
     }
 
     private void Dash(Vector3 moveDir)
@@ -197,6 +198,12 @@ public class Player : Character
         moveSpeed = 0;
         yield return new WaitForSeconds(1f);
         moveSpeed = maxSpeed;
+    }
+
+    private IEnumerator delayDestroy()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
     }
 
 }
