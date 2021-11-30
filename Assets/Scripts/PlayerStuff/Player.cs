@@ -14,14 +14,12 @@ public class Player : Character
     public bool canDash = true;
     public float dashDistance = 5f;
     const float DASH_COOLDOWN_MAX = 1f;
-    // damage and invincibility
+    // damage and invincibility 
     private bool canTakeDamage = true;
     public static float extraDamage = 1;
     public static float reloadRecudtion = 1;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
-    [SerializeField] private float invicibilityDeltaTime = 0.25f;
-    public float spikeKnockbackpower = 200f;
-    public float spikeKnockbackDuration = 1f;
+    private float flashTimer = 0.15f;
     // event calls
     public static event EventHandler playerDeath;
     public static event Action<int, int> updateHealth = (playerHealth, maxHealth) => { };
@@ -36,18 +34,18 @@ public class Player : Character
         maxHealth = 3;
         health = maxHealth;
         moveSpeed = 7f;
+        maxSpeed = moveSpeed;
 
         this.rb = this.GetComponent<Rigidbody2D>();
         this.playerSprite = transform.GetChild(transform.childCount - 1).GetComponent<SpriteRenderer>();
         this.callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
 
         updateHealth?.Invoke(health, maxHealth);
-
     }
 
     void Update()
     {
-        if (!UIScripts.gameIsPaused)
+        if(!UIScripts.gameIsPaused && alive)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -90,7 +88,7 @@ public class Player : Character
             die();
         }
 
-        StartCoroutine(BecomeTemporarilyInvincible(Color.red));
+        StartCoroutine(BecomeTemporarilyInvincible());
     }
 
     public void heal(int restoreAmount)
@@ -110,7 +108,8 @@ public class Player : Character
                 break;
 
             case PlayerStat.Speed:
-                moveSpeed += 1f;
+                maxSpeed += 1f;
+                moveSpeed = maxSpeed;
                 break;
 
             case PlayerStat.Damage:
@@ -126,6 +125,7 @@ public class Player : Character
 
     public void die()
     {
+        alive = false;
         animator.Play("PlayerDie");
         playerDeath?.Invoke(this, EventArgs.Empty);
     }
@@ -145,29 +145,34 @@ public class Player : Character
             transform.position = hit.point;
 
         StartCoroutine(dashCooldown());
-        StartCoroutine(BecomeTemporarilyInvincible(Color.gray));
     }
 
     public IEnumerator dashCooldown()
     {
         canDash = false;
-        yield return new WaitForSeconds(DASH_COOLDOWN_MAX);
+        for (float i = 0; i < DASH_COOLDOWN_MAX; i += flashTimer)
+        {
+            playerSprite.material.color = playerSprite.material.color == Color.white ? Color.gray : Color.white;
+            yield return new WaitForSeconds(flashTimer);
+        }
+        playerSprite.material.color = Color.white;
         canDash = true;
     }
-    public IEnumerator BecomeTemporarilyInvincible(Color flashColor)
+
+    public IEnumerator BecomeTemporarilyInvincible()
     {
 
         canTakeDamage = false;
-        for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
+        for (float i = 0; i < invincibilityDurationSeconds; i += flashTimer)
         {
-            playerSprite.material.color = playerSprite.material.color == Color.white ? flashColor : Color.white;
-            yield return new WaitForSeconds(invicibilityDeltaTime);
+            playerSprite.material.color = playerSprite.material.color == Color.white ? Color.red : Color.white;
+            yield return new WaitForSeconds(flashTimer);
         }
         playerSprite.material.color = Color.white;
         canTakeDamage = true;
     }
-
-    /*public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    /*
+    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
     {
         float timer = 0;
         while (knockbackDuration > timer)
@@ -177,21 +182,21 @@ public class Player : Character
             rb.AddForce(-dir * knockbackPower);
         }
         yield return 0;
-    }*/
-
-    public void slowPlayer()
-    {
-        StartCoroutine(slowPlayerMovement());
     }
+    */
 
-    private IEnumerator slowPlayerMovement()
+    public IEnumerator slowPlayerMovement()
     {
-        moveSpeed = 5f;
+        moveSpeed *= .75f;
         yield return new WaitForSeconds(.8f);
-        moveSpeed = 7f;
+        moveSpeed = maxSpeed;
     }
-    public IEnumerator delayDeath()
+
+    public IEnumerator stopPlayerMovement()
     {
-        yield return new WaitForSeconds(3);
+        moveSpeed = 0;
+        yield return new WaitForSeconds(1f);
+        moveSpeed = maxSpeed;
     }
+
 }

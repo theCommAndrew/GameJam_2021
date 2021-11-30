@@ -64,8 +64,9 @@ public class UIScripts : MonoBehaviour
 
     private void gameOver(object sender, System.EventArgs e)
     {
-        stopTime();
-        gameOverScreen.SetActive(true);
+        if(this == null)
+            return;
+        StartCoroutine(loadGameOver());
     }
 
     private void stopTime()
@@ -79,8 +80,10 @@ public class UIScripts : MonoBehaviour
         gameIsPaused = false;
         Time.timeScale = 1;
     }
-    public IEnumerator delayDeath()
+    public IEnumerator loadGameOver()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
+        stopTime();
+        gameOverScreen.SetActive(true);
     }
 }

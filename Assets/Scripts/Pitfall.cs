@@ -13,7 +13,7 @@ public class Pitfall : MonoBehaviour
             if(!player.flying)
             {
                 player.takeDamage(1);
-                player.slowPlayer();
+                player.StartCoroutine(player.stopPlayerMovement());
                 player.transform.position = dropPoint.position;
             }
 

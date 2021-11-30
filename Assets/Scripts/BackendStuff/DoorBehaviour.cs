@@ -25,6 +25,9 @@ public class DoorBehaviour : MonoBehaviour
     }
 
     public void doorIsOpen(bool open){
+        if(this == null)
+            return;
+            
         if(open){
             spriteRenderer.sprite = openSprite;
             this.GetComponent<BoxCollider2D>().enabled = false;
