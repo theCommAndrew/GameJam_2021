@@ -7,7 +7,7 @@ using PlayerStats;
 public class Player : Character
 {
     // movement
-    Vector2 movement;
+    public Vector2 movement;
     Vector2 mousePosition;
     // dashing
     public GameObject dashEffect;
@@ -45,7 +45,7 @@ public class Player : Character
 
     void Update()
     {
-        if(!UIScripts.gameIsPaused && alive)
+        if (!UIScripts.gameIsPaused && alive)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");

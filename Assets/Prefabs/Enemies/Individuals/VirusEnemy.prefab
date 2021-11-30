@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eb2199294f921469e4839f976dda92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
+  maxSpeed: 0
   flying: 0
   animator: {fileID: 136750385204606288}
   firePoint: {fileID: 0}
@@ -155,6 +157,8 @@ MonoBehaviour:
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
+  digitalGlitchEffect: {fileID: 0}
+  analogGlitchEffect: {fileID: 0}
 --- !u!95 &136750385204606288
 Animator:
   serializedVersion: 3
