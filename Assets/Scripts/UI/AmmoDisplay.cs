@@ -17,7 +17,10 @@ public class AmmoDisplay : MonoBehaviour
 
     private void changeAmmoDisplay(int stock, int maxCapacity)
     {
-        textField.text = $"{stock}/{maxCapacity}";
+        if(textField != null)
+            textField.text = $"{stock}/{maxCapacity}";
     }
+
+    
 
 }

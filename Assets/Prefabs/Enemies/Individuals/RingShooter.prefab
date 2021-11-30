@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0068bf4962e2ef4a806d59c8153bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flying: 0
+  flying: 1
   animator: {fileID: 0}
   firePoint: {fileID: 3143855529914071452}
   bulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
@@ -176,9 +176,12 @@ MonoBehaviour:
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
-  actionInverval: 2
+  actionInverval: 1
   bulletDamage: 1
   bulletSpeed: 15
+  rotateSpeed: 90
+  dashDistance: 5
+  dashEffect: {fileID: 921558079183481366, guid: 283de0fbed9cfbd4181e06beda985cca, type: 3}
 --- !u!95 &7140208698585598834
 Animator:
   serializedVersion: 3

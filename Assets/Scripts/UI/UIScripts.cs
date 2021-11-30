@@ -9,22 +9,22 @@ public class UIScripts : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
-    public GameObject gameOverScreen;
-
-    
+    public GameObject gameOverScreen; 
 
     public void Awake()
     {
+        /*
         GameObject[] objs = GameObject.FindGameObjectsWithTag("UI");
         if(objs.Length > 1)
             Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-
+        */
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
         Cursor.visible = false;
         startTime();
         
+
         Player.playerDeath += gameOver;
     }
 

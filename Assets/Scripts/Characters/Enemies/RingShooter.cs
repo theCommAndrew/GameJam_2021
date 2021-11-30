@@ -1,14 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class RingShooter : Enemy
 {
 
-    public float actionInverval = 2;
-    public int bulletDamage = 1;
-    public float bulletSpeed = 15f;
     private float actionTimer = 0;
+    public float actionInverval = .25f;
+    public int bulletDamage = 1;
+    public float bulletSpeed = 25f;
+    public float rotateSpeed = 90;
+    public float dashDistance = 5f;
+    public GameObject dashEffect;
+    private Action[] actions;
+    private int rand;
+
+    
 
     void Start()
     {
@@ -17,27 +25,46 @@ public class RingShooter : Enemy
         lootChance = 75;
         moveSpeed = 0f;
         deathAnimation = "BasicEnemyDie";
+
+        actions = new Action[]{fireRing, move};
     }
     
 
     private void Update() {
-        actionTimer += Time.deltaTime;
-        if(actionTimer >= actionInverval)
+        if(alive)
         {
-            actionTimer = 0;    
-            shootSpread(bulletPrefab, firePoint, bulletDamage, bulletSpeed, 360, 12);
+            actionTimer += Time.deltaTime;
+            if(actionTimer >= actionInverval)
+            {   
+                rand = Random.Range(0,actions.Length);
+                actions[rand].Invoke();
+                actionTimer = 0;    
+            }
+            transform.Rotate(Vector3.back * rotateSpeed * Time.deltaTime);
         }
+    }
 
-        if (alive)
-        {
-            // look at player
-            float offset = 0f;
-            Vector3 lookDir = player.transform.position - transform.position;
-            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle - offset));
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-        }
+    private void fireRing(){
+        shootSpread(bulletPrefab, firePoint, bulletDamage, bulletSpeed, 360, 24);
+    }
 
+    private void move()
+    {
+        var moveDir = (Vector3)Random.insideUnitCircle.normalized;
+        print(moveDir);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, LayerMask.GetMask("Walls")); // can set this as a variable if it needs to change
+
+        float particleAngle = Vector3.Angle(moveDir, transform.up);
+        particleAngle = moveDir.x > 0 ? -particleAngle : particleAngle;
+        print(particleAngle);
+        var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
+
+        if (hit.collider == null)
+            transform.position += moveDir * dashDistance;         
+        else
+            transform.position -= moveDir * dashDistance;
+
+        fireRing();
     }
 
     

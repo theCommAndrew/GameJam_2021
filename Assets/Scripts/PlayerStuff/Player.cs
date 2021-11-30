@@ -67,7 +67,6 @@ public class Player : Character
 
             if (Input.GetKeyDown(KeyCode.Space) && canDash)
             {
-                StartCoroutine(BecomeTemporarilyInvincible());
                 Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
                 Dash(moveDir);
             }
@@ -91,7 +90,7 @@ public class Player : Character
             die();
         }
 
-        StartCoroutine(BecomeTemporarilyInvincible());
+        StartCoroutine(BecomeTemporarilyInvincible(Color.red));
     }
 
     public override void heal(int restoreAmount)
@@ -145,6 +144,7 @@ public class Player : Character
             transform.position = hit.point;
 
         StartCoroutine(dashCooldown());
+        StartCoroutine(BecomeTemporarilyInvincible(Color.gray));
     }
 
     public IEnumerator dashCooldown(){
@@ -152,12 +152,12 @@ public class Player : Character
         yield return new WaitForSeconds(DASH_COOLDOWN_MAX);
         canDash = true;
     }
-    public IEnumerator BecomeTemporarilyInvincible()
+    public IEnumerator BecomeTemporarilyInvincible(Color flashColor)
     {
         canTakeDamage = false;
         for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
-            playerSprite.material.color = playerSprite.material.color == Color.white ? Color.red : Color.white;
+            playerSprite.material.color = playerSprite.material.color == Color.white ? flashColor : Color.white;
             yield return new WaitForSeconds(invicibilityDeltaTime);
         }
         playerSprite.material.color = Color.white;
