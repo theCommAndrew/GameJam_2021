@@ -11,6 +11,7 @@ public class WeaponHolder : MonoBehaviour
     public int currentWeapon;
     private bool canFire;
     private TextMesh callout;
+    private Player player;
 
     // UI events
     public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => { };
@@ -26,13 +27,13 @@ public class WeaponHolder : MonoBehaviour
         updateInventorySprite(weapons[currentWeapon]);
 
         callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
+        player = transform.parent.GetComponent<Player>();
     }
 
     void Update()
     {
-        if (!UIScripts.gameIsPaused)
+        if (!UIScripts.gameIsPaused && player.alive)
         {
-            Player player = gameObject.GetComponent<Player>();
             // aim at mouse position
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

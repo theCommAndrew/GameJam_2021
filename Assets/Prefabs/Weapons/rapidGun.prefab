@@ -132,6 +132,8 @@ MonoBehaviour:
   bulletDamage: 5
   bulletSpeed: 20
   firePoint: {fileID: 1929662345018835608}
+  bulletSize: {x: 5, y: 5, z: 0}
+  isDefault: 0
   fireDelta: 0.5
   reloadTime: 0
   reloading: 0

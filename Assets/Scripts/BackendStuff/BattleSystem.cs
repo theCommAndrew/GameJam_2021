@@ -70,7 +70,8 @@ public class BattleSystem : MonoBehaviour
         state = State.Completed;
         OnBattleEnd?.Invoke(this, EventArgs.Empty);
         
-        Destroy(gameObject);
+        if(this != null)
+            Destroy(gameObject);
     }
 
     private void unpackEnemies(){

@@ -51,12 +51,10 @@ public class RingShooter : Enemy
     private void move()
     {
         var moveDir = (Vector3)Random.insideUnitCircle.normalized;
-        print(moveDir);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, LayerMask.GetMask("Walls")); // can set this as a variable if it needs to change
 
         float particleAngle = Vector3.Angle(moveDir, transform.up);
         particleAngle = moveDir.x > 0 ? -particleAngle : particleAngle;
-        print(particleAngle);
         var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
 
         if (hit.collider == null)
