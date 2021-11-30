@@ -90,7 +90,7 @@ public class Enemy : Character
 
         if (other.tag == "Player")
         {
-            StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, this.transform));
+            //StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, this.transform));
             player.takeDamage(contactDamage);
             StartCoroutine(delayMovement());
         }

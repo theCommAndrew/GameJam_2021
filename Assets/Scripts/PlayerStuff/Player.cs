@@ -140,7 +140,7 @@ public class Player : Character
         var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
 
         if (hit.collider == null)
-            transform.position += moveDir * dashDistance;         
+            transform.position += moveDir * dashDistance;
         else
             transform.position = hit.point;
 
@@ -148,7 +148,8 @@ public class Player : Character
         StartCoroutine(BecomeTemporarilyInvincible(Color.gray));
     }
 
-    public IEnumerator dashCooldown(){
+    public IEnumerator dashCooldown()
+    {
         canDash = false;
         yield return new WaitForSeconds(DASH_COOLDOWN_MAX);
         canDash = true;
@@ -166,7 +167,7 @@ public class Player : Character
         canTakeDamage = true;
     }
 
-    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    /*public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
     {
         float timer = 0;
         while (knockbackDuration > timer)
@@ -176,17 +177,7 @@ public class Player : Character
             rb.AddForce(-dir * knockbackPower);
         }
         yield return 0;
-    }
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        GameObject other = col.gameObject;
-        if (other.tag == "spike")
-        {
-            StartCoroutine(Knockback(spikeKnockbackDuration, spikeKnockbackpower, other.transform));
-            slowPlayer();
-            takeDamage(1);
-        }
-    }
+    }*/
 
     public void slowPlayer()
     {
