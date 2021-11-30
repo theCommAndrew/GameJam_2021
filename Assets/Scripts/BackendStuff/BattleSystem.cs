@@ -41,20 +41,20 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    private void Enemy_OnSpawn(object sender, System.EventArgs e){
-        enemyCount += 1;
-    }
-
     private void Enemy_OnDeath(int pass, Transform loc){
-        enemyCount -= 1;
-        if(enemyCount == 0){
-            endBattle();
+        if(state == State.Active)
+        {
+            enemyCount -= 1;
+            if(enemyCount == 0){
+                endBattle();
+            }
         }
     }
 
     private void startBattle(){
         foreach(Enemy enemy in enemiesArray){
             enemy.spawn();
+            enemyCount += 1;
         }
 
         if(enemyCount > 0){
@@ -95,7 +95,7 @@ public class BattleSystem : MonoBehaviour
             Enemy enemy = obj.GetComponent<Enemy>();
             if(enemy)
             {
-                enemy.OnEnemySpawned += Enemy_OnSpawn;
+                //enemy.OnEnemySpawned += Enemy_OnSpawn;
                 enemiesArray.Add(enemy);
             }
         }

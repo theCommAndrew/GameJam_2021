@@ -5,7 +5,8 @@ namespace PlayerStats{
     public enum PlayerStat : int {
         Health,
         Speed,
-        Damage
+        Damage,
+        Reload
     }
 
 }

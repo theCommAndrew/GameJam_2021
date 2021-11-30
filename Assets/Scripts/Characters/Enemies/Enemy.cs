@@ -22,7 +22,6 @@ public class Enemy : Character
     public float pauseDuration = .3f;
 
     // events
-    public event EventHandler OnEnemySpawned;
     public static event Action<int, Transform> OnEnemyKilled;
 
     void Awake()
@@ -44,8 +43,8 @@ public class Enemy : Character
     public void shootSpread(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, int cone, int bullets)
     {
         float halfRange = cone / 2;
-        float step = cone / (bullets - 1);
-        for (float i = -1 * halfRange; i <= halfRange; i += step)
+        float step = cone / (bullets);
+        for (float i = -1 * halfRange; i < halfRange; i += step)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation * Quaternion.Euler(0, 0, i)) as GameObject;
             bullet.GetComponent<Bullet>().damage = damage;
@@ -55,7 +54,6 @@ public class Enemy : Character
 
     public void spawn()
     {
-        OnEnemySpawned?.Invoke(this, EventArgs.Empty);
         gameObject.SetActive(true);
         StartCoroutine(spawnEnemy());
     }
@@ -95,7 +93,6 @@ public class Enemy : Character
             StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, this.transform));
             player.takeDamage(contactDamage);
             StartCoroutine(delayMovement());
-            StartCoroutine(player.BecomeTemporarilyInvincible());
         }
     }
     private void OnCollisionStay2D(Collision2D col)

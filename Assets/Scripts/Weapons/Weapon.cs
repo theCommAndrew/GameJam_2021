@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public float bulletSpeed = 20f;
     [SerializeField] private GameObject firePoint;
     public Vector3 bulletSize = new Vector3(.4f, .4f, 0);
+    [SerializeField] private bool isDefault;
     // ammo info
     public struct GunAmmo
     {
@@ -30,13 +31,14 @@ public class Weapon : MonoBehaviour
     // pickup stuff
     private bool pickupAllowed = false;
     private WeaponHolder playerWeapons;
+    public TextMesh callout;
 
     protected virtual void Awake()
     {
         fireDelta = 0.5f;
         ammoReserve.maxClip = 10;
         ammoReserve.inClip = ammoReserve.maxClip;
-        ammoReserve.maxCapacity = 100;
+        ammoReserve.maxCapacity = 0;
         ammoReserve.stock = ammoReserve.maxCapacity;
         ammoReserve.ammoPerShot = 1;
 
@@ -46,6 +48,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         playerWeapons = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>();
+        callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
     }
 
     protected virtual void Update()
@@ -80,13 +83,14 @@ public class Weapon : MonoBehaviour
         if (myTime > fireDelta)
         {
             int shotsFired = spendAmmo(ammoReserve.ammoPerShot);
-            if (shotsFired >= 1)
+            if(shotsFired >= 1)
             {
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
             }
-            if (ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading)
-            {
+
+            
+            if(ammoReserve.inClip == 0 && (ammoReserve.stock > 0 || isDefault) && !reloading){
                 reloading = true;
                 StartCoroutine(reload());
             }
@@ -131,13 +135,29 @@ public class Weapon : MonoBehaviour
 
     public IEnumerator reload()
     {
-        yield return new WaitForSeconds(this.reloadTime);
-
+        String msg = "";
+        char[] characters = {'R', 'e', 'l', 'o', 'a', 'd', 'i', 'n', 'g', '.'}; 
+        float step = getReloadTime() / characters.Length;
+        callout.text = "_";
+         for (int i = 0; i < characters.Length; i += 1)
+        {
+            yield return new WaitForSeconds(step);
+            msg += characters[i];
+            callout.text = msg + "_";
+        }
+        
         int loadingAmmo = Mathf.Min(ammoReserve.maxClip - ammoReserve.inClip, ammoReserve.stock);
         ammoReserve.inClip = ammoReserve.maxClip;
-        ammoReserve.stock -= loadingAmmo;
+        if(!isDefault)
+            ammoReserve.stock -= loadingAmmo;
 
         reloading = false;
         playerWeapons.updateUIAmmo();
+        callout.text = "";
+    }
+
+    public float getReloadTime()
+    {
+        return reloadTime * Player.reloadRecudtion;
     }
 }

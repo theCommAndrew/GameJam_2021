@@ -8,17 +8,18 @@ public class Player : Character
 {
     // movement
     Vector2 movement;
+    Vector2 mousePosition;
     // dashing
     public GameObject dashEffect;
     public bool canDash = true;
     public float dashDistance = 5f;
-    private bool canTakeDamage = true;
-    private float dashCooldown;
     const float DASH_COOLDOWN_MAX = 1f;
     // damage and invincibility
-    public static int extraDamage = 0;
+    private bool canTakeDamage = true;
+    public static float extraDamage = 1;
+    public static float reloadRecudtion = 1;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
-    [SerializeField] private float invicibilityDeltaTime = 0.15f;
+    [SerializeField] private float invicibilityDeltaTime = 0.25f;
     public float spikeKnockbackpower = 200f;
     public float spikeKnockbackDuration = 1f;
     // event calls
@@ -26,15 +27,19 @@ public class Player : Character
     public static event Action<int, int> updateHealth = (playerHealth, maxHealth) => { };
     //animation
     public Animator animator;
-
+    private SpriteRenderer playerSprite;
+    private TextMesh callout;
 
     void Start()
     {
+        //DontDestroyOnLoad(this);
         maxHealth = 3;
         health = maxHealth;
         moveSpeed = 7f;
 
         this.rb = this.GetComponent<Rigidbody2D>();
+        this.playerSprite = transform.GetChild(transform.childCount - 1).GetComponent<SpriteRenderer>();
+        this.callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
 
         updateHealth?.Invoke(health, maxHealth);
 
@@ -46,27 +51,26 @@ public class Player : Character
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             animator.SetFloat("Speed", Mathf.Abs(movement.x) + Mathf.Abs(movement.y));
 
-            if (movement.x < 0)
+            if (mousePosition.x < transform.position.x)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
+                callout.transform.eulerAngles = new Vector3(0, 0, 0);
             }
-            else if (movement.x > 0)
+            else if (mousePosition.x >= transform.position.x)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
+                callout.transform.eulerAngles = new Vector3(0, 0, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && canDash && dashCooldown < 0)
+            if (Input.GetKeyDown(KeyCode.Space) && canDash)
             {
-                dashCooldown = DASH_COOLDOWN_MAX;
-                StartCoroutine(BecomeTemporarilyInvincible());
                 Vector3 moveDir = new Vector3(movement.x, movement.y).normalized;
                 Dash(moveDir);
             }
-
-            dashCooldown -= Time.deltaTime;
         }
     }
 
@@ -86,7 +90,7 @@ public class Player : Character
             die();
         }
 
-        StartCoroutine(BecomeTemporarilyInvincible());
+        StartCoroutine(BecomeTemporarilyInvincible(Color.red));
     }
 
     public void heal(int restoreAmount)
@@ -110,7 +114,11 @@ public class Player : Character
                 break;
 
             case PlayerStat.Damage:
-                extraDamage += 1;
+                extraDamage += .25f;
+                break;
+
+            case PlayerStat.Reload:
+                reloadRecudtion *= .9f;
                 break;
         }
 
@@ -124,38 +132,37 @@ public class Player : Character
 
     private void Dash(Vector3 moveDir)
     {
-        canDash = false;
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, LayerMask.GetMask("Walls")); // can set this as a variable if it needs to change
 
         float particleAngle = Vector3.Angle(moveDir, transform.up);
         particleAngle = moveDir.x > 0 ? -particleAngle : particleAngle;
+        var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
 
         if (hit.collider == null)
-        {
-            //var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
-            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
-            transform.position += moveDir * dashDistance;
-            //Destroy(dasheffectvar, 1);
-        }
+            transform.position += moveDir * dashDistance;         
         else
-        {
-            //var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
-            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
             transform.position = hit.point;
-            //Destroy(dasheffectvar, 1);
-        }
 
+        StartCoroutine(dashCooldown());
+        StartCoroutine(BecomeTemporarilyInvincible(Color.gray));
+    }
+
+    public IEnumerator dashCooldown(){
+        canDash = false;
+        yield return new WaitForSeconds(DASH_COOLDOWN_MAX);
         canDash = true;
     }
-    public IEnumerator BecomeTemporarilyInvincible()
+    public IEnumerator BecomeTemporarilyInvincible(Color flashColor)
     {
 
         canTakeDamage = false;
         for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
+            playerSprite.material.color = playerSprite.material.color == Color.white ? flashColor : Color.white;
             yield return new WaitForSeconds(invicibilityDeltaTime);
         }
+        playerSprite.material.color = Color.white;
         canTakeDamage = true;
     }
 

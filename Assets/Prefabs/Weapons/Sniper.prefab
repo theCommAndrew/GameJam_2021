@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6161329686031905891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.78, y: -2.01, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children:
   - {fileID: 6161329687728973989}
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6862987807393317680, guid: dc2ad06d63ac1f34dac006ad37002346, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c6804660c8419041aeb131ed26506e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,11 +100,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 205941645678276208, guid: 10e7eafb7d738664d913a6238ac4c6b9, type: 3}
   bulletDamage: 5
   bulletSpeed: 20
-  bulletSize: {x: 5, y: 5, z: 0}
   firePoint: {fileID: 6161329687728973986}
   fireDelta: 0
   reloadTime: 0
   reloading: 0
+  callout: {fileID: 0}
 --- !u!61 &6161329686031905895
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118,18 +118,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.01955434, y: -0.024442911}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.28, y: 0.11}
+    oldSize: {x: 0.5, y: 1}
     newSize: {x: 0.28, y: 0.11}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.28, y: 0.11}
+  m_Size: {x: 0.37777174, y: 1.0437201}
   m_EdgeRadius: 0
 --- !u!1 &6161329687728973986
 GameObject:
@@ -155,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6161329687728973986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.135, y: 0.009, z: 0}
+  m_LocalPosition: {x: -0.028, y: 0.478, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6161329686031905892}

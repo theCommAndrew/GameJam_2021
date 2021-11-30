@@ -10,6 +10,7 @@ public class WeaponHolder : MonoBehaviour
     public List<Weapon> weapons = new List<Weapon>();
     public int currentWeapon;
     private bool canFire;
+    private TextMesh callout;
 
     // UI events
     public static event Action<int, int> ammoChangedEvent = (stock, maxCapaticy) => { };
@@ -23,6 +24,8 @@ public class WeaponHolder : MonoBehaviour
         updateUIAmmo();
         updateUIActiveWeapon();
         updateInventorySprite(weapons[currentWeapon]);
+
+        callout = GameObject.FindGameObjectWithTag("PlayerCallout").GetComponent<TextMesh>();
     }
 
     void Update()
@@ -38,6 +41,15 @@ public class WeaponHolder : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
 
+            if (mousePosition.x < transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 180, -angle);
+            }
+            else if (mousePosition.x >= transform.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 0, angle);
+            }
+
             // shoot on M1
             if (Input.GetButton("Fire1") && !weapons[currentWeapon].reloading)
             {
@@ -52,21 +64,43 @@ public class WeaponHolder : MonoBehaviour
             }
 
             // swap weapons
-            if (Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
+            if(Input.GetKeyDown(KeyCode.Alpha1))
             {
-                weapons[currentWeapon].gameObject.SetActive(false);
-                currentWeapon = (currentWeapon + 1) % 2;
-                weapons[currentWeapon].gameObject.SetActive(true);
-                updateUIAmmo();
-                updateUIActiveWeapon();
+                setActiveWeapon(0);
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha2) && weapons.Count > 1)
+            {
+                setActiveWeapon(1);
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha3) && weapons.Count > 2)
+            {
+                setActiveWeapon(2);
             }
         }
     }
 
+    private void setActiveWeapon(int index)
+    {
+        weapons[currentWeapon].reloading = false;
+        callout.text = "";
+
+        for(int i = 0; i < weapons.Count; i++){
+            weapons[i].gameObject.SetActive(i == index);
+        }
+        
+        currentWeapon = index;
+
+        updateUIAmmo();
+        updateUIActiveWeapon();
+    }
+
     public void addWeapon(Weapon weaponToAdd)
     {
-        if (weapons.Count >= 2)
+        if (weapons.Count >= 3)
         {
+            if(currentWeapon == 0)
+                return;
+
             dropWeapon(weapons[currentWeapon]);
             weapons[currentWeapon] = weaponToAdd;
         }
@@ -91,7 +125,7 @@ public class WeaponHolder : MonoBehaviour
         weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 0;
         weaponToDrop.transform.rotation = Quaternion.Euler(0, 0, -90);
         weaponToDrop.transform.parent = null;
-        weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 25;
+        weaponToDrop.GetComponent<SpriteRenderer>().sortingOrder = 15;
         weapons[currentWeapon] = null;
     }
 
