@@ -59,7 +59,7 @@ public class UIScripts : MonoBehaviour
 
     public void quitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 
     private void gameOver(object sender, System.EventArgs e)

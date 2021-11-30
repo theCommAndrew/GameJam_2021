@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     public int bulletDamage = 5;
     public float bulletSpeed = 20f;
     [SerializeField] private GameObject firePoint;
+    [SerializeField] private bool isDefault;
     // ammo info
     public struct GunAmmo{
         public int inClip;
@@ -35,7 +36,7 @@ public class Weapon : MonoBehaviour
         fireDelta = 0.5f;
         ammoReserve.maxClip = 10;
         ammoReserve.inClip = ammoReserve.maxClip;
-        ammoReserve.maxCapacity = 100;
+        ammoReserve.maxCapacity = 0;
         ammoReserve.stock = ammoReserve.maxCapacity;
         ammoReserve.ammoPerShot = 1;
 
@@ -84,7 +85,8 @@ public class Weapon : MonoBehaviour
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed);
                 myTime = 0.0f;
             }
-            if(ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading){
+            
+            if(ammoReserve.inClip == 0 && (ammoReserve.stock > 0 || isDefault) && !reloading){
                 reloading = true;
                 StartCoroutine(reload());
             }
@@ -139,7 +141,8 @@ public class Weapon : MonoBehaviour
         
         int loadingAmmo = Mathf.Min(ammoReserve.maxClip - ammoReserve.inClip, ammoReserve.stock);
         ammoReserve.inClip = ammoReserve.maxClip;
-        ammoReserve.stock -= loadingAmmo;
+        if(!isDefault)
+            ammoReserve.stock -= loadingAmmo;
 
         reloading = false;
         playerWeapons.updateUIAmmo();

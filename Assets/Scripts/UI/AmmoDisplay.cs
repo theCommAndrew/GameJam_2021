@@ -17,8 +17,12 @@ public class AmmoDisplay : MonoBehaviour
 
     private void changeAmmoDisplay(int stock, int maxCapacity)
     {
-        if(textField != null)
-            textField.text = $"{stock}/{maxCapacity}";
+        if(textField != null){
+            string max = "00";
+            if(maxCapacity > 0)
+                max = maxCapacity.ToString();
+            textField.text = $"{stock}/{max}";
+        }
     }
 
     

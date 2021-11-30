@@ -64,24 +64,43 @@ public class WeaponHolder : MonoBehaviour
             }
 
             // swap weapons
-            if (Input.GetKeyDown(KeyCode.Tab) && weapons.Count > 1)
+            if(Input.GetKeyDown(KeyCode.Alpha1))
             {
-                weapons[currentWeapon].gameObject.SetActive(false);
-                weapons[currentWeapon].reloading = false;
-                currentWeapon = (currentWeapon + 1) % 2;
-                weapons[currentWeapon].gameObject.SetActive(true);
-                updateUIAmmo();
-                updateUIActiveWeapon();
-
-                callout.text = "";
+                setActiveWeapon(0);
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha2) && weapons.Count > 1)
+            {
+                setActiveWeapon(1);
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha3) && weapons.Count > 2)
+            {
+                setActiveWeapon(2);
             }
         }
     }
 
+    private void setActiveWeapon(int index)
+    {
+        weapons[currentWeapon].reloading = false;
+        callout.text = "";
+
+        for(int i = 0; i < weapons.Count; i++){
+            weapons[i].gameObject.SetActive(i == index);
+        }
+        
+        currentWeapon = index;
+
+        updateUIAmmo();
+        updateUIActiveWeapon();
+    }
+
     public void addWeapon(Weapon weaponToAdd)
     {
-        if (weapons.Count >= 2)
+        if (weapons.Count >= 3)
         {
+            if(currentWeapon == 0)
+                return;
+
             dropWeapon(weapons[currentWeapon]);
             weapons[currentWeapon] = weaponToAdd;
         }
