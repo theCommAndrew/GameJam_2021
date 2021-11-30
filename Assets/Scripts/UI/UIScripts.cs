@@ -13,12 +13,11 @@ public class UIScripts : MonoBehaviour
 
     public void Awake()
     {
-        /*
         GameObject[] objs = GameObject.FindGameObjectsWithTag("UI");
         if(objs.Length > 1)
             Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
-        */
+        
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
         Cursor.visible = false;
