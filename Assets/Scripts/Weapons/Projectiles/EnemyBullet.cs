@@ -7,13 +7,13 @@ public class EnemyBullet : Bullet
     private void OnTriggerEnter2D(Collider2D col)
     {
         string tag = col.gameObject.tag;
-        if(tag == "Player")
+        if (tag == "Player")
         {
-            Character character = col.gameObject.GetComponent<Character>();
-            character.takeDamage(damage);
+            Player player = col.gameObject.GetComponent<Player>();
+            player.takeDamage(damage);
         }
 
-        if(tag != "enemy" && tag != "backend" && tag != "bullet")
+        if (tag != "enemy" && tag != "backend" && tag != "bullet")
         {
             Destroy(gameObject);
         }

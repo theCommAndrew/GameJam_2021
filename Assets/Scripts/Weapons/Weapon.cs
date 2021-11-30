@@ -11,8 +11,10 @@ public class Weapon : MonoBehaviour
     public int bulletDamage = 5;
     public float bulletSpeed = 20f;
     [SerializeField] private GameObject firePoint;
+    public Vector3 bulletSize = new Vector3(.4f, .4f, 0);
     // ammo info
-    public struct GunAmmo{
+    public struct GunAmmo
+    {
         public int inClip;
         public int maxClip;
         public int stock;
@@ -22,7 +24,7 @@ public class Weapon : MonoBehaviour
     public GunAmmo ammoReserve = new GunAmmo();
     // shot timing
     private float myTime = 0f;
-    public float fireDelta;  
+    public float fireDelta;
     public float reloadTime;
     public bool reloading = false;
     // pickup stuff
@@ -41,7 +43,8 @@ public class Weapon : MonoBehaviour
         reloadTime = 2;
     }
 
-    private void Start() {
+    private void Start()
+    {
         playerWeapons = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponHolder>();
     }
 
@@ -79,10 +82,11 @@ public class Weapon : MonoBehaviour
             int shotsFired = spendAmmo(ammoReserve.ammoPerShot);
             if (shotsFired >= 1)
             {
-                shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed);
+                shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
             }
-            if(ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading){
+            if (ammoReserve.inClip == 0 && ammoReserve.stock > 0 && !reloading)
+            {
                 reloading = true;
                 StartCoroutine(reload());
             }
@@ -91,14 +95,16 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
-    public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed)
+    public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale)
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().speed = speed;
+        bullet.GetComponent<Bullet>().scale = scale;
     }
 
-    public (int, int) GetCurrentAmmo(){
+    public (int, int) GetCurrentAmmo()
+    {
         return (ammoReserve.inClip, ammoReserve.stock);
     }
 
@@ -111,7 +117,8 @@ public class Weapon : MonoBehaviour
     }
 
     // spend [amount] ammo, returns amount spent    
-    public int spendAmmo(int amount){
+    public int spendAmmo(int amount)
+    {
         int spend = Mathf.Min(amount, ammoReserve.inClip);
         ammoReserve.inClip -= spend;
         return spend;

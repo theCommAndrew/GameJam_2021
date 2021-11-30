@@ -12,6 +12,7 @@ public class HealthBar : MonoBehaviour
     public Sprite emptyHeart;
     private int maxHearts = 0;
     private Image end = null;
+    public Animator animator;
 
 
     private void Awake()
@@ -19,15 +20,16 @@ public class HealthBar : MonoBehaviour
         Player.updateHealth += (playerHealth, maxHealth) => updateHealthBar(playerHealth, maxHealth);
     }
 
- 
+
     private void updateHealthBar(int playerHealth, int maxHealth)
     {
-        if(this == null)
+        if (this == null)
             return;
 
-        if(maxHealth > maxHearts){
-            for(int i = 0; i < maxHealth - maxHearts; i++)
-            {   
+        if (maxHealth > maxHearts)
+        {
+            for (int i = 0; i < maxHealth - maxHearts; i++)
+            {
 
                 Vector3 endPos = end == null ? transform.position : new Vector3(end.transform.position.x, end.transform.position.y, end.transform.position.z);
 
@@ -41,7 +43,15 @@ public class HealthBar : MonoBehaviour
 
         for (int i = 0; i < hearts.Count; i++)
         {
-            hearts[i].sprite = i < playerHealth ? fullHeart : emptyHeart;
+            if (i < playerHealth)
+            {
+
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeart;
+            }
         }
     }
 }

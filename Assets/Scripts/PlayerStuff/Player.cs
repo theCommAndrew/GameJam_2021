@@ -37,6 +37,7 @@ public class Player : Character
         this.rb = this.GetComponent<Rigidbody2D>();
 
         updateHealth?.Invoke(health, maxHealth);
+
     }
 
     void Update()
@@ -74,10 +75,9 @@ public class Player : Character
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-    public override void takeDamage(int damage)
+    public void takeDamage(int damage)
     {
         if (!canTakeDamage) return;
-
         health -= damage;
         updateHealth?.Invoke(health, maxHealth);
 
@@ -89,7 +89,7 @@ public class Player : Character
         StartCoroutine(BecomeTemporarilyInvincible());
     }
 
-    public override void heal(int restoreAmount)
+    public void heal(int restoreAmount)
     {
         health = Mathf.Min(health + restoreAmount, maxHealth);
         updateHealth?.Invoke(health, maxHealth);
@@ -97,10 +97,10 @@ public class Player : Character
 
     public void increaseStat(PlayerStat statToIncrease)
     {
-        switch(statToIncrease)
+        switch (statToIncrease)
         {
             case PlayerStat.Health:
-                maxHealth += 1; 
+                maxHealth += 1;
                 health = maxHealth;
                 updateHealth?.Invoke(health, maxHealth);
                 break;
@@ -108,15 +108,15 @@ public class Player : Character
             case PlayerStat.Speed:
                 moveSpeed += 1f;
                 break;
-            
+
             case PlayerStat.Damage:
                 extraDamage += 1;
                 break;
         }
-        
+
     }
 
-    public override void die()
+    public void die()
     {
         animator.Play("PlayerDie");
         playerDeath?.Invoke(this, EventArgs.Empty);
@@ -126,7 +126,7 @@ public class Player : Character
     {
         canDash = false;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, default); // can set this as a variable if it needs to change
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDir, dashDistance, LayerMask.GetMask("Walls")); // can set this as a variable if it needs to change
 
         float particleAngle = Vector3.Angle(moveDir, transform.up);
         particleAngle = moveDir.x > 0 ? -particleAngle : particleAngle;
@@ -134,14 +134,14 @@ public class Player : Character
         if (hit.collider == null)
         {
             //var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
-            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler( 0,0,particleAngle));
+            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
             transform.position += moveDir * dashDistance;
             //Destroy(dasheffectvar, 1);
         }
         else
         {
             //var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.identity);
-            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler( 0,0,particleAngle));
+            var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
             transform.position = hit.point;
             //Destroy(dasheffectvar, 1);
         }
@@ -150,6 +150,7 @@ public class Player : Character
     }
     public IEnumerator BecomeTemporarilyInvincible()
     {
+
         canTakeDamage = false;
         for (float i = 0; i < invincibilityDurationSeconds; i += invicibilityDeltaTime)
         {
@@ -161,7 +162,6 @@ public class Player : Character
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
     {
         float timer = 0;
-
         while (knockbackDuration > timer)
         {
             Vector2 dir = (obj.transform.position - this.transform.position).normalized;
@@ -181,12 +181,13 @@ public class Player : Character
         }
     }
 
-    public void slowPlayer(){
+    public void slowPlayer()
+    {
         StartCoroutine(slowPlayerMovement());
     }
 
     private IEnumerator slowPlayerMovement()
-    {   
+    {
         moveSpeed = 5f;
         yield return new WaitForSeconds(.8f);
         moveSpeed = 7f;

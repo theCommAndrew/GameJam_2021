@@ -68,22 +68,28 @@ public class Enemy : Character
             pathfinder.target = player.transform;
     }
 
-    public override void die()
+    public void die()
     {
-        if(this.alive)
-        {   
+        if (this.alive)
+        {
             this.alive = false;
             moveSpeed = 0;
+            IAstarAI enemyMovement = gameObject.GetComponent<IAstarAI>();
+            if (enemyMovement != null)
+            {
+                enemyMovement.canMove = false;
+            }
             OnEnemyKilled?.Invoke(lootChance, this.transform);
             gameObject.GetComponent<Animator>().Play(deathAnimation);
             Destroy(gameObject, 1f);
-        } 
+        }
     }
 
     // contact damage to player
     private void OnCollisionEnter2D(Collision2D col)
     {
         GameObject other = col.gameObject;
+
         if (other.tag == "Player")
         {
             StartCoroutine(player.Knockback(knockbackDuration, knockbackPower, this.transform));
@@ -98,6 +104,19 @@ public class Enemy : Character
         if (other.tag == "Player")
         {
             player.takeDamage(contactDamage);
+        }
+    }
+
+    public virtual void takeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            die();
+        }
+        else
+        {
+            StartCoroutine(delayMovement());
         }
     }
 
