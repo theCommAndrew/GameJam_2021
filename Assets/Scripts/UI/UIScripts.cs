@@ -54,6 +54,11 @@ public class UIScripts : MonoBehaviour
         SceneManager.LoadScene(1);
         pauseMenuUI.SetActive(false);
         gameOverScreen.SetActive(false);
+
+        Destroy(gameObject);
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if(player != null)
+            Destroy(gameObject);
     }
 
     public void quitGame()

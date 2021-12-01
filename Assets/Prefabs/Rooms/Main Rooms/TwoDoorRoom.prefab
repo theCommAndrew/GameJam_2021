@@ -548,6 +548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3794127811630244067}
+  - component: {fileID: 3962784882899687104}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -581,6 +582,17 @@ Transform:
   m_Father: {fileID: 2554773672643261535}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &3962784882899687104
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328575544331044912}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -10
 --- !u!1001 &290496740303532752
 PrefabInstance:
   m_ObjectHideFlags: 0

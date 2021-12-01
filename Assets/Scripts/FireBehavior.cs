@@ -23,13 +23,13 @@ public class FireBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         string tag = col.gameObject.tag;
-        if (tag == "Player")
+        if(tag == "Player")
         {
             Player player = col.gameObject.GetComponent<Player>();
             player.takeDamage(player.maxHealth);
         }
 
-        if (tag != "enemy")
+        if(tag == "enemy")
         {
             Enemy enemy = col.gameObject.GetComponent<Enemy>();
             enemy.takeDamage(enemy.maxHealth);
