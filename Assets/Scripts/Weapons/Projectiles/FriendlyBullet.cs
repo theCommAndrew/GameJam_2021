@@ -12,12 +12,13 @@ public class FriendlyBullet : Bullet
         if (tag == "enemy")
         {
             Enemy enemy = col.gameObject.GetComponent<Enemy>();
-            enemy.takeDamage( (int)(damage * Player.extraDamage) );
+            enemy.takeDamage((int)(damage * Player.extraDamage));
         }
 
         if (tag != "Player" && tag != "backend" && tag != "bullet")
         {
             var hitindicator = Instantiate(hitPrefab, transform.position, Quaternion.identity);
+            SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.hit);
             Destroy(gameObject);
             Destroy(hitindicator, .5f);
         }

@@ -65,17 +65,20 @@ public class WeaponHolder : MonoBehaviour
             }
 
             // swap weapons
-            if(Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 setActiveWeapon(0);
+                SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.switchWeapons);
             }
-            else if(Input.GetKeyDown(KeyCode.Alpha2) && weapons.Count > 1)
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && weapons.Count > 1)
             {
                 setActiveWeapon(1);
+                SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.switchWeapons);
             }
-            else if(Input.GetKeyDown(KeyCode.Alpha3) && weapons.Count > 2)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && weapons.Count > 2)
             {
                 setActiveWeapon(2);
+                SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.switchWeapons);
             }
         }
     }
@@ -85,10 +88,11 @@ public class WeaponHolder : MonoBehaviour
         weapons[currentWeapon].reloading = false;
         callout.text = "";
 
-        for(int i = 0; i < weapons.Count; i++){
+        for (int i = 0; i < weapons.Count; i++)
+        {
             weapons[i].gameObject.SetActive(i == index);
         }
-        
+
         currentWeapon = index;
 
         updateUIAmmo();
@@ -99,7 +103,7 @@ public class WeaponHolder : MonoBehaviour
     {
         if (weapons.Count >= 3)
         {
-            if(currentWeapon == 0)
+            if (currentWeapon == 0)
                 return;
 
             dropWeapon(weapons[currentWeapon]);

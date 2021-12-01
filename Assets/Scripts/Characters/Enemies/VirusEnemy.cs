@@ -12,6 +12,7 @@ public class VirusEnemy : Enemy
     private Action[] actions;
     private int rand;
     private Action desiredAction;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -20,12 +21,13 @@ public class VirusEnemy : Enemy
         moveSpeed = 0f;
         lootChance = 100;
         deathAnimation = "VirusEnemyDie";
-        actions = new Action[] { slowPlayer };
+        actions = new Action[] { reverseControls, slowPlayer };
         rand = Random.Range(0, actions.Length);
         desiredAction = actions[rand];
         //print(desiredAction.Method.Name);
         digitalGlitchEffect = Camera.main.GetComponent<DigitalGlitch>();
         analogGlitchEffect = Camera.main.GetComponent<AnalogGlitch>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
 
     private void Update()

@@ -83,6 +83,7 @@ public class Player : Character
         if (!canTakeDamage) return;
         health -= damage;
         updateHealth?.Invoke(health, maxHealth);
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.playerTookDamage);
 
         if (health <= 0)
         {
@@ -120,7 +121,7 @@ public class Player : Character
             case PlayerStat.Reload:
                 reloadRecudtion *= .9f;
                 break;
-            
+
             case PlayerStat.Luck:
                 luck += 10f;
                 break;
@@ -149,6 +150,7 @@ public class Player : Character
             transform.position += moveDir * dashDistance;
         else
             transform.position = hit.point;
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.playerDash);
 
         StartCoroutine(dashCooldown());
     }
@@ -204,8 +206,9 @@ public class Player : Character
         yield return new WaitForSeconds(1f);
         moveSpeed = maxSpeed;
     }
-    
-    public void spawnIn(){
+
+    public void spawnIn()
+    {
         StartCoroutine(stopPlayerMovement());
         animator.Play("PlayerSpawn");
     }

@@ -35,6 +35,7 @@ public class Enemy : Character
     public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale)
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.enemyShoot);
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().speed = speed;
         bullet.GetComponent<Bullet>().scale = scale;

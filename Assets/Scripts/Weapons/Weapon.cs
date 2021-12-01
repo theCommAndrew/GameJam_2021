@@ -86,14 +86,15 @@ public class Weapon : MonoBehaviour
         if (myTime > fireDelta)
         {
             int shotsFired = spendAmmo(ammoReserve.ammoPerShot);
-            if(shotsFired >= 1)
+            if (shotsFired >= 1)
             {
                 shoot(bulletPrefab, firePoint, bulletDamage, bulletSpeed, bulletSize);
                 myTime = 0.0f;
             }
 
-            
-            if(ammoReserve.inClip == 0 && (ammoReserve.stock > 0 || isDefault) && !reloading){
+
+            if (ammoReserve.inClip == 0 && (ammoReserve.stock > 0 || isDefault) && !reloading)
+            {
                 reloading = true;
                 StartCoroutine(reload());
             }
@@ -105,6 +106,7 @@ public class Weapon : MonoBehaviour
     public virtual void shoot(GameObject bulletPrefab, GameObject firePoint, int damage, float speed, Vector3 scale)
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.playerShootSound);
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().speed = speed;
         bullet.GetComponent<Bullet>().scale = scale;
@@ -139,19 +141,20 @@ public class Weapon : MonoBehaviour
     public IEnumerator reload()
     {
         String msg = "";
-        char[] characters = {'R', 'e', 'l', 'o', 'a', 'd', 'i', 'n', 'g', '.'}; 
+        char[] characters = { 'R', 'e', 'l', 'o', 'a', 'd', 'i', 'n', 'g', '.' };
         float step = getReloadTime() / characters.Length;
         callout.text = "_";
-         for (int i = 0; i < characters.Length; i += 1)
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.playerReloadSound);
+        for (int i = 0; i < characters.Length; i += 1)
         {
             yield return new WaitForSeconds(step);
             msg += characters[i];
             callout.text = msg + "_";
         }
-        
+
         int loadingAmmo = Mathf.Min(ammoReserve.maxClip - ammoReserve.inClip, ammoReserve.stock);
         ammoReserve.inClip = ammoReserve.maxClip;
-        if(!isDefault)
+        if (!isDefault)
             ammoReserve.stock -= loadingAmmo;
 
         reloading = false;

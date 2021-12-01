@@ -10,9 +10,6 @@ public class TurretEnemy : Enemy
     public Vector3 bulletSize = new Vector3(4, 4, 0);
     private float shotTimer = 0;
 
-    //animation
-    //public Animator animator;
-
     void Start()
     {
         maxHealth = 25;
