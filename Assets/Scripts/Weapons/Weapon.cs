@@ -67,7 +67,9 @@ public class Weapon : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             pickupAllowed = true;
+            transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -75,6 +77,7 @@ public class Weapon : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             pickupAllowed = false;
+            transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 

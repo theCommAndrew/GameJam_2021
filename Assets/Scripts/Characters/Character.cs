@@ -7,7 +7,6 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     public float moveSpeed;
-
     public float maxSpeed;
     public bool alive { get; set; }
     public int maxHealth { get; set; }

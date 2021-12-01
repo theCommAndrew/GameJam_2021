@@ -36,7 +36,7 @@ public class LevelInfo : MonoBehaviour
     private bool getPercentResult(int chance)
     {   
         float check = roll(100);
-        return check <= chance;
+        return check <= (chance + Player.luck);
     }
 
     private float roll(int range)

@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorBehaviour : MonoBehaviour
+public class SideDoorBehaviour : MonoBehaviour
 {
     [SerializeField] private BattleSystem battleSystem;
     [SerializeField] private float moveDistance;
-    [SerializeField] private bool stayClosed = false;
-    public Vector3 moveSpeed = new Vector3(.1f, 0, 0);
+    public Vector3 moveSpeed = new Vector3(0, .025f, 0);
     private Transform doorL;
     private Transform doorR;
 
@@ -25,8 +24,7 @@ public class DoorBehaviour : MonoBehaviour
     }
 
     private void BattleSystem_OnBattleEnd(object sender, System.EventArgs e){
-        if(!stayClosed)
-            StartCoroutine(openDoors());
+        StartCoroutine(openDoors());
         battleSystem.OnBattleEnd -= BattleSystem_OnBattleEnd;
     }
 
@@ -37,7 +35,7 @@ public class DoorBehaviour : MonoBehaviour
         {
             doorL.position -= moveSpeed;
             doorR.position += moveSpeed;
-            moved += moveSpeed.x;
+            moved += moveSpeed.y;
             yield return new WaitForSeconds(.01f);
         }
     }
@@ -49,7 +47,7 @@ public class DoorBehaviour : MonoBehaviour
         {
             doorL.position += moveSpeed;
             doorR.position -= moveSpeed;
-            moved += moveSpeed.x;
+            moved += moveSpeed.y;
             yield return new WaitForSeconds(.01f);
         }
     }

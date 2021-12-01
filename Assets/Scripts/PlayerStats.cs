@@ -6,7 +6,8 @@ namespace PlayerStats{
         Health,
         Speed,
         Damage,
-        Reload
+        Reload,
+        Luck
     }
 
 }

@@ -10,14 +10,9 @@ public class Pitfall : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             Player player = other.gameObject.GetComponent<Player>();
-            if(!player.flying)
-            {
                 player.takeDamage(1);
                 player.StartCoroutine(player.stopPlayerMovement());
                 player.transform.position = dropPoint.position;
-            }
-
-
         }
         /*
         else if(other.gameObject.tag == "enemy")

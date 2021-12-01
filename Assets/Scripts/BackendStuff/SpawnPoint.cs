@@ -9,5 +9,6 @@ public class SpawnPoint : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player.transform.position = this.transform.position;
+        //player.spawnIn();
     }
 }

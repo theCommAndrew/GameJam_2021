@@ -14,6 +14,7 @@ public class AmmoFiller : MonoBehaviour
             foreach(Weapon weapon in playerWeapons.weapons)
             {
                 weapon.collectAmmo(weapon.ammoReserve.maxCapacity);
+                weapon.ammoReserve.inClip = weapon.ammoReserve.maxClip;
             }
             Destroy(gameObject);
             playerWeapons.updateUIAmmo();

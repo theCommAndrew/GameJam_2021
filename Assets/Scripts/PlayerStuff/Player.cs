@@ -18,6 +18,7 @@ public class Player : Character
     private bool canTakeDamage = true;
     public static float extraDamage = 1;
     public static float reloadRecudtion = 1;
+    public static float luck = 0;
     [SerializeField] private float invincibilityDurationSeconds = 1.5f;
     private float flashTimer = 0.15f;
     // event calls
@@ -119,6 +120,10 @@ public class Player : Character
             case PlayerStat.Reload:
                 reloadRecudtion *= .9f;
                 break;
+            
+            case PlayerStat.Luck:
+                luck += 10f;
+                break;
         }
 
     }
@@ -198,6 +203,11 @@ public class Player : Character
         moveSpeed = 0;
         yield return new WaitForSeconds(1f);
         moveSpeed = maxSpeed;
+    }
+    
+    public void spawnIn(){
+        StartCoroutine(stopPlayerMovement());
+        animator.Play("PlayerSpawn");
     }
 
     private IEnumerator delayDestroy()
