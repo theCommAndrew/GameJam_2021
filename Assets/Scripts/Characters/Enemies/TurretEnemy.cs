@@ -7,7 +7,7 @@ public class TurretEnemy : Enemy
     public float shotInterval;
     public int bulletDamage = 1;
     public float bulletSpeed = 30f;
-    public Vector3 bulletSize = new Vector3(.75f, .5f, 0);
+    public Vector3 bulletSize = new Vector3(4, 4, 0);
     private float shotTimer = 0;
 
     //animation

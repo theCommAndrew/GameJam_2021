@@ -7,7 +7,7 @@ using PlayerStats;
 public class Player : Character
 {
     // movement
-    Vector2 movement;
+    public Vector2 movement;
     Vector2 mousePosition;
     // dashing
     public GameObject dashEffect;
@@ -46,7 +46,7 @@ public class Player : Character
 
     void Update()
     {
-        if(!UIScripts.gameIsPaused && alive)
+        if (!UIScripts.gameIsPaused && alive)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -146,14 +146,15 @@ public class Player : Character
         var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
 
         if (hit.collider == null)
-            transform.position += moveDir * dashDistance;         
+            transform.position += moveDir * dashDistance;
         else
             transform.position = hit.point;
 
         StartCoroutine(dashCooldown());
     }
 
-    public IEnumerator dashCooldown(){
+    public IEnumerator dashCooldown()
+    {
         canDash = false;
         for (float i = 0; i < DASH_COOLDOWN_MAX; i += flashTimer)
         {
@@ -176,7 +177,6 @@ public class Player : Character
         playerSprite.material.color = Color.white;
         canTakeDamage = true;
     }
-
     /*
     public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
     {

@@ -12,7 +12,6 @@ public class HealthBar : MonoBehaviour
     public Sprite emptyHeart;
     private int maxHearts = 0;
     private Image end = null;
-    public Animator animator;
 
 
     private void Awake()
