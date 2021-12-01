@@ -394,7 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e456a13b17636046bd12fea602c3fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueLayouts: []
+  uniqueLayouts:
+  - {fileID: 2340945822216416021, guid: b4b1910ed1db7a54ca47ea37206ccdd0, type: 3}
 --- !u!114 &5869453476009240938
 MonoBehaviour:
   m_ObjectHideFlags: 0

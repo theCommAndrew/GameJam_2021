@@ -15,7 +15,7 @@ public class FriendlyBullet : Bullet
             enemy.takeDamage((int)(damage * Player.extraDamage));
         }
 
-        if (tag != "Player" && tag != "backend" && tag != "bullet")
+        if (tag != "Player" && tag != "backend" && tag != "bullet" && tag != "trap")
         {
             var hitindicator = Instantiate(hitPrefab, transform.position, Quaternion.identity);
             SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.hit);

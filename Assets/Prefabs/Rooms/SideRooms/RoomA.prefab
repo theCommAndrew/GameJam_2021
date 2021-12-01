@@ -370,7 +370,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e456a13b17636046bd12fea602c3fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueLayouts: []
+  uniqueLayouts:
+  - {fileID: 9134505547703269207, guid: e889875d3e71aa14dbc4c92088384bf1, type: 3}
+  - {fileID: 2340945822216416021, guid: b4b1910ed1db7a54ca47ea37206ccdd0, type: 3}
+  - {fileID: 9134505547703269207, guid: e889875d3e71aa14dbc4c92088384bf1, type: 3}
+  - {fileID: 9134505547703269207, guid: e889875d3e71aa14dbc4c92088384bf1, type: 3}
 --- !u!114 &8560527340382379322
 MonoBehaviour:
   m_ObjectHideFlags: 0

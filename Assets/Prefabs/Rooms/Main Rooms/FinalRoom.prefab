@@ -3864,12 +3864,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885157529929223615, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
       propertyPath: uniqueLayouts.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8885157529929223615, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
       propertyPath: uniqueLayouts.Array.data[0]
       value: 
       objectReference: {fileID: 6787105315498589796, guid: 63644d89304756744beb77d263cccba1, type: 3}
+    - target: {fileID: 8885157529929223615, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
+      propertyPath: uniqueLayouts.Array.data[1]
+      value: 
+      objectReference: {fileID: 666632993686106344, guid: 00f4e99faf0d9424b88a8cdfd6c2f97b, type: 3}
+    - target: {fileID: 8885157529929223615, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
+      propertyPath: uniqueLayouts.Array.data[2]
+      value: 
+      objectReference: {fileID: 7778450385966075669, guid: fe778a21b8eb6f64c988d53172e5891b, type: 3}
+    - target: {fileID: 8885157529929223615, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
+      propertyPath: uniqueLayouts.Array.data[3]
+      value: 
+      objectReference: {fileID: 7778450385966075669, guid: fe778a21b8eb6f64c988d53172e5891b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
 --- !u!114 &388028481486726728 stripped

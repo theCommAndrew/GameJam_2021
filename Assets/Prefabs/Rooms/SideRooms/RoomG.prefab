@@ -71,7 +71,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e456a13b17636046bd12fea602c3fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueLayouts: []
+  uniqueLayouts:
+  - {fileID: 2340945822216416021, guid: b4b1910ed1db7a54ca47ea37206ccdd0, type: 3}
+  - {fileID: 326506678539244772, guid: 99c41034bef9af242a553d4451779277, type: 3}
+  - {fileID: 577913145706416264, guid: 00acad27cac1e974bb53747786a17215, type: 3}
+  - {fileID: 6790892538349086233, guid: 6f0790e097b50e240b3dd53c57ba9959, type: 3}
+  - {fileID: 2278670149488791059, guid: 898cfbf3c452bd04db3be9ac736f21b1, type: 3}
 --- !u!114 &5287219733138207563
 MonoBehaviour:
   m_ObjectHideFlags: 0
