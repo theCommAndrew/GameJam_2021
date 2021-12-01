@@ -151,14 +151,12 @@ MonoBehaviour:
   animator: {fileID: 136750385204606288}
   firePoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  lootChance: 10
+  lootChance: 50
   contactDamage: 1
   rotationSpeed: 5
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
-  digitalGlitchEffect: {fileID: 0}
-  analogGlitchEffect: {fileID: 0}
 --- !u!95 &136750385204606288
 Animator:
   serializedVersion: 3

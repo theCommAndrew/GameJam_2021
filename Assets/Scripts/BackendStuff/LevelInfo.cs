@@ -10,6 +10,7 @@ public class LevelInfo : MonoBehaviour
     public GameObject finalRoom;
     public GameObject[] enemyLayouts;
     public GameObject[] enemyDrops;
+    public GameObject[] weapons;
     public GameObject[] roomRewards;
     public GameObject[] bossRewards;
     public int rooms = 0;
