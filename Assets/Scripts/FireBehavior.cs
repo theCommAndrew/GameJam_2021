@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBehavior : MonoBehaviour
 {
-    public Vector3 moveFireUp = new Vector3(0, .001f, 0);
+    public Vector3 moveFireUp = new Vector3(0, .004f, 0);
     [SerializeField] private BattleSystem entryTrigger;
     private bool isActive = false;
 
