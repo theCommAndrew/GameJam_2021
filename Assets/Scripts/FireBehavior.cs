@@ -5,18 +5,18 @@ using UnityEngine;
 public class FireBehavior : MonoBehaviour
 {
     public Vector3 moveFireUp = new Vector3(0, .001f, 0);
+    [SerializeField] private BattleSystem entryTrigger;
+    private bool isActive = false;
+
+    private void Awake() {
+        entryTrigger.OnBattleEnd += startFire;
+    }
 
     void Update()
     {
-        StartCoroutine(FireSpreading());
-    }
-
-    public IEnumerator FireSpreading()
-    {
-        if (!UIScripts.gameIsPaused)
+        if (!UIScripts.gameIsPaused && isActive)
         {
             this.transform.position += moveFireUp;
-            yield return new WaitForSeconds(30f);
         }
     }
 
@@ -34,5 +34,10 @@ public class FireBehavior : MonoBehaviour
             Enemy enemy = col.gameObject.GetComponent<Enemy>();
             enemy.takeDamage(enemy.maxHealth);
         }
+    }
+
+    private void startFire(object sender, System.EventArgs e){
+        print("activating fire");
+        isActive = true;
     }
 }

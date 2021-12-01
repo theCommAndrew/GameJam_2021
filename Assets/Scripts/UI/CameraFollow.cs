@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
-        if (followingPlayer)
+        if(followingPlayer && player.alive)
         {
             Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cameraHeight);
         }

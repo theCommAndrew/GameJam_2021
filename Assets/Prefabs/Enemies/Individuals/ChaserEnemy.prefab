@@ -232,6 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7fbb0682718584f85081a21d63bac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
+  maxSpeed: 0
   flying: 0
   animator: {fileID: 7044648190666169031}
   firePoint: {fileID: 0}

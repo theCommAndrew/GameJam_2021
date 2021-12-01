@@ -29,6 +29,20 @@ public class Player : Character
     private SpriteRenderer playerSprite;
     private TextMesh callout;
 
+    
+    /*
+    private static Player playerInstance;
+    
+    private void Awake() {
+        DontDestroyOnLoad(this);
+        if (playerInstance == null) {
+            playerInstance = this;
+        } 
+        else {
+            Destroy(gameObject);
+        }
+    }*/
+
     void Start()
     {
         DontDestroyOnLoad(this);

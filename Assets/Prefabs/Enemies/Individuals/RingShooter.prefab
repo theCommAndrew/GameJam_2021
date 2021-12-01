@@ -172,7 +172,7 @@ MonoBehaviour:
   animator: {fileID: 3471757044161718453}
   firePoint: {fileID: 3143855529914071452}
   bulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
-  lootChance: 10
+  lootChance: 80
   contactDamage: 1
   rotationSpeed: 5
   knockbackPower: 300
