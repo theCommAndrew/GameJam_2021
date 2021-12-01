@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     // Contains definitions for a default gun
     // shooting info
     [SerializeField] private GameObject bulletPrefab;
-    public int bulletDamage = 5;
+    public int bulletDamage = 3;
     public float bulletSpeed = 20f;
     [SerializeField] private GameObject firePoint;
     public Vector3 bulletSize = new Vector3(.4f, .4f, 0);

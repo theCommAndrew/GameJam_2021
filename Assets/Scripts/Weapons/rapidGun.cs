@@ -6,7 +6,7 @@ public class rapidGun : Weapon{
 
     protected override void Awake() {
         fireDelta = .15f;
-        bulletDamage = 3;
+        bulletDamage = 2;
         bulletSpeed = 30f;
         ammoReserve.maxClip = 25;
         ammoReserve.inClip = ammoReserve.maxClip;
