@@ -178,7 +178,7 @@ MonoBehaviour:
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
-  actionInverval: 1
+  actionInverval: 1.5
   bulletDamage: 1
   bulletSpeed: 15
   rotateSpeed: 90

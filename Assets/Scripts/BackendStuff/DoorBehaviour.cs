@@ -20,11 +20,16 @@ public class DoorBehaviour : MonoBehaviour
     }
 
     private void BattleSystem_OnBattleStart(object sender, System.EventArgs e){
+        if(this == null)
+            return;
         StartCoroutine(closeDoors());
         battleSystem.OnBattleStart -= BattleSystem_OnBattleStart;
     }
 
     private void BattleSystem_OnBattleEnd(object sender, System.EventArgs e){
+        if(this == null)
+            return;
+
         if(!stayClosed)
             StartCoroutine(openDoors());
         battleSystem.OnBattleEnd -= BattleSystem_OnBattleEnd;

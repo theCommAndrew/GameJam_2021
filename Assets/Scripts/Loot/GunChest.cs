@@ -16,7 +16,7 @@ public class GunChest : MonoBehaviour
     private void open(object sender, System.EventArgs e){
         
         int rand = Random.Range(0, info.weapons.Length);
-        Instantiate(info.weapons[rand], transform.position, Quaternion.identity);
+        Instantiate(info.weapons[rand], transform.position, Quaternion.Euler(new Vector3(0,0,-90)));
         Destroy(gameObject);
     }
 }

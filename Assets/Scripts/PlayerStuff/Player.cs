@@ -46,7 +46,7 @@ public class Player : Character
     void Start()
     {
         DontDestroyOnLoad(this);
-        maxHealth = 3;
+        maxHealth = 5;
         health = maxHealth;
         moveSpeed = 7f;
         maxSpeed = moveSpeed;

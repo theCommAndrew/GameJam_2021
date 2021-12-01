@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3052103746546364579}
   m_Layer: 0
   m_Name: ShootyBoy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   knockbackPower: 300
   knockbackDuration: 1
   pauseDuration: 0.3
-  shotInterval: 0
+  shotInterval: 0.7
   bulletDamage: 1
   bulletSpeed: 30
   bulletSize: {x: 4, y: 4, z: 0}

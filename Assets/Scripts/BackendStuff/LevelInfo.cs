@@ -25,13 +25,18 @@ public class LevelInfo : MonoBehaviour
     {
         if (getPercentResult(lootChance))
         {
-            if (getPercentResult(30))
+            var chance = roll(100);
+            if(chance <= 30)
             {
                 Instantiate(enemyDrops[0], enemyLoc.position, Quaternion.Euler(0, 0, 0));
             }
-            else
+            else if(chance <= 85)
             {
                 Instantiate(enemyDrops[1], enemyLoc.position, Quaternion.Euler(0, 0, 0));
+            }
+            else
+            {
+                Instantiate(enemyDrops[2], enemyLoc.position, Quaternion.Euler(0, 0, 0));
             }
         }
     }

@@ -13,6 +13,7 @@ public class VirusEnemy : Enemy
     private int rand;
     private Action desiredAction;
     private SpriteRenderer spriteRenderer;
+    private bool invoked = false;
 
     void Start()
     {
@@ -32,21 +33,27 @@ public class VirusEnemy : Enemy
 
     private void Update()
     {
-        if (alive)
+        if(alive && !invoked)
         {
             digitalGlitchEffect.intensity = 0.1f;
             analogGlitchEffect.scanLineJitter = 0.1f;
             analogGlitchEffect.colorDrift = 0.1f;
-            desiredAction.Invoke();
+            StartCoroutine(messWithPlayer());
 
         }
-        else
+        else if(!alive)
         {
             digitalGlitchEffect.intensity = 0;
             analogGlitchEffect.scanLineJitter = 0;
             analogGlitchEffect.colorDrift = 0;
             revertPlayer();
         }
+    }
+
+    public IEnumerator messWithPlayer(){
+        invoked = true;
+        yield return new WaitForSeconds(3f);
+        desiredAction.Invoke();
     }
 
     public void reverseControls()
@@ -73,8 +80,6 @@ public class VirusEnemy : Enemy
     {
         player.moveSpeed = 3f;
     }
-
-
 
     public void revertPlayer()
     {
