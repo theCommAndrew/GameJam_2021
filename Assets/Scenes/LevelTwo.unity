@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17f8722f1fa9bd4cb9c977189fe584b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNumber: 1
+  levelNumber: 2
   mainRooms:
   - {fileID: 4028596169392696793, guid: 9ac8f27ec8edf7f4dae3c0ca58362f31, type: 3}
   - {fileID: 1709293639981461749, guid: f2ac37dc85a101a4b8adf4caf013818a, type: 3}
@@ -727,6 +727,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 816834540257935590, guid: 767335010d6b7fc4084dc08ba1fb4544, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1690334062714367904, guid: 767335010d6b7fc4084dc08ba1fb4544, type: 3}
       propertyPath: m_Name
       value: Entry
@@ -990,6 +994,14 @@ PrefabInstance:
       propertyPath: uniqueLayouts.Array.data[0]
       value: 
       objectReference: {fileID: 9134505547703269207, guid: e889875d3e71aa14dbc4c92088384bf1, type: 3}
+    - target: {fileID: 9013482142749980344, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
+      propertyPath: m_Size.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013482142749980344, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80559e65b30d1754998370143c9e85fa, type: 3}
 --- !u!1001 &1243904880
