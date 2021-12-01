@@ -51,21 +51,26 @@ public class UIScripts : MonoBehaviour
 
     public void restartGame()
     {
-        SceneManager.LoadScene(1);
-        pauseMenuUI.SetActive(false);
-        gameOverScreen.SetActive(false);
-
-        Destroy(gameObject);
         var player = GameObject.FindGameObjectWithTag("Player");
         if(player != null)
-            Destroy(gameObject);
+            Destroy(player.gameObject);
+
+        
+        pauseMenuUI.SetActive(false);
+        gameOverScreen.SetActive(false);
+        Destroy(gameObject);
+        SceneManager.LoadScene(1);
     }
 
     public void quitGame()
     {
-        SceneManager.LoadScene(0);
-        Destroy(gameObject);
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if(player != null)
+            Destroy(player.gameObject);
+    
         Cursor.visible = true;
+        Destroy(gameObject);
+        SceneManager.LoadScene(0);
     }
 
     private void gameOver(object sender, System.EventArgs e)

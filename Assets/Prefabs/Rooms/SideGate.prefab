@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4589513226485560739}
   - component: {fileID: 8269397445226443639}
   - component: {fileID: 7141274210032717201}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SideGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 7346097118281796321}
   - component: {fileID: 175078868738052090}
   - component: {fileID: 4895302977197270145}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GateR
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 362562852941568195}
   - component: {fileID: 7383309256289656137}
   - component: {fileID: 3032571459848424877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GateL
   m_TagString: wall
   m_Icon: {fileID: 0}
