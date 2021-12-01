@@ -12,7 +12,7 @@ public class ShootyBoy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = 10;
+        maxHealth = 15;
         health = maxHealth;
         moveSpeed = 0f;
         deathAnimation = "ShootyBoyDie";

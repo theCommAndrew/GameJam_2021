@@ -12,7 +12,7 @@ public class TurretEnemy : Enemy
 
     void Start()
     {
-        maxHealth = 25;
+        maxHealth = 20;
         health = maxHealth;
         shotInterval = 2;
         deathAnimation = "TurretEnemyDie";

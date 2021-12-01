@@ -21,7 +21,7 @@ public class SummonerBoss : Enemy
 
     void Start()
     {;
-        maxHealth = 200;
+        maxHealth = 80;
         health = maxHealth;
         moveSpeed = 1f;
         deathAnimation = "ChaserDie";
@@ -46,13 +46,14 @@ public class SummonerBoss : Enemy
 
     private void summon()
     {
-        var enemyCount = GameObject.FindGameObjectsWithTag("enemy");
+        var enemyCount = GameObject.FindGameObjectsWithTag("minion");
         if(enemyCount.Length < 4)
         {
             foreach(GameObject point in spawners)
             {
                 GameObject minion = Instantiate(chaser, point.transform.position, Quaternion.identity);
                 minion.GetComponent<Enemy>().spawn();
+                minion.tag = "minion";
             }
         }
         else{
@@ -74,7 +75,6 @@ public class SummonerBoss : Enemy
             transform.position += moveDir * dashDistance;
         else
             transform.position -= moveDir * dashDistance;
-        animator.Play("RingShooterDash");
     }
 
     private void fireRing()

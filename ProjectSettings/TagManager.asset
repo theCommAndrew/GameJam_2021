@@ -22,6 +22,8 @@ TagManager:
   - Trap
   - PlayerCallout
   - PlayerSpawn
+  - UI
+  - minion
   layers:
   - Default
   - TransparentFX

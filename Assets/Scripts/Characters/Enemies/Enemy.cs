@@ -78,7 +78,9 @@ public class Enemy : Character
             {
                 enemyMovement.canMove = false;
             }
-            OnEnemyKilled?.Invoke(lootChance, this.transform);
+            if(gameObject.tag == "enemy")
+                OnEnemyKilled?.Invoke(lootChance, this.transform);
+                
             gameObject.GetComponent<Animator>().Play(deathAnimation);
             Destroy(gameObject, 1f);
         }

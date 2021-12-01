@@ -17,7 +17,6 @@ public class RingShooter : Enemy
     private int rand;
 
 
-
     void Start()
     {
         maxHealth = 40;

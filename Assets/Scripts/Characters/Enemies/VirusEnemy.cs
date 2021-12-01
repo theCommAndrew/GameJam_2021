@@ -16,7 +16,7 @@ public class VirusEnemy : Enemy
 
     void Start()
     {
-        maxHealth = 5;
+        maxHealth = 8;
         health = maxHealth;
         moveSpeed = 0f;
         lootChance = 100;
