@@ -83,7 +83,7 @@ TextMesh:
   m_GameObject: {fileID: 3277028588911629582}
   m_Text: Luck Up
   m_OffsetZ: 0
-  m_CharacterSize: 0.5
+  m_CharacterSize: 0.4
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
@@ -94,7 +94,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278234623
 --- !u!1 &4488172319848578634
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ Animator:
   m_GameObject: {fileID: 6491930929285305718}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a34203b39d8c93a4885a38fd64ecb4d7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

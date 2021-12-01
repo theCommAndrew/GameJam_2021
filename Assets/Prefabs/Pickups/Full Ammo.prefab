@@ -186,7 +186,7 @@ TextMesh:
   m_GameObject: {fileID: 4097444291090383484}
   m_Text: Full Ammo
   m_OffsetZ: 0
-  m_CharacterSize: 0.3
+  m_CharacterSize: 0.4
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
@@ -197,7 +197,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278234623
 --- !u!1 &6071178372268798024
 GameObject:
   m_ObjectHideFlags: 0
