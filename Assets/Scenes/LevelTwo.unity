@@ -284,7 +284,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 13.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 1266784658}
     - target: {fileID: 8420246640509693983, guid: 98472bb889fca044296bdcfaf9202b09, type: 3}
       propertyPath: moveFireUp.y
-      value: 0.004
+      value: 0.005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98472bb889fca044296bdcfaf9202b09, type: 3}

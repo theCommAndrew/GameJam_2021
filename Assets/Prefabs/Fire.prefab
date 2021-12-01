@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946deb171d7dceb4a898a30de0a2e696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveFireUp: {x: 0, y: 0.025, z: 0}
+  moveFireUp: {x: 0, y: 0.004, z: 0}
   entryTrigger: {fileID: 0}
 --- !u!61 &8420246640509693976
 BoxCollider2D:

@@ -160,8 +160,8 @@ MonoBehaviour:
   pauseDuration: 0.3
   shotInterval: 0
   bulletDamage: 1
-  bulletSpeed: 30
-  bulletSize: {x: 5, y: 5, z: 0}
+  bulletSpeed: 25
+  bulletSize: {x: 6, y: 6, z: 0}
 --- !u!95 &8182880533597264722
 Animator:
   serializedVersion: 3

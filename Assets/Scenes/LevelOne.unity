@@ -723,7 +723,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 13.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2709,7 +2709,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42, y: -176.93803}
+  m_AnchoredPosition: {x: 48.5, y: -176.93803}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.49999997, y: 0.5}
 --- !u!114 &892238743
@@ -4796,7 +4796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 43.112682, y: -49.4}
+  m_AnchoredPosition: {x: 48.9, y: -49.4}
   m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774397264
@@ -5146,7 +5146,7 @@ PrefabInstance:
       objectReference: {fileID: 2075397091}
     - target: {fileID: 8420246640509693983, guid: 98472bb889fca044296bdcfaf9202b09, type: 3}
       propertyPath: moveFireUp.y
-      value: 0.004
+      value: 0.005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98472bb889fca044296bdcfaf9202b09, type: 3}

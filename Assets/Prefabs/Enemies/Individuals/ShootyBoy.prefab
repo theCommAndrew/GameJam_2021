@@ -188,4 +188,4 @@ MonoBehaviour:
   shotInterval: 0.7
   bulletDamage: 1
   bulletSpeed: 30
-  bulletSize: {x: 4, y: 4, z: 0}
+  bulletSize: {x: 5, y: 5, z: 0}

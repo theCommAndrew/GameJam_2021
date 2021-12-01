@@ -8,7 +8,8 @@ public class FireBehavior : MonoBehaviour
     [SerializeField] private BattleSystem entryTrigger;
     private bool isActive = false;
 
-    private void Awake() {
+    private void Awake()
+    {
         entryTrigger.OnBattleEnd += startFire;
     }
 
@@ -23,20 +24,21 @@ public class FireBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         string tag = col.gameObject.tag;
-        if(tag == "Player")
+        if (tag == "Player")
         {
             Player player = col.gameObject.GetComponent<Player>();
             player.takeDamage(player.maxHealth);
         }
 
-        if(tag == "enemy")
+        if (tag == "enemy")
         {
             Enemy enemy = col.gameObject.GetComponent<Enemy>();
             enemy.takeDamage(enemy.maxHealth);
         }
     }
 
-    private void startFire(object sender, System.EventArgs e){
+    private void startFire(object sender, System.EventArgs e)
+    {
         print("activating fire");
         isActive = true;
     }
