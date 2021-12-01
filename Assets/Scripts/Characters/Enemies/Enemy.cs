@@ -14,7 +14,7 @@ public class Enemy : Character
     [SerializeField] protected GameObject bulletPrefab; // enemy projectile
 
     // movement/combat params
-    public int lootChance = 10; // chance to drop something on death. int from 0-100
+    public int lootChance = 100; // chance to drop something on death. int from 0-100
     public int contactDamage = 1; // damage done when running into player
     public float rotationSpeed = 5;
     public float knockbackPower = 300;

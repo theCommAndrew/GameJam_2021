@@ -16,7 +16,7 @@ public class RingShooter : Enemy
     private Action[] actions;
     private int rand;
 
-    
+
 
     void Start()
     {
@@ -26,25 +26,27 @@ public class RingShooter : Enemy
         moveSpeed = 0f;
         deathAnimation = "BasicEnemyDie";
 
-        actions = new Action[]{fireRing, move};
+        actions = new Action[] { fireRing, move };
     }
-    
 
-    private void Update() {
-        if(alive)
+
+    private void Update()
+    {
+        if (alive)
         {
             actionTimer += Time.deltaTime;
-            if(actionTimer >= actionInverval)
-            {   
-                rand = Random.Range(0,actions.Length);
+            if (actionTimer >= actionInverval)
+            {
+                rand = Random.Range(0, actions.Length);
                 actions[rand].Invoke();
-                actionTimer = 0;    
+                actionTimer = 0;
             }
-            transform.Rotate(Vector3.back * rotateSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.back * Time.deltaTime);
         }
     }
 
-    private void fireRing(){
+    private void fireRing()
+    {
         shootSpread(bulletPrefab, firePoint, bulletDamage, bulletSpeed, 360, 24);
     }
 
@@ -58,12 +60,12 @@ public class RingShooter : Enemy
         var dasheffectvar = Instantiate(dashEffect, transform.position, Quaternion.Euler(0, 0, particleAngle));
 
         if (hit.collider == null)
-            transform.position += moveDir * dashDistance;         
+            transform.position += moveDir * dashDistance;
         else
             transform.position -= moveDir * dashDistance;
-
+        animator.Play("RingShooterDash");
         fireRing();
     }
 
-    
+
 }

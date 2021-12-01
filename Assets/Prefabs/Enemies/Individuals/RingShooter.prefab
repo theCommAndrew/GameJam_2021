@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1257288838646639076}
   - component: {fileID: 4991984033279253955}
   - component: {fileID: 5190643220128665267}
-  - component: {fileID: 7140208698585598834}
+  - component: {fileID: 3471757044161718453}
   m_Layer: 0
   m_Name: RingShooter
   m_TagString: enemy
@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 5564200678199247971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4800121945898978935}
   m_Father: {fileID: 0}
@@ -106,8 +106,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
-  m_Color: {r: 0.49803925, g: 0.49803925, b: 0.49803925, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b0a39493dc5b73649bdce436e8d22733, type: 3}
+  m_Color: {r: 1, g: 0.97848827, b: 0.5896226, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,9 +130,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.04271114}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.29665688
 --- !u!50 &4991984033279253955
 Rigidbody2D:
   serializedVersion: 4
@@ -166,8 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0068bf4962e2ef4a806d59c8153bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
+  maxSpeed: 0
   flying: 1
-  animator: {fileID: 0}
+  animator: {fileID: 3471757044161718453}
   firePoint: {fileID: 3143855529914071452}
   bulletPrefab: {fileID: 4695644131091356760, guid: b67046893bc4f2747be024c4bcb23e59, type: 3}
   lootChance: 10
@@ -182,7 +184,7 @@ MonoBehaviour:
   rotateSpeed: 90
   dashDistance: 5
   dashEffect: {fileID: 921558079183481366, guid: 283de0fbed9cfbd4181e06beda985cca, type: 3}
---- !u!95 &7140208698585598834
+--- !u!95 &3471757044161718453
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
